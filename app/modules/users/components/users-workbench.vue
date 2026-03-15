@@ -41,7 +41,11 @@
         <h3 class="font-semibold">ECharts</h3>
       </template>
 
-      <VChart class="h-72 w-full" :option="chartOption" autoresize />
+      <ClientOnly>
+        <div ref="chartContainer" class="h-72 w-full">
+          <VChart v-if="chartReady" class="h-full w-full" :option="chartOption" autoresize />
+        </div>
+      </ClientOnly>
     </UCard>
 
     <UCard>
@@ -88,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import { useNow } from "@vueuse/core";
+import { useElementSize, useNow } from "@vueuse/core";
 import { FlexRender, createColumnHelper, getCoreRowModel, useVueTable } from "@tanstack/vue-table";
 import type { EChartsOption } from "echarts";
 import { BarChart } from "echarts/charts";
@@ -158,6 +162,10 @@ const chartOption = computed<EChartsOption>(() => {
     ],
   };
 });
+
+const chartContainer = ref<HTMLElement | null>(null);
+const { width: chartWidth, height: chartHeight } = useElementSize(chartContainer);
+const chartReady = computed(() => chartWidth.value > 0 && chartHeight.value > 0);
 
 const editor = useEditor({
   extensions: [StarterKit],
