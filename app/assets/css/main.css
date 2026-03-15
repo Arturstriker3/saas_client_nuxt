@@ -101,3 +101,55 @@ button:disabled,
   --ui-color-error-500: #fb7185;
   --ui-color-error-600: #fb7185;
 }
+
+.landing-marquee-mask {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-top: 0.2rem;
+  padding-bottom: 0.25rem;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.landing-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: landing-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.landing-logo-chip {
+  display: inline-flex;
+  min-width: 168px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(15 23 42 / 0.08);
+  background: rgb(255 255 255 / 0.96);
+  padding: 0.65rem 1rem;
+  backdrop-filter: blur(2px);
+}
+
+.dark .landing-logo-chip {
+  border-color: rgb(15 23 42 / 0.14);
+  background: rgb(248 250 252 / 0.96);
+}
+
+@keyframes landing-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-marquee-track {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}

@@ -1,24 +1,33 @@
 <template>
   <section ref="heroSection" class="relative overflow-hidden">
-    <div class="absolute inset-0 opacity-80" :style="heroLinesStyle" />
+    <div class="absolute inset-0 opacity-80 transition-transform duration-700 ease-out" :style="heroBackgroundStyle" />
     <div class="layout-container relative flex flex-col items-center pb-18 pt-20 text-center">
-      <p class="mb-5 rounded-full border border-(--ui-primary) bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-(--ui-primary) dark:bg-slate-900">
+      <p
+        class="mb-5 rounded-full border border-(--ui-primary) bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-(--ui-primary) transition-all duration-700 ease-out dark:bg-slate-900"
+        :class="sectionVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'"
+      >
         {{ t("landing.hero.tagline") }}
       </p>
-      <h1 class="min-h-[3.3em] max-w-5xl text-balance text-5xl font-extrabold leading-[1.04] tracking-tight md:min-h-[2.2em] md:max-w-6xl md:text-7xl">
+      <h1
+        class="min-h-[3.3em] max-w-5xl text-balance text-5xl font-extrabold leading-[1.04] tracking-tight transition-all duration-700 ease-out md:min-h-[2.2em] md:max-w-6xl md:text-7xl"
+        :class="sectionVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
+        :style="{ transitionDelay: sectionVisible ? '70ms' : '0ms' }"
+      >
         {{ t("landing.hero.title") }}
       </h1>
-      <p class="mt-6 min-h-14 max-w-3xl text-lg text-[#64748b] dark:text-slate-300">
+      <p
+        class="mt-6 min-h-14 max-w-3xl text-lg text-[#64748b] transition-all duration-700 ease-out dark:text-slate-300"
+        :class="sectionVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
+        :style="{ transitionDelay: sectionVisible ? '130ms' : '0ms' }"
+      >
         {{ t("landing.hero.subtitle") }}
       </p>
-      <div class="mt-8 grid w-full max-w-4xl gap-4 sm:grid-cols-3">
+      <div ref="trustCardsSection" class="mt-8 grid w-full max-w-4xl gap-4 sm:grid-cols-3">
         <article
           v-for="(item, index) in trustItems"
           :key="item.label"
-          v-motion
-          :initial="{ opacity: 0, x: -36 }"
-          :enter="{ opacity: 1, x: 0, transition: { duration: 520, delay: 120 * index } }"
-          class="group rounded-2xl border border-emerald-100/70 bg-white/90 p-4 text-left shadow-[0_12px_26px_rgba(15,23,42,0.08)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:shadow-[0_14px_34px_rgba(15,23,42,0.12)] dark:border-emerald-300/15 dark:bg-slate-900/85"
+          class="group rounded-2xl border border-emerald-100/70 bg-white/90 p-4 text-left shadow-[0_12px_26px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-500 ease-out hover:-translate-y-0.5 hover:shadow-[0_14px_34px_rgba(15,23,42,0.12)] dark:border-emerald-300/15 dark:bg-slate-900/85"
+          :style="getTrustCardStyle(index)"
         >
           <div class="flex items-start justify-between gap-3 text-[#334155] dark:text-slate-300">
             <div class="flex items-center gap-2">
@@ -62,17 +71,31 @@ const props = defineProps<{
 const { t } = useI18n()
 
 const heroSection = ref<HTMLElement | null>(null)
+const trustCardsSection = ref<HTMLElement | null>(null)
+const sectionVisible = ref(false)
+const trustCardsVisible = ref(false)
 const hasAnimated = ref(false)
 const animatedSources = props.trustItems.map(() => ref(0))
 const animatedValues = animatedSources.map((source) => useTransition(source, { duration: 1200 }))
 
+const { top } = useElementBounding(heroSection)
+
 useIntersectionObserver(heroSection, ([entry]) => {
-  if (!entry?.isIntersecting || hasAnimated.value) {
+  if (!entry?.isIntersecting) {
     return
   }
 
+  sectionVisible.value = true
+}, { threshold: 0.18 })
+
+useIntersectionObserver(trustCardsSection, ([entry]) => {
+  if (!entry?.isIntersecting || trustCardsVisible.value) {
+    return
+  }
+
+  trustCardsVisible.value = true
   hasAnimated.value = true
-})
+}, { threshold: 0.42, rootMargin: "0px 0px -12% 0px" })
 
 watch(hasAnimated, (isActive) => {
   if (!isActive) {
@@ -83,6 +106,34 @@ watch(hasAnimated, (isActive) => {
     animatedSources[index].value = item.value
   })
 })
+
+const parallaxOffset = computed(() => {
+  const motion = (top.value - 280) * -0.035
+  return Math.max(-26, Math.min(26, motion))
+})
+
+const heroBackgroundStyle = computed(() => ({
+  ...props.heroLinesStyle,
+  transform: `translate3d(0, ${parallaxOffset.value * 0.45}px, 0)`,
+}))
+
+const getTrustCardStyle = (index: number) => {
+  if (!trustCardsVisible.value) {
+    return {
+      opacity: "0",
+      transform: "translate3d(0, 18px, 0)",
+      transitionDelay: "0ms",
+    }
+  }
+
+  const direction = index % 2 === 0 ? 1 : -1
+
+  return {
+    opacity: "1",
+    transform: `translate3d(0, ${parallaxOffset.value * direction * 0.2}px, 0)`,
+    transitionDelay: `${index * 100 + 180}ms`,
+  }
+}
 
 const formatMetricValue = (item: HeroTrustItem, index: number) => {
   const metricValue = animatedValues[index]?.value ?? 0

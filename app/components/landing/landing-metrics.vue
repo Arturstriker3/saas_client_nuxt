@@ -1,17 +1,32 @@
 <template>
-  <section class="layout-container py-20">
-    <h2 class="text-center text-4xl font-extrabold tracking-tight">{{ t("landing.metrics.title") }}</h2>
+  <section ref="sectionRef" class="layout-container py-20">
+    <h2
+      class="text-center text-4xl font-extrabold tracking-tight transition-all duration-700 ease-out"
+      :class="sectionVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'"
+    >
+      {{ t("landing.metrics.title") }}
+    </h2>
     <div class="mt-10 grid gap-6 md:grid-cols-2">
-      <UCard v-for="metric in metrics" :key="metric.label" class="rounded-3xl border border-black/10 dark:border-white/10">
+      <UCard
+        v-for="(metric, index) in metrics"
+        :key="metric.label"
+        class="rounded-3xl border border-black/10 transition-all duration-600 ease-out dark:border-white/10"
+        :style="getMetricCardStyle(index)"
+      >
         <div class="space-y-4">
           <p class="text-sm text-[#64748b] dark:text-slate-300">{{ metric.label }}</p>
           <p class="text-4xl font-extrabold">{{ metric.value }}</p>
-          <div class="h-20 rounded-xl bg-linear-to-r from-[#fff1ec] to-[#ffe8e2]" />
+          <div class="h-20 rounded-xl bg-linear-to-r from-[#fff1ec] to-[#ffe8e2]" :style="getMetricBarStyle(index)" />
         </div>
       </UCard>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-2">
-      <UCard v-for="quote in quotes" :key="quote.author" class="rounded-3xl border border-black/10 dark:border-white/10">
+      <UCard
+        v-for="(quote, index) in quotes"
+        :key="quote.author"
+        class="rounded-3xl border border-black/10 transition-all duration-600 ease-out dark:border-white/10"
+        :style="getQuoteCardStyle(index)"
+      >
         <p class="text-sm leading-relaxed text-[#475569] dark:text-slate-300">{{ quote.message }}</p>
         <p class="mt-4 text-sm font-semibold text-[#0f172a] dark:text-slate-100">{{ quote.author }}</p>
       </UCard>
@@ -36,4 +51,64 @@ defineProps<{
 }>()
 
 const { t } = useI18n()
+
+const sectionRef = ref<HTMLElement | null>(null)
+const sectionVisible = ref(false)
+
+const { top } = useElementBounding(sectionRef)
+
+useIntersectionObserver(sectionRef, ([entry]) => {
+  if (!entry?.isIntersecting || sectionVisible.value) {
+    return
+  }
+
+  sectionVisible.value = true
+}, { threshold: 0.2 })
+
+const parallaxOffset = computed(() => {
+  const motion = (top.value - 360) * -0.03
+  return Math.max(-18, Math.min(18, motion))
+})
+
+const getMetricCardStyle = (index: number) => {
+  if (!sectionVisible.value) {
+    return {
+      opacity: "0",
+      transform: "translate3d(0, 18px, 0)",
+      transitionDelay: "0ms",
+    }
+  }
+
+  return {
+    opacity: "1",
+    transform: `translate3d(0, ${parallaxOffset.value * (index === 0 ? 0.5 : -0.45)}px, 0)`,
+    transitionDelay: `${index * 100 + 120}ms`,
+  }
+}
+
+const getMetricBarStyle = (index: number) => {
+  const drift = index === 0 ? parallaxOffset.value * -0.35 : parallaxOffset.value * 0.35
+
+  return {
+    transform: `translate3d(${drift}px, 0, 0) scaleX(${sectionVisible.value ? 1 : 0.92})`,
+    opacity: sectionVisible.value ? "1" : "0.7",
+    transition: "transform 760ms ease, opacity 760ms ease",
+  }
+}
+
+const getQuoteCardStyle = (index: number) => {
+  if (!sectionVisible.value) {
+    return {
+      opacity: "0",
+      transform: "translate3d(0, 20px, 0)",
+      transitionDelay: "0ms",
+    }
+  }
+
+  return {
+    opacity: "1",
+    transform: `translate3d(0, ${parallaxOffset.value * (index === 0 ? -0.3 : 0.3)}px, 0)`,
+    transitionDelay: `${index * 100 + 300}ms`,
+  }
+}
 </script>

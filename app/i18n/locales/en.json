@@ -84,7 +84,8 @@
       }
     },
     "brands": {
-      "title": "Used by professionals and service teams"
+      "title": "Used by professionals and service teams",
+      "poweredBy": "Technology that powers Marcato"
     },
     "loop": {
       "title": "Keep your calendar fully organized",

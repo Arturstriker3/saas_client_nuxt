@@ -49,6 +49,12 @@ type HeroTrustItem = {
   icon: string
 }
 
+type TopLogoItem = {
+  name: string
+  icon: string
+  color: string
+}
+
 type FeedbackPreviewItem = {
   title: string
   subtitle: string
@@ -154,7 +160,16 @@ const heroTrustItems = computed<HeroTrustItem[]>(() => [
   },
 ])
 
-const topLogos = ["PATREON", "airbnb", "Topticals", "cobana", "Griffin", "hipcast", "RAYO", "Snyk"]
+const topLogos: TopLogoItem[] = [
+  { name: "Bun", icon: "i-simple-icons-bun", color: "#2B2B2B" },
+  { name: "Nuxt", icon: "i-simple-icons-nuxt", color: "#00DC82" },
+  { name: "MongoDB", icon: "i-simple-icons-mongodb", color: "#47A248" },
+  { name: "TypeScript", icon: "i-simple-icons-typescript", color: "#3178C6" },
+  { name: "RabbitMQ", icon: "i-simple-icons-rabbitmq", color: "#FF6600" },
+  { name: "WhatsApp Business", icon: "i-simple-icons-whatsapp", color: "#25D366" },
+  { name: "NestJS", icon: "i-simple-icons-nestjs", color: "#E0234E" },
+  { name: "Vue", icon: "i-simple-icons-vuedotjs", color: "#4FC08D" },
+]
 
 const feedbackPreview = computed<FeedbackPreviewItem[]>(() => [
   { title: t("landing.feedbackPreview.item1.title"), subtitle: t("landing.feedbackPreview.item1.subtitle"), score: "+18%" },

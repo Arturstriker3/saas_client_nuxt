@@ -84,7 +84,8 @@
       }
     },
     "brands": {
-      "title": "Usado por profesionales y equipos de servicio"
+      "title": "Usado por profesionales y equipos de servicio",
+      "poweredBy": "Tecnología que impulsa Marcato"
     },
     "loop": {
       "title": "Mantén tu agenda siempre organizada",
