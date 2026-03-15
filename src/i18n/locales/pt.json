@@ -1,0 +1,9 @@
+{
+  "app": {
+    "title": "Arquitetura Modular Nuxt",
+    "subtitle": "Base inicial com módulos, core e contratos tipados.",
+    "users": "Usuários",
+    "loadedAt": "Atualizado em {date}",
+    "localeLabel": "Idioma"
+  }
+}

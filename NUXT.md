@@ -1,188 +1,138 @@
-# Client Architecture – Nuxt
+# Arquitetura do Cliente — Nuxt
 
-This project uses **Nuxt** with a **modular domain-driven architecture**, inspired by backend module organization commonly used in NestJS.
+Este projeto usa **Nuxt** com arquitetura **modular orientada a domínio**, com `srcDir: "src/"` e separação de responsabilidades entre `core`, `modules`, `pages`, `components`, `composables` e `stores`.
 
-The goal is to keep the codebase:
+Objetivos principais:
 
-- scalable
-- maintainable
-- domain-oriented
-- SEO friendly
+- escalabilidade por domínio
+- manutenção previsível
+- contratos tipados de API
+- SEO e metadados com Nuxt
+- internacionalização desde o início
 
 ---
 
-# Project Structure
+# Estrutura Oficial
 
 ```
 src/
+ ├ app.vue
  ├ pages/
+ │   └ index.vue
+ │
  ├ core/
  │   ├ api/
+ │   │   └ http-client.ts
  │   ├ config/
+ │   │   └ runtime.config.ts
  │   ├ plugins/
+ │   │   └ vue-query.ts
  │   ├ middleware/
+ │   │   └ auth.global.ts
  │   ├ utils/
+ │   │   └ date.util.ts
  │   └ types/
+ │       └ pagination.type.ts
  │
  ├ modules/
  │   ├ auth/
- │   │   ├ components/
- │   │   ├ composables/
- │   │   ├ repository/
  │   │   ├ stores/
- │   │   ├ dto/
+ │   │   │   └ auth.store.ts
  │   │   └ types.ts
  │   │
- │   ├ users/
- │   │   ├ components/
- │   │   ├ composables/
- │   │   ├ repository/
- │   │   ├ stores/
- │   │   ├ dto/
- │   │   └ types.ts
+ │   └ users/
+ │       ├ components/
+ │       │   └ users-workbench.vue
+ │       ├ composables/
+ │       │   └ use-users.composable.ts
+ │       ├ repository/
+ │       │   └ users.repository.ts
+ │       ├ stores/
+ │       │   └ users.store.ts
+ │       ├ dto/
+ │       │   ├ list-users.request.dto.ts
+ │       │   └ list-users.response.dto.ts
+ │       └ types.ts
  │
  ├ components/
+ │   └ app-shell.vue
  ├ composables/
- └ stores/
+ │   └ use-locale-switcher.composable.ts
+ ├ stores/
+ │   └ app.store.ts
+ ├ i18n/
+ │   └ locales/
+ │       ├ pt.json
+ │       ├ en.json
+ │       └ es.json
+ └ assets/
+     └ css/
+         └ main.css
 ```
 
 ---
 
-# Core Layer
+# Stack Oficial
 
-The `core` folder contains **shared infrastructure** used across the entire application.
+Base:
 
-```
-core/
- ├ api/         → HTTP clients and API configuration
- ├ config/      → runtime configuration
- ├ plugins/     → Nuxt plugins
- ├ middleware/  → global route middleware
- ├ utils/       → utility helpers
- └ types/       → shared types
-```
+- Nuxt + Vue + TypeScript
+- Nuxt UI
+- Tailwind CSS v4
 
-Examples:
+Estado e dados:
 
-- HTTP client configuration
-- API interceptors
-- global types
-- utility helpers
+- Pinia
+- Vue Query (TanStack Query)
 
----
+Produtividade e validação:
 
-# Modules
+- VueUse
+- Zod
+- Dayjs
 
-The `modules` directory contains **domain-based features**.
+SEO e i18n:
 
-Each module encapsulates its own logic and structure.
+- Nuxt SEO
+- Nuxt i18n
 
-Example:
+Componentes e UX avançada:
 
-```
-modules/users
-```
-
-```
-users/
- ├ components/   → UI components for the module
- ├ composables/  → Vue composables with business logic
- ├ repository/   → API communication layer
- ├ stores/       → Pinia stores for module state
- ├ dto/          → API request/response models
- └ types.ts      → domain types
-```
-
-This keeps each domain **isolated and maintainable**.
-
-Suggested DTO organization:
-
-```
-dto/
- ├ create-user.request.dto.ts
- ├ create-user.response.dto.ts
- ├ list-users.request.dto.ts
- └ list-users.response.dto.ts
-```
+- TanStack Table
+- ECharts + vue-echarts
+- Tiptap
+- Fuse.js
+- Vue Draggable Plus
 
 ---
 
-# Pages
+# Internacionalização
 
-The `pages` directory defines **Nuxt routes**.
+Idiomas iniciais suportados:
 
-Route ownership should stay in `pages/` to keep routing centralized and predictable.
-Modules should not define route files.
+- Português (`pt`, padrão)
+- English (`en`)
+- Español (`es`)
 
-Pages should remain **thin** and mostly:
+Configuração:
 
-- fetch data
-- orchestrate modules
-- handle SEO
-
-Example:
-
-```ts
-const { data } = await useAsyncData('users', () => usersComposable.getUsers());
-```
+- `strategy: "no_prefix"`
+- `vueI18n: "./i18n.config.ts"` com mensagens `pt/en/es`
+- seleção de idioma no frontend
 
 ---
 
-# Components
+# Convenções de Arquitetura
 
-Global reusable UI components.
+- Regras de domínio ficam em `modules/<dominio>`
+- Páginas em `pages/` orquestram módulos e SEO
+- Lógica de negócio em `composables`
+- Chamadas de API em `repository`
+- Contratos explícitos via DTO de request/response
+- Estado compartilhado em `stores` (global ou por módulo)
+- `core` concentra infraestrutura reutilizável
 
-```
-components/
-```
-
-Examples:
-
-- layout elements
-- buttons
-- modals
-- shared UI pieces
-
----
-
-# Composables
-
-Global Vue composables that are **not tied to a specific module**.
-
-```
-composables/
-```
-
-Examples:
-
-- usePagination
-- useDebounce
-- useSeo
-- useApi
-
----
-
-# Stores
-
-Global application stores using Pinia.
-
-```
-stores/
-```
-
-Examples:
-
-- authentication state
-- theme
-- global settings
-
-Module-specific state should remain inside the module.
-
----
-
-# Data Flow
-
-Typical data flow:
+Fluxo padrão:
 
 ```
 Page
@@ -194,9 +144,7 @@ Repository
 API
 ```
 
-Stores are used only when **shared state is required**.
-
-DTO contract flow:
+Fluxo com contrato:
 
 ```
 Page
@@ -207,31 +155,24 @@ Repository
  ↓
 Request DTO -> API -> Response DTO
  ↓
-Domain/UI type mapping (when needed)
+Mapeamento para tipos de domínio/UI
 ```
 
 ---
 
-# Goals of This Architecture
+# Decisões de Configuração do Nuxt
 
-- domain-driven frontend
-- clear separation of concerns
-- scalable project structure
-- maintainable codebase
-- strong SEO support with Nuxt SSR
-
----
-
-# Notes
-
-- Business logic should live in **composables**
-- API calls belong in **repositories**
-- Pages should stay thin
-- Routes should live only in **pages/**
-- Endpoint contracts should be explicit with **request/response DTOs**
-- Modules should remain isolated
-- Global state should be minimal
+- `srcDir` aponta para `src/`
+- `runtimeConfig.public.apiBase` centraliza URL base da API
+- `plugins` registra Vue Query globalmente
+- `imports.dirs` inclui composables/stores de módulos
+- `components` inclui componentes globais e de módulos
 
 ---
 
-This architecture allows the frontend to scale similarly to backend modular systems.
+# Próximos passos recomendados
+
+- criar módulo `analytics` para telemetria e eventos
+- criar módulo `billing` com DTOs explícitos
+- adicionar testes unitários para composables e repositories
+- adicionar testes de contrato para validações Zod
