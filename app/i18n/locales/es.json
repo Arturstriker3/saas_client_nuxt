@@ -5,5 +5,116 @@
     "users": "Usuarios",
     "loadedAt": "Actualizado en {date}",
     "localeLabel": "Idioma"
+  },
+  "landing": {
+    "seo": {
+      "title": "Landing Page SaaS",
+      "description": "Crea, inspecciona y aplica monitoreo sintético a gran escala."
+    },
+    "nav": {
+      "product": "Producto",
+      "home": "Inicio",
+      "shop": "Tienda",
+      "pages": "Páginas",
+      "integrations": "Integraciones",
+      "developers": "Desarrolladores"
+    },
+    "header": {
+      "login": "Iniciar sesión",
+      "startForFree": "Empezar gratis"
+    },
+    "hero": {
+      "tagline": "Nueva generación de monitoreo",
+      "title": "Crea, inspecciona y aplica vigilancia sintética de forma amplia.",
+      "subtitle": "Empieza con una homepage increíble. Mantén el ritmo sin afectar tu presupuesto.",
+      "startForFree": "Empezar gratis",
+      "demoCta": "¿Quieres hablar o ver una demo en vivo?"
+    },
+    "features": {
+      "workflowsLabel": "Workflows",
+      "shareTitle": "Comparte todo en lo que estás trabajando.",
+      "shareSubtitle": "Acelera tu negocio con colaboración moderna en la nube y workflows elegantes.",
+      "seeAllFeatures": "Ver todas las funciones",
+      "commentsLabel": "Comentarios",
+      "feedbackTitle": "Mejor feedback en el momento correcto.",
+      "feedbackSubtitle": "Construye confianza desde el primer día con conversaciones claras y decisiones transparentes."
+    },
+    "feedbackPreview": {
+      "item1": { "title": "Cambios vectoriales", "subtitle": "12 comentarios" },
+      "item2": { "title": "Calidad de diseño", "subtitle": "9 revisiones" },
+      "item3": { "title": "Notas de versión", "subtitle": "4 aprobaciones" }
+    },
+    "notifications": {
+      "title": "Mejor feedback en el momento correcto.",
+      "item1": {
+        "title": "Zebrateam",
+        "description": "2 comentarios necesitan tu respuesta ahora."
+      },
+      "item2": {
+        "title": "Objetivo actualizado",
+        "description": "KPI cambió de 31% a 38% en este sprint."
+      },
+      "item3": {
+        "title": "Reporte mensual",
+        "description": "Reporte generado y compartido con liderazgo."
+      }
+    },
+    "metrics": {
+      "title": "Tu historial de progreso",
+      "item1": { "label": "Adquisición de clientes" },
+      "item2": { "label": "Total de usuarios activos" }
+    },
+    "quotes": {
+      "item1": {
+        "message": "Cloudhub mejoró nuestro proceso de revisión y mantiene al equipo alineado cada semana.",
+        "author": "Murphy Lawson"
+      },
+      "item2": {
+        "message": "A medida que la colaboración asíncrona crece, este flujo se volvió esencial.",
+        "author": "Nadia Wong"
+      }
+    },
+    "brands": {
+      "title": "Amado por diseñadores en"
+    },
+    "loop": {
+      "title": "Mantén a todos en sincronía",
+      "subtitle": "Todo buen proyecto empieza con una buena homepage. Inspírate sin romper tu presupuesto."
+    },
+    "dashboardCards": {
+      "projects": "Proyectos",
+      "design": "Diseño",
+      "development": "Desarrollo",
+      "testing": "Pruebas"
+    },
+    "footer": {
+      "description": "Monitorea tu SaaS con claridad, velocidad y confianza.",
+      "links": {
+        "product": {
+          "title": "Producto",
+          "features": "Funciones",
+          "pricing": "Precios",
+          "integrations": "Integraciones"
+        },
+        "company": {
+          "title": "Empresa",
+          "about": "Acerca de",
+          "careers": "Carreras",
+          "press": "Prensa"
+        },
+        "resources": {
+          "title": "Recursos",
+          "blog": "Blog",
+          "docs": "Docs",
+          "support": "Soporte"
+        },
+        "legal": {
+          "title": "Legal",
+          "terms": "Términos",
+          "privacy": "Privacidad",
+          "cookies": "Cookies"
+        }
+      }
+    }
   }
 }
