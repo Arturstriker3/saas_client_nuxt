@@ -1,8 +1,11 @@
 <template>
   <div class="bg-white text-[#0f172a] transition-colors dark:bg-slate-950 dark:text-slate-100">
-    <header class="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-sm transition-colors dark:border-white/10 dark:bg-slate-950/90">
+    <header
+      class="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-sm transition-colors dark:border-white/10 dark:bg-slate-950/90"
+      :class="isHeaderElevated ? 'shadow-sm shadow-black/10 dark:shadow-black/40' : ''"
+    >
       <div class="layout-container grid grid-cols-[auto_1fr_auto] items-center gap-3 py-4 lg:hidden">
-        <img src="/app-logo.svg" alt="Logo" class="h-11 w-11 shrink-0" >
+        <img src="/app-logo.svg" alt="Logo" class="h-9 w-9 shrink-0" >
         <div class="flex items-center justify-center">
           <UButton color="primary" size="sm" class="rounded-full px-4 text-sm whitespace-nowrap">
             {{ t("landing.header.startForFree") }}
@@ -17,7 +20,7 @@
 
       <div class="layout-container hidden items-center justify-between gap-6 py-4 lg:flex">
         <div class="flex min-w-0 items-center gap-10">
-          <img src="/app-logo.svg" alt="Logo" class="h-12 w-12 shrink-0" >
+          <img src="/app-logo.svg" alt="Logo" class="h-10 w-10 shrink-0" >
           <nav class="hidden min-w-0 items-center gap-7 text-base font-semibold text-[#334155] lg:flex dark:text-slate-300">
             <a v-for="item in navItems" :key="item" href="#" class="whitespace-nowrap transition hover:text-[#0f172a] dark:hover:text-slate-100">{{ item }}</a>
           </nav>
@@ -97,6 +100,16 @@
           <p class="mt-6 min-h-14 max-w-3xl text-lg text-[#64748b] dark:text-slate-300">
             {{ t("landing.hero.subtitle") }}
           </p>
+          <div class="mt-8 grid w-full max-w-3xl gap-3 sm:grid-cols-3">
+            <div
+              v-for="item in heroTrustItems"
+              :key="item.label"
+              class="rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-left shadow-sm dark:border-white/15 dark:bg-slate-900/70"
+            >
+              <p class="text-xl font-extrabold">{{ item.value }}</p>
+              <p class="mt-1 text-sm text-[#64748b] dark:text-slate-300">{{ item.label }}</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -196,6 +209,14 @@
               {{ brand }}
             </div>
           </div>
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <UButton color="primary" size="xl" class="rounded-full px-8 text-base">
+              {{ t("landing.header.startForFree") }}
+            </UButton>
+            <UButton color="neutral" variant="outline" size="xl" class="rounded-full px-8 text-base">
+              {{ t("landing.hero.viewDemo") }}
+            </UButton>
+          </div>
         </div>
       </section>
 
@@ -205,6 +226,14 @@
           <p class="mx-auto mt-4 max-w-2xl text-center text-white/90">
             {{ t("landing.loop.subtitle") }}
           </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <UButton color="primary" variant="solid" size="xl" class="rounded-full bg-white px-8 text-base text-[#0f172a] hover:bg-white/90">
+              {{ t("landing.header.startForFree") }}
+            </UButton>
+            <UButton color="neutral" variant="outline" size="xl" class="rounded-full border-white/40 px-8 text-base text-white hover:bg-white/10">
+              {{ t("landing.hero.viewDemo") }}
+            </UButton>
+          </div>
           <div class="mt-10 rounded-3xl border border-white/20 bg-[#111827] p-8 shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
             <div class="grid gap-4 md:grid-cols-4">
               <div v-for="card in dashboardCards" :key="card" class="rounded-xl border border-white/10 bg-[#0f172a] p-4">
@@ -219,17 +248,17 @@
 
     <footer class="border-t border-black/5 bg-white transition-colors dark:border-white/10 dark:bg-slate-950">
       <div class="layout-container py-12">
-        <div class="flex flex-col gap-10 md:flex-row md:justify-between">
+        <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div>
             <div class="flex items-center gap-2">
-              <img src="/app-logo.svg" alt="Logo" class="h-11 w-11" >
+              <img src="/app-logo.svg" alt="Logo" class="h-10 w-10 shrink-0" >
               <span class="text-sm font-extrabold tracking-tight">{{ appName }}</span>
             </div>
-            <p class="mt-4 max-w-xs text-sm text-[#64748b] dark:text-slate-300">
+            <p class="mt-4 max-w-md text-sm text-[#64748b] dark:text-slate-300">
               {{ t("landing.footer.description") }}
             </p>
           </div>
-          <div class="grid grid-cols-2 gap-10 text-sm sm:grid-cols-4">
+          <div class="grid grid-cols-2 gap-8 text-sm sm:grid-cols-4">
             <div v-for="column in footerLinks" :key="column.title">
               <p class="font-semibold">{{ column.title }}</p>
               <ul class="mt-3 space-y-2 text-[#64748b] dark:text-slate-300">
@@ -237,6 +266,9 @@
               </ul>
             </div>
           </div>
+        </div>
+        <div class="mt-10 border-t text-center border-black/10 pt-6 text-sm text-[#64748b] dark:border-white/10 dark:text-slate-300">
+          <p>{{ t("landing.footer.copyright", { year: currentYear, appName }) }}</p>
         </div>
       </div>
     </footer>
@@ -256,6 +288,7 @@ const { t } = useI18n()
 const { locale, availableLocales, changeLocale } = useLocaleSwitcher()
 const colorMode = useColorMode()
 const isMobileMenuOpen = ref(false)
+const { y } = useWindowScroll()
 
 const localeFlagIcons: Record<SupportedLocale, string> = {
   pt: "i-circle-flags-br",
@@ -283,6 +316,8 @@ const selectedLocaleIcon = computed(() => {
   return localeFlagIcons[localeCode] ?? "i-lucide-globe"
 })
 
+const isHeaderElevated = computed(() => y.value > 12)
+
 const navItems = computed(() => [
   t("landing.nav.product"),
   t("landing.nav.home"),
@@ -295,6 +330,12 @@ const mobileNavItems = computed(() => [
   { label: t("landing.nav.home"), icon: "i-lucide-house" },
   { label: t("landing.nav.shop"), icon: "i-lucide-shopping-bag" },
   { label: t("landing.nav.pages"), icon: "i-lucide-files" },
+])
+
+const heroTrustItems = computed(() => [
+  { value: "3.2x", label: t("landing.hero.trust.item1") },
+  { value: "98.9%", label: t("landing.hero.trust.item2") },
+  { value: "< 5min", label: t("landing.hero.trust.item3") },
 ])
 const topLogos = ["PATREON", "airbnb", "Topticals", "cobana", "Griffin", "hipcast", "RAYO", "Snyk"]
 
@@ -341,6 +382,8 @@ const footerLinks = computed<FooterColumn[]>(() => [
   { title: t("landing.footer.links.legal.title"), items: [t("landing.footer.links.legal.terms"), t("landing.footer.links.legal.privacy"), t("landing.footer.links.legal.cookies")] },
 ])
 
+const currentYear = new Date().getFullYear()
+
 const themeIcon = computed(() => (colorMode.value === "dark" ? "i-lucide-sun" : "i-lucide-moon"))
 
 const toggleTheme = () => {
@@ -361,7 +404,7 @@ const heroLinesStyle = {
 }
 
 useSeoMeta({
-  title: () => `${appName} — ${t("landing.seo.title")}`,
+  title: () => `${appName} | ${t("landing.seo.title")}`,
   description: () => t("landing.seo.description"),
 })
 

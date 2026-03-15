@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Arquitetura Modular Nuxt",
-    "subtitle": "Base inicial com módulos, core e contratos tipados.",
+    "title": "Marcato",
+    "subtitle": "Plataforma inteligente de agendamentos para profissionais e equipes.",
     "users": "Usuários",
     "loadedAt": "Atualizado em {date}",
     "localeLabel": "Idioma"
@@ -9,7 +9,7 @@
   "landing": {
     "seo": {
       "title": "Plataforma de Agendamento Inteligente",
-      "description": "Crie, gerencie e compartilhe agendamentos para equipes e profissionais em segundos."
+      "description": "Crie agendas pessoais ou de equipe, compartilhe sua página e permita agendamentos em segundos por link ou QR Code."
     },
     "nav": {
       "product": "Produto",
@@ -24,20 +24,26 @@
       "startForFree": "Começar grátis"
     },
     "hero": {
-      "tagline": "Nova geração de monitoramento",
-      "title": "Crie, inspecione e aplique vigilância sintética em escala.",
-      "subtitle": "Comece com uma homepage incrível. Mantenha o ritmo sem estourar o orçamento.",
+      "tagline": "Agendamento inteligente para profissionais e equipes",
+      "title": "Organize sua agenda e receba agendamentos em segundos.",
+      "subtitle": "Defina disponibilidade, compartilhe sua página de reservas e automatize confirmações, lembretes e atualizações pelo WhatsApp.",
       "startForFree": "Começar grátis",
-      "demoCta": "Quer conversar ou ver uma demo ao vivo?"
+      "demoCta": "Quer conversar ou ver uma demo ao vivo?",
+      "viewDemo": "Ver demo",
+      "trust": {
+        "item1": "Agenda pessoal e de equipe",
+        "item2": "Lembretes automáticos no WhatsApp",
+        "item3": "Reserva por link ou QR Code"
+      }
     },
     "features": {
-      "workflowsLabel": "Workflows",
-      "shareTitle": "Compartilhe tudo em que você está trabalhando.",
-      "shareSubtitle": "Acelere seu negócio com colaboração em nuvem moderna e workflows elegantes.",
+      "workflowsLabel": "Agendamentos",
+      "shareTitle": "Compartilhe sua página de reservas em segundos.",
+      "shareSubtitle": "Defina horários de atendimento e disponibilidade da equipe para seus clientes escolherem um horário livre sem troca de mensagens.",
       "seeAllFeatures": "Ver todos os recursos",
-      "commentsLabel": "Comentários",
-      "feedbackTitle": "Feedback melhor, na hora certa.",
-      "feedbackSubtitle": "Construa confiança desde o primeiro dia com conversas claras e decisões transparentes."
+      "commentsLabel": "WhatsApp",
+      "feedbackTitle": "Confirmações e lembretes automáticos.",
+      "feedbackSubtitle": "Mantenha profissionais e clientes atualizados a cada mudança e reduza faltas."
     },
     "feedbackPreview": {
       "item1": { "title": "Mudanças vetoriais", "subtitle": "12 comentários" },
@@ -45,41 +51,41 @@
       "item3": { "title": "Notas de release", "subtitle": "4 aprovações" }
     },
     "notifications": {
-      "title": "Feedback melhor, na hora certa.",
+      "title": "Comunicação que mantém sua agenda em dia.",
       "item1": {
-        "title": "Zebrateam",
-        "description": "2 comentários precisam da sua resposta agora."
+        "title": "Agendamento confirmado",
+        "description": "Cliente e profissional receberam confirmação no WhatsApp."
       },
       "item2": {
-        "title": "Objetivo atualizado",
-        "description": "KPI alterado de 31% para 38% neste sprint."
+        "title": "Lembrete enviado",
+        "description": "Lembrete automático enviado antes do horário marcado."
       },
       "item3": {
-        "title": "Relatório mensal",
-        "description": "Relatório gerado e compartilhado com a liderança."
+        "title": "Agenda atualizada",
+        "description": "Disponibilidade da equipe sincronizada e página de reservas atualizada."
       }
     },
     "metrics": {
-      "title": "Seu histórico de progresso",
-      "item1": { "label": "Aquisição de clientes" },
-      "item2": { "label": "Total de usuários ativos" }
+      "title": "Impacto operacional que você acompanha",
+      "item1": { "label": "Redução de faltas" },
+      "item2": { "label": "Agendamentos confirmados" }
     },
     "quotes": {
       "item1": {
-        "message": "Cloudhub melhorou nosso processo de revisão e mantém o time alinhado toda semana.",
-        "author": "Murphy Lawson"
+        "message": "O Marcato eliminou o caos de agenda e trouxe uma experiência de reserva muito mais rápida para os clientes.",
+        "author": "Amanda Souza"
       },
       "item2": {
-        "message": "Com a colaboração cada vez mais assíncrona, esse fluxo virou essencial.",
-        "author": "Nadia Wong"
+        "message": "Com lembretes no WhatsApp, reduzimos faltas e melhoramos a comunicação da equipe inteira.",
+        "author": "Carlos Mendes"
       }
     },
     "brands": {
-      "title": "Usado por designers em"
+      "title": "Usado por profissionais e equipes de serviço"
     },
     "loop": {
-      "title": "Mantenha todo mundo no fluxo",
-      "subtitle": "Toda grande jornada começa com uma boa homepage. Inspire sem comprometer o orçamento."
+      "title": "Mantenha sua agenda sempre organizada",
+      "subtitle": "Trabalhando sozinho ou em equipe, o Marcato simplifica agendamentos e melhora a experiência do cliente."
     },
     "dashboardCards": {
       "projects": "Projetos",
@@ -88,7 +94,8 @@
       "testing": "Testes"
     },
     "footer": {
-      "description": "Monitore seu horários com clareza, velocidade e confiança.",
+      "description": "Agendamento inteligente com páginas de reserva compartilháveis e comunicação automática no WhatsApp.",
+      "copyright": "© {year} {appName}. Todos os direitos reservados.",
       "links": {
         "product": {
           "title": "Produto",

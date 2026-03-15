@@ -1,7 +1,7 @@
 {
   "app": {
-    "title": "Nuxt Modular Architecture",
-    "subtitle": "Initial foundation with modules, core and typed contracts.",
+    "title": "Marcato",
+    "subtitle": "Smart scheduling platform for professionals and teams.",
     "users": "Users",
     "loadedAt": "Updated at {date}",
     "localeLabel": "Language"
@@ -9,7 +9,7 @@
   "landing": {
     "seo": {
       "title": "Smart Scheduling Platform",
-      "description": "Create, manage and share appointments for teams and professionals in seconds."
+      "description": "Create personal or team schedules, share your booking page and let clients book in seconds via link or QR code."
     },
     "nav": {
       "product": "Product",
@@ -24,20 +24,26 @@
       "startForFree": "Start for free"
     },
     "hero": {
-      "tagline": "New generation monitoring",
-      "title": "Create, inspect, and apply synthetic surveillance broadly.",
-      "subtitle": "Start with a stunning homepage. Stay motivated without hurting your pocket.",
+      "tagline": "Smart scheduling for professionals and teams",
+      "title": "Organize appointments and accept bookings in seconds.",
+      "subtitle": "Set availability, share your booking page and automate confirmations, reminders and updates via WhatsApp.",
       "startForFree": "Start for free",
-      "demoCta": "Want to talk or get a live demo?"
+      "demoCta": "Want to talk or get a live demo?",
+      "viewDemo": "View demo",
+      "trust": {
+        "item1": "Personal and team scheduling",
+        "item2": "Automatic WhatsApp reminders",
+        "item3": "Booking by link or QR code"
+      }
     },
     "features": {
-      "workflowsLabel": "Workflows",
-      "shareTitle": "Share anything you're working on.",
-      "shareSubtitle": "Expedite your business with modern cloud collaboration and beautiful workflows.",
+      "workflowsLabel": "Scheduling",
+      "shareTitle": "Share your booking page instantly.",
+      "shareSubtitle": "Define service hours and team availability so customers can pick an open slot without message back-and-forth.",
       "seeAllFeatures": "See all features",
-      "commentsLabel": "Comments",
-      "feedbackTitle": "Better feedback at the right time.",
-      "feedbackSubtitle": "Build customer trust from day one with clear conversations and transparent decisions."
+      "commentsLabel": "WhatsApp",
+      "feedbackTitle": "Automatic confirmations and reminders.",
+      "feedbackSubtitle": "Keep professionals and clients updated with every booking change and reduce no-shows."
     },
     "feedbackPreview": {
       "item1": { "title": "Vector shifts", "subtitle": "12 comments" },
@@ -45,41 +51,41 @@
       "item3": { "title": "Release notes", "subtitle": "4 approvals" }
     },
     "notifications": {
-      "title": "Better feedback at the right time.",
+      "title": "Communication that keeps bookings on track.",
       "item1": {
-        "title": "Zebrateam",
-        "description": "2 comments need your response right now."
+        "title": "Booking confirmed",
+        "description": "Client and professional received confirmation on WhatsApp."
       },
       "item2": {
-        "title": "Objective updated",
-        "description": "KPI changed from 31% to 38% in this sprint."
+        "title": "Reminder sent",
+        "description": "Automatic reminder delivered before the appointment."
       },
       "item3": {
-        "title": "Monthly report",
-        "description": "Report generated and shared with leadership."
+        "title": "Schedule updated",
+        "description": "Team availability synced and booking page refreshed."
       }
     },
     "metrics": {
-      "title": "Your archive of progress",
-      "item1": { "label": "Customer acquisitions" },
-      "item2": { "label": "Total active users" }
+      "title": "Operational impact you can track",
+      "item1": { "label": "Lower no-show rate" },
+      "item2": { "label": "Confirmed appointments" }
     },
     "quotes": {
       "item1": {
-        "message": "Cloudhub has improved our review process and keeps our team aligned every week.",
-        "author": "Murphy Lawson"
+        "message": "Marcato removed the scheduling chaos and gave our clients a faster booking experience.",
+        "author": "Amanda Lewis"
       },
       "item2": {
-        "message": "As collaborators increasingly rely on async communication, this workflow became essential.",
-        "author": "Nadia Wong"
+        "message": "WhatsApp reminders reduced missed appointments and improved communication with our whole team.",
+        "author": "Carlos Mendes"
       }
     },
     "brands": {
-      "title": "Loved by designers at"
+      "title": "Used by professionals and service teams"
     },
     "loop": {
-      "title": "Keep everyone in the loop",
-      "subtitle": "All good things start with a homepage. Get inspired without breaking your wallet."
+      "title": "Keep your calendar fully organized",
+      "subtitle": "Whether you work solo or manage a team, Marcato streamlines scheduling and improves customer experience."
     },
     "dashboardCards": {
       "projects": "Projects",
@@ -88,7 +94,8 @@
       "testing": "Testing"
     },
     "footer": {
-      "description": "Monitor your SaaS with clarity, speed and confidence.",
+      "description": "Smart scheduling with shared booking pages and automatic WhatsApp communication.",
+      "copyright": "© {year} {appName}. All rights reserved.",
       "links": {
         "product": {
           "title": "Product",
