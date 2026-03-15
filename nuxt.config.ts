@@ -3,14 +3,19 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  srcDir: "src/",
-  ssr: true,
+  srcDir: "app/",
+  ssr: false,
+  nitro: {
+    preset: "static",
+  },
   runtimeConfig: {
     public: {
       apiBase: "/api",
     },
   },
   modules: [
+    "@nuxt/fonts",
+    "@nuxt/icon",
     "@nuxt/ui",
     "@pinia/nuxt",
     "@vueuse/nuxt",
@@ -51,5 +56,8 @@ export default defineNuxtConfig({
       cookieKey: "i18n_redirected",
       redirectOn: "root",
     },
+  },
+  ogImage: {
+    enabled: false,
   },
 });

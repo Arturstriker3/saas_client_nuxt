@@ -1,13 +1,13 @@
 # Arquitetura do Cliente — Nuxt
 
-Este projeto usa **Nuxt** com arquitetura **modular orientada a domínio**, com `srcDir: "src/"` e separação de responsabilidades entre `core`, `modules`, `pages`, `components`, `composables` e `stores`.
+Este projeto usa **Nuxt** com arquitetura **modular orientada a domínio**, com `srcDir: "app/"` e separação de responsabilidades entre `core`, `modules`, `pages`, `components`, `composables` e `stores`.
 
 Objetivos principais:
 
 - escalabilidade por domínio
 - manutenção previsível
 - contratos tipados de API
-- SEO e metadados com Nuxt
+- metadados com Nuxt em arquitetura client-only
 - internacionalização desde o início
 
 ---
@@ -15,8 +15,9 @@ Objetivos principais:
 # Estrutura Oficial
 
 ```
-src/
+app/
  ├ app.vue
+ ├ app.config.ts
  ├ pages/
  │   └ index.vue
  │
@@ -77,6 +78,8 @@ src/
 Base:
 
 - Nuxt + Vue + TypeScript
+- Nuxt Fonts
+- Nuxt Icon
 - Nuxt UI
 - Tailwind CSS v4
 
@@ -162,11 +165,14 @@ Mapeamento para tipos de domínio/UI
 
 # Decisões de Configuração do Nuxt
 
-- `srcDir` aponta para `src/`
+- `srcDir` aponta para `app/`
+- `ssr: false` define execução client-only sem runtime SSR no servidor
+- `nitro.preset: "static"` gera saída estática para deploy sem processo Node do Nuxt
 - `runtimeConfig.public.apiBase` centraliza URL base da API
 - `plugins` registra Vue Query globalmente
 - `imports.dirs` inclui composables/stores de módulos
 - `components` inclui componentes globais e de módulos
+- `app.config.ts` centraliza tokens de tema e branding
 
 ---
 
