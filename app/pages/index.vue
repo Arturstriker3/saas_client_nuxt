@@ -73,7 +73,7 @@ watch(locale, (nextLocale) => {
 })
 
 useSeoMeta({
-  title: "SaaS Client Nuxt",
+  title: t("app.title"),
   description: "Nuxt modular architecture with Pinia, Vue Query and i18n support.",
 })
 </script>

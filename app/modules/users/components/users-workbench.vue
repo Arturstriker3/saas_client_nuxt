@@ -74,7 +74,7 @@
         {{ nowLabel }}
       </div>
 
-      <VueDraggable v-model="draggableUsers" class="space-y-2" target=".drag-item">
+      <VueDraggable v-model="draggableUsers" class="space-y-2">
         <div
           v-for="user in draggableUsers"
           :key="user.id"

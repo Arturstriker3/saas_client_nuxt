@@ -10,13 +10,18 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: "/api",
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || "/api",
     },
+  },
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
+    name: "SaaS Client",
   },
   modules: [
     "@nuxt/fonts",
     "@nuxt/icon",
     "@nuxt/ui",
+    "@nuxt/eslint",
     "@pinia/nuxt",
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
@@ -45,7 +50,7 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: "pt",
     strategy: "no_prefix",
-    vueI18n: "./i18n.config.ts",
+    vueI18n: "../i18n.config.ts",
     locales: [
       { code: "pt", name: "Português", language: "pt-BR" },
       { code: "en", name: "English", language: "en-US" },
