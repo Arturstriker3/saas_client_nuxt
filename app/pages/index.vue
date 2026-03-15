@@ -31,7 +31,12 @@ import type { SupportedLocale } from "~/composables/use-locale-switcher.composab
 
 type FooterColumn = {
   title: string
-  items: string[]
+  items: FooterLinkItem[]
+}
+
+type FooterLinkItem = {
+  label: string
+  href?: string
 }
 
 type MobileNavItem = {
@@ -184,6 +189,9 @@ const notifications = computed<NotificationItem[]>(() => [
   { title: t("landing.notifications.item1.title"), description: t("landing.notifications.item1.description") },
   { title: t("landing.notifications.item2.title"), description: t("landing.notifications.item2.description") },
   { title: t("landing.notifications.item3.title"), description: t("landing.notifications.item3.description") },
+  { title: t("landing.notifications.item4.title"), description: t("landing.notifications.item4.description") },
+  { title: t("landing.notifications.item5.title"), description: t("landing.notifications.item5.description") },
+  { title: t("landing.notifications.item6.title"), description: t("landing.notifications.item6.description") },
 ])
 
 const metrics = computed<MetricItem[]>(() => [
@@ -212,10 +220,39 @@ const dashboardCards = computed<string[]>(() => [
 ])
 
 const footerLinks = computed<FooterColumn[]>(() => [
-  { title: t("landing.footer.links.product.title"), items: [t("landing.footer.links.product.features"), t("landing.footer.links.product.pricing"), t("landing.footer.links.product.integrations")] },
-  { title: t("landing.footer.links.company.title"), items: [t("landing.footer.links.company.about"), t("landing.footer.links.company.careers"), t("landing.footer.links.company.press")] },
-  { title: t("landing.footer.links.resources.title"), items: [t("landing.footer.links.resources.blog"), t("landing.footer.links.resources.docs"), t("landing.footer.links.resources.support")] },
-  { title: t("landing.footer.links.legal.title"), items: [t("landing.footer.links.legal.terms"), t("landing.footer.links.legal.privacy"), t("landing.footer.links.legal.cookies")] },
+  {
+    title: t("landing.footer.links.product.title"),
+    items: [
+      { label: t("landing.footer.links.product.features") },
+      { label: t("landing.footer.links.product.pricing") },
+      { label: t("landing.footer.links.product.integrations") },
+    ],
+  },
+  {
+    title: t("landing.footer.links.company.title"),
+    items: [
+      { label: t("landing.footer.links.company.about") },
+      { label: t("landing.footer.links.company.careers") },
+      { label: t("landing.footer.links.company.press") },
+    ],
+  },
+  {
+    title: t("landing.footer.links.resources.title"),
+    items: [
+      { label: t("landing.footer.links.resources.blog") },
+      { label: t("landing.footer.links.resources.docs") },
+      { label: t("landing.footer.links.resources.support") },
+      { label: t("landing.footer.links.resources.technologies"), href: "/tecnologias" },
+    ],
+  },
+  {
+    title: t("landing.footer.links.legal.title"),
+    items: [
+      { label: t("landing.footer.links.legal.terms") },
+      { label: t("landing.footer.links.legal.privacy") },
+      { label: t("landing.footer.links.legal.cookies") },
+    ],
+  },
 ])
 
 const currentYear = new Date().getFullYear()

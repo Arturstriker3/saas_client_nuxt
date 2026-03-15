@@ -54,18 +54,31 @@
       "item3": { "title": "Release notes", "subtitle": "4 approvals" }
     },
     "notifications": {
-      "title": "Communication that keeps bookings on track.",
+      "title": "Step by step: how it works.",
+      "stepLabel": "Step",
       "item1": {
-        "title": "Booking confirmed",
-        "description": "Client and professional received confirmation on WhatsApp."
+        "title": "Create your account",
+        "description": "Set up your account and booking page in just a few minutes."
       },
       "item2": {
-        "title": "Reminder sent",
-        "description": "Automatic reminder delivered before the appointment."
+        "title": "Set your availability",
+        "description": "Define working days, time slots and appointment duration."
       },
       "item3": {
-        "title": "Schedule updated",
-        "description": "Team availability synced and booking page refreshed."
+        "title": "Share via QR code or link",
+        "description": "Send your booking link or show the QR code so clients can book."
+      },
+      "item4": {
+        "title": "Client confirms the appointment",
+        "description": "The client picks an available slot and confirms the booking."
+      },
+      "item5": {
+        "title": "WhatsApp confirmation is sent",
+        "description": "A confirmation message is automatically sent to both client and professional."
+      },
+      "item6": {
+        "title": "1-hour reminder + reschedule/cancel",
+        "description": "One hour before the appointment, a reminder is sent with options to cancel or reschedule."
       }
     },
     "metrics": {
@@ -117,7 +130,8 @@
           "title": "Resources",
           "blog": "Blog",
           "docs": "Docs",
-          "support": "Support"
+          "support": "Support",
+          "technologies": "Technologies"
         },
         "legal": {
           "title": "Legal",
@@ -126,6 +140,97 @@
           "cookies": "Cookies"
         }
       }
+    }
+  },
+  "technologiesPage": {
+    "seo": {
+      "title": "Technologies, performance and real reliability",
+      "description": "Explore the Marcato stack and the impact of each technology on performance, security, and production-grade stability."
+    },
+    "backHome": "Back to home",
+    "tagline": "High-performance stack",
+    "title": "Technologies we use and why our system is faster, safer, and more stable.",
+    "subtitle": "Our focus is product engineering: low latency, fewer production bugs, and robust operations for critical scheduling workflows.",
+    "tech": {
+      "title": "Core stack and real impact",
+      "subtitle": "Every technology was selected to solve speed, reliability, continuous delivery, and user experience.",
+      "items": {
+        "item1": {
+          "impact": "Fast builds and runtime",
+          "reason": "Bun shortens startup time and improves our deployment cycle."
+        },
+        "item2": {
+          "impact": "Smooth navigation and strong performance",
+          "reason": "Nuxt enables fast pages with a clean, scalable structure."
+        },
+        "item3": {
+          "impact": "Flexible data model for scheduling",
+          "reason": "MongoDB makes schema evolution easier as the product grows."
+        },
+        "item4": {
+          "impact": "Fewer production bugs",
+          "reason": "TypeScript enforces explicit contracts across frontend and backend."
+        },
+        "item5": {
+          "impact": "Reliable event messaging",
+          "reason": "RabbitMQ orchestrates confirmations, reminders and async integrations."
+        },
+        "item6": {
+          "impact": "High-read confirmations",
+          "reason": "WhatsApp Business reduces no-shows and improves response time."
+        },
+        "item7": {
+          "impact": "Modular and testable backend",
+          "reason": "NestJS organizes business rules by domain with strong maintainability."
+        },
+        "item8": {
+          "impact": "Transactional message delivery",
+          "reason": "Resend provides fast and traceable email notifications."
+        },
+        "item9": {
+          "impact": "Predictable environments everywhere",
+          "reason": "Docker standardizes development, QA and production."
+        },
+        "item10": {
+          "impact": "Higher security and lower latency",
+          "reason": "Cloudflare protects the edge and accelerates global delivery."
+        },
+        "item11": {
+          "impact": "Reactive and consistent interface",
+          "reason": "Vue keeps components simple and user flows predictable."
+        }
+      }
+    },
+    "bias": {
+      "title": "Why our technical foundation outperforms generic boilerplates",
+      "subtitle": "This is what separates production-ready architecture from quick templates that accumulate failures.",
+      "items": {
+        "item1": {
+          "name": "Production-oriented architecture",
+          "trigger": "Clear separation of concerns, typed contracts, and resilient messaging.",
+          "outcome": "Scales predictably instead of turning every new feature into rework."
+        },
+        "item2": {
+          "name": "Security built into the foundation",
+          "trigger": "Data validation, service isolation, and active edge protection.",
+          "outcome": "Lower exposure to common vulnerabilities found in auto-generated boilerplates."
+        },
+        "item3": {
+          "name": "Reliable async workflows",
+          "trigger": "Event queues handle confirmations, reminders, and notifications without blocking the app.",
+          "outcome": "The platform stays stable during usage spikes and high message volumes."
+        },
+        "item4": {
+          "name": "Continuous quality and real maintainability",
+          "trigger": "Typed modular stack that supports testing, observability, and safe evolution.",
+          "outcome": "Fewer production bugs and sustainable delivery speed."
+        }
+      }
+    },
+    "ethics": {
+      "title": "Serious engineering for real business",
+      "description": "We build a platform for professional operations, not a fragile prototype. Performance, security, and consistency come first so scheduling works reliably every day.",
+      "cta": "Back to home"
     }
   }
 }

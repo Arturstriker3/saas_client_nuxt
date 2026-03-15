@@ -54,18 +54,31 @@
       "item3": { "title": "Notas de release", "subtitle": "4 aprovações" }
     },
     "notifications": {
-      "title": "Comunicação que mantém sua agenda em dia.",
+      "title": "Passo a passo de como funciona.",
+      "stepLabel": "Passo",
       "item1": {
-        "title": "Agendamento confirmado",
-        "description": "Cliente e profissional receberam confirmação no WhatsApp."
+        "title": "Cadastre sua conta",
+        "description": "Crie sua conta e prepare sua página de agendamento em poucos minutos."
       },
       "item2": {
-        "title": "Lembrete enviado",
-        "description": "Lembrete automático enviado antes do horário marcado."
+        "title": "Crie seus horários",
+        "description": "Defina dias, horários e duração de cada atendimento."
       },
       "item3": {
-        "title": "Agenda atualizada",
-        "description": "Disponibilidade da equipe sincronizada e página de reservas atualizada."
+        "title": "Compartilhe com QR Code ou link",
+        "description": "Envie seu link de reservas ou mostre o QR Code para o cliente agendar."
+      },
+      "item4": {
+        "title": "Cliente confirma o horário",
+        "description": "O cliente escolhe um horário disponível e confirma o agendamento."
+      },
+      "item5": {
+        "title": "WhatsApp confirma automaticamente",
+        "description": "A confirmação chega no WhatsApp para cliente e profissional logo após o agendamento."
+      },
+      "item6": {
+        "title": "Lembrete 1 hora antes + remarcar/cancelar",
+        "description": "Uma hora antes, enviamos lembrete com opções para cancelar ou remarcar."
       }
     },
     "metrics": {
@@ -117,7 +130,8 @@
           "title": "Recursos",
           "blog": "Blog",
           "docs": "Docs",
-          "support": "Suporte"
+          "support": "Suporte",
+          "technologies": "Tecnologias"
         },
         "legal": {
           "title": "Legal",
@@ -126,6 +140,97 @@
           "cookies": "Cookies"
         }
       }
+    }
+  },
+  "technologiesPage": {
+    "seo": {
+      "title": "Tecnologias, performance e confiabilidade real",
+      "description": "Conheça a stack do Marcato, o impacto de cada tecnologia em performance, segurança e estabilidade para operação real."
+    },
+    "backHome": "Voltar para a home",
+    "tagline": "Stack de alta performance",
+    "title": "Tecnologias que usamos e por que nosso sistema é mais rápido, estável e seguro.",
+    "subtitle": "Nosso foco é engenharia de produto: baixa latência, menos bugs em produção e uma operação robusta para agendamentos críticos.",
+    "tech": {
+      "title": "Stack principal e impacto real",
+      "subtitle": "Cada tecnologia foi escolhida para resolver velocidade, confiabilidade, entrega contínua e experiência do usuário.",
+      "items": {
+        "item1": {
+          "impact": "Build e execução muito rápidos",
+          "reason": "Bun reduz tempo de boot e deixa nosso ciclo de deploy mais eficiente."
+        },
+        "item2": {
+          "impact": "Navegação fluida e ótima performance",
+          "reason": "Nuxt permite páginas rápidas com estrutura limpa e escalável."
+        },
+        "item3": {
+          "impact": "Dados flexíveis para agendamentos",
+          "reason": "MongoDB facilita evolução de esquema conforme o produto cresce."
+        },
+        "item4": {
+          "impact": "Menos bugs em produção",
+          "reason": "TypeScript garante contratos claros e segurança entre frontend e backend."
+        },
+        "item5": {
+          "impact": "Mensageria confiável para eventos",
+          "reason": "RabbitMQ orquestra confirmações, lembretes e integrações assíncronas."
+        },
+        "item6": {
+          "impact": "Confirmação com alto índice de leitura",
+          "reason": "WhatsApp Business reduz faltas e aumenta resposta rápida do cliente."
+        },
+        "item7": {
+          "impact": "Backend modular e testável",
+          "reason": "NestJS organiza regras de negócio por domínio com alta manutenibilidade."
+        },
+        "item8": {
+          "impact": "Entrega de mensagens transacionais",
+          "reason": "Resend garante envio rápido e rastreável para notificações por e-mail."
+        },
+        "item9": {
+          "impact": "Ambientes previsíveis em qualquer etapa",
+          "reason": "Docker padroniza desenvolvimento, QA e produção."
+        },
+        "item10": {
+          "impact": "Mais segurança e latência menor",
+          "reason": "Cloudflare protege a borda e acelera carregamento em escala global."
+        },
+        "item11": {
+          "impact": "Interface reativa e consistente",
+          "reason": "Vue simplifica componentes e deixa a experiência mais previsível."
+        }
+      }
+    },
+    "bias": {
+      "title": "Por que nossa base técnica supera boilerplates genéricos",
+      "subtitle": "Aqui está o que diferencia uma arquitetura pensada para produção de templates rápidos que acumulam falhas.",
+      "items": {
+        "item1": {
+          "name": "Arquitetura orientada a produção",
+          "trigger": "Separação clara de responsabilidades, contratos tipados e mensageria resiliente.",
+          "outcome": "Escala com previsibilidade, sem virar retrabalho a cada nova funcionalidade."
+        },
+        "item2": {
+          "name": "Segurança aplicada desde a base",
+          "trigger": "Validação de dados, isolamento de serviços e camada de borda com proteção ativa.",
+          "outcome": "Menor risco de vulnerabilidades comuns em boilerplates gerados automaticamente."
+        },
+        "item3": {
+          "name": "Confiabilidade em fluxos assíncronos",
+          "trigger": "Fila de eventos para confirmação, lembrete e notificações sem bloquear a aplicação.",
+          "outcome": "Sistema continua estável mesmo em picos de uso e alto volume de mensagens."
+        },
+        "item4": {
+          "name": "Qualidade contínua e manutenção real",
+          "trigger": "Stack tipada e modular que facilita testes, observabilidade e evolução segura.",
+          "outcome": "Menos bugs em produção e velocidade sustentável de entrega."
+        }
+      }
+    },
+    "ethics": {
+      "title": "Engenharia séria para negócio real",
+      "description": "Construímos uma plataforma para operação profissional, não um protótipo frágil. Priorizamos performance, segurança e consistência para que o agendamento funcione de verdade no dia a dia.",
+      "cta": "Voltar para a home"
     }
   }
 }

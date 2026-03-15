@@ -54,18 +54,31 @@
       "item3": { "title": "Notas de versión", "subtitle": "4 aprobaciones" }
     },
     "notifications": {
-      "title": "Comunicación que mantiene tu agenda al día.",
+      "title": "Paso a paso: así funciona.",
+      "stepLabel": "Paso",
       "item1": {
-        "title": "Reserva confirmada",
-        "description": "Cliente y profesional recibieron la confirmación por WhatsApp."
+        "title": "Crea tu cuenta",
+        "description": "Configura tu cuenta y tu página de reservas en pocos minutos."
       },
       "item2": {
-        "title": "Recordatorio enviado",
-        "description": "Recordatorio automático enviado antes de la cita."
+        "title": "Define tus horarios",
+        "description": "Configura días, franjas horarias y duración de cada cita."
       },
       "item3": {
-        "title": "Agenda actualizada",
-        "description": "Disponibilidad del equipo sincronizada y página de reservas actualizada."
+        "title": "Comparte por QR o enlace",
+        "description": "Envía tu enlace de reservas o muestra el código QR para que el cliente reserve."
+      },
+      "item4": {
+        "title": "El cliente confirma la cita",
+        "description": "El cliente elige un horario disponible y confirma la reserva."
+      },
+      "item5": {
+        "title": "Confirmación automática por WhatsApp",
+        "description": "La confirmación se envía automáticamente al cliente y al profesional."
+      },
+      "item6": {
+        "title": "Recordatorio 1 hora antes + reprogramar/cancelar",
+        "description": "Una hora antes, se envía un recordatorio con opciones para cancelar o reprogramar."
       }
     },
     "metrics": {
@@ -117,7 +130,8 @@
           "title": "Recursos",
           "blog": "Blog",
           "docs": "Docs",
-          "support": "Soporte"
+          "support": "Soporte",
+          "technologies": "Tecnologías"
         },
         "legal": {
           "title": "Legal",
@@ -126,6 +140,64 @@
           "cookies": "Cookies"
         }
       }
+    }
+  },
+  "technologiesPage": {
+    "seo": {
+      "title": "Tecnologías, rendimiento y confiabilidad real",
+      "description": "Conoce el stack de Marcato y el impacto de cada tecnología en rendimiento, seguridad y estabilidad de nivel producción."
+    },
+    "backHome": "Volver al inicio",
+    "tagline": "Stack de alto rendimiento",
+    "title": "Tecnologías que usamos y por qué nuestro sistema es más rápido, seguro y estable.",
+    "subtitle": "Nuestro enfoque es ingeniería de producto: baja latencia, menos errores en producción y operación robusta para flujos críticos de agendamiento.",
+    "tech": {
+      "title": "Stack principal e impacto real",
+      "subtitle": "Cada tecnología fue elegida para resolver velocidad, confiabilidad, entrega continua y experiencia de usuario.",
+      "items": {
+        "item1": { "impact": "Build y ejecución muy rápidos", "reason": "Bun reduce el tiempo de inicio y mejora nuestro ciclo de despliegue." },
+        "item2": { "impact": "Navegación fluida y alto rendimiento", "reason": "Nuxt permite páginas rápidas con estructura limpia y escalable." },
+        "item3": { "impact": "Datos flexibles para agendamientos", "reason": "MongoDB facilita evolucionar el esquema a medida que crece el producto." },
+        "item4": { "impact": "Menos errores en producción", "reason": "TypeScript define contratos claros entre frontend y backend." },
+        "item5": { "impact": "Mensajería confiable para eventos", "reason": "RabbitMQ orquesta confirmaciones, recordatorios e integraciones asíncronas." },
+        "item6": { "impact": "Confirmaciones con alta lectura", "reason": "WhatsApp Business reduce ausencias y mejora el tiempo de respuesta." },
+        "item7": { "impact": "Backend modular y testeable", "reason": "NestJS organiza reglas de negocio por dominio con alta mantenibilidad." },
+        "item8": { "impact": "Entrega de mensajes transaccionales", "reason": "Resend garantiza envíos rápidos y trazables por correo." },
+        "item9": { "impact": "Entornos previsibles en todas las etapas", "reason": "Docker estandariza desarrollo, QA y producción." },
+        "item10": { "impact": "Más seguridad y menor latencia", "reason": "Cloudflare protege el edge y acelera carga a escala global." },
+        "item11": { "impact": "Interfaz reactiva y consistente", "reason": "Vue simplifica componentes y hace la experiencia más predecible." }
+      }
+    },
+    "bias": {
+      "title": "Por qué nuestra base técnica supera boilerplates genéricos",
+      "subtitle": "Esto diferencia una arquitectura lista para producción de plantillas rápidas que acumulan fallas.",
+      "items": {
+        "item1": {
+          "name": "Arquitectura orientada a producción",
+          "trigger": "Separación clara de responsabilidades, contratos tipados y mensajería resiliente.",
+          "outcome": "Escala con previsibilidad sin convertir cada función nueva en retrabajo."
+        },
+        "item2": {
+          "name": "Seguridad desde la base",
+          "trigger": "Validación de datos, aislamiento de servicios y protección activa en el edge.",
+          "outcome": "Menor exposición a vulnerabilidades comunes en boilerplates autogenerados."
+        },
+        "item3": {
+          "name": "Confiabilidad en flujos asíncronos",
+          "trigger": "Colas de eventos para confirmaciones, recordatorios y notificaciones sin bloquear la app.",
+          "outcome": "La plataforma se mantiene estable incluso con picos de uso y alto volumen."
+        },
+        "item4": {
+          "name": "Calidad continua y mantenimiento real",
+          "trigger": "Stack tipado y modular que facilita pruebas, observabilidad y evolución segura.",
+          "outcome": "Menos errores en producción y velocidad de entrega sostenible."
+        }
+      }
+    },
+    "ethics": {
+      "title": "Ingeniería seria para negocio real",
+      "description": "Construimos una plataforma para operación profesional, no un prototipo frágil. Priorizamos rendimiento, seguridad y consistencia para que el agendamiento funcione de verdad cada día.",
+      "cta": "Volver al inicio"
     }
   }
 }

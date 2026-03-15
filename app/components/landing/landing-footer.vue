@@ -37,7 +37,16 @@
           <div v-for="column in footerLinks" :key="column.title">
             <p class="font-semibold">{{ column.title }}</p>
             <ul class="mt-3 space-y-2 text-[#64748b] dark:text-slate-300">
-              <li v-for="item in column.items" :key="item">{{ item }}</li>
+              <li v-for="item in column.items" :key="item.label">
+                <NuxtLink
+                  v-if="item.href"
+                  :to="item.href"
+                  class="transition hover:text-[#0f172a] dark:hover:text-slate-100"
+                >
+                  {{ item.label }}
+                </NuxtLink>
+                <span v-else>{{ item.label }}</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -52,7 +61,12 @@
 <script setup lang="ts">
 type FooterColumn = {
   title: string
-  items: string[]
+  items: FooterLinkItem[]
+}
+
+type FooterLinkItem = {
+  label: string
+  href?: string
 }
 
 defineProps<{
