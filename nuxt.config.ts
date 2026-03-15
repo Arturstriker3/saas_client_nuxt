@@ -41,6 +41,15 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
   ],
+  fonts: {
+    families: [
+      {
+        name: "Inter",
+        provider: "google",
+        weights: [100, 200, 300, 400, 500, 600, 700, 800],
+      },
+    ],
+  },
   css: ["~/assets/css/main.css"],
   plugins: ["~/core/plugins/vue-query"],
   imports: {

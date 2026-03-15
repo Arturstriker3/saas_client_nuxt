@@ -1,3 +1,70 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
-@import "./theme.css";
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --ui-primary: #10b981;
+  --ui-secondary: #3b82f6;
+  --ui-neutral: #64748b;
+  --ui-success: #22c55e;
+  --ui-info: #0ea5e9;
+  --ui-warning: #f59e0b;
+  --ui-error: #f43f5e;
+  --ui-color-primary-400: #10b981;
+  --ui-color-primary-500: #10b981;
+  --ui-color-primary-600: #10b981;
+  --ui-color-secondary-400: #3b82f6;
+  --ui-color-secondary-500: #3b82f6;
+  --ui-color-secondary-600: #3b82f6;
+  --ui-color-neutral-400: #64748b;
+  --ui-color-neutral-500: #64748b;
+  --ui-color-neutral-600: #64748b;
+  --ui-color-success-400: #22c55e;
+  --ui-color-success-500: #22c55e;
+  --ui-color-success-600: #22c55e;
+  --ui-color-info-400: #0ea5e9;
+  --ui-color-info-500: #0ea5e9;
+  --ui-color-info-600: #0ea5e9;
+  --ui-color-warning-400: #f59e0b;
+  --ui-color-warning-500: #f59e0b;
+  --ui-color-warning-600: #f59e0b;
+  --ui-color-error-400: #f43f5e;
+  --ui-color-error-500: #f43f5e;
+  --ui-color-error-600: #f43f5e;
+}
+
+.dark {
+  --ui-primary: #34d399;
+  --ui-secondary: #60a5fa;
+  --ui-neutral: #94a3b8;
+  --ui-success: #4ade80;
+  --ui-info: #38bdf8;
+  --ui-warning: #fbbf24;
+  --ui-error: #fb7185;
+  --ui-color-primary-400: #34d399;
+  --ui-color-primary-500: #34d399;
+  --ui-color-primary-600: #34d399;
+  --ui-color-secondary-400: #60a5fa;
+  --ui-color-secondary-500: #60a5fa;
+  --ui-color-secondary-600: #60a5fa;
+  --ui-color-neutral-400: #94a3b8;
+  --ui-color-neutral-500: #94a3b8;
+  --ui-color-neutral-600: #94a3b8;
+  --ui-color-success-400: #4ade80;
+  --ui-color-success-500: #4ade80;
+  --ui-color-success-600: #4ade80;
+  --ui-color-info-400: #38bdf8;
+  --ui-color-info-500: #38bdf8;
+  --ui-color-info-600: #38bdf8;
+  --ui-color-warning-400: #fbbf24;
+  --ui-color-warning-500: #fbbf24;
+  --ui-color-warning-600: #fbbf24;
+  --ui-color-error-400: #fb7185;
+  --ui-color-error-500: #fb7185;
+  --ui-color-error-600: #fb7185;
+}
