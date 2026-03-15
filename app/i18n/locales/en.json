@@ -31,9 +31,12 @@
       "demoCta": "Want to talk or get a live demo?",
       "viewDemo": "View demo",
       "trust": {
-        "item1": "Personal and team scheduling",
-        "item2": "Automatic WhatsApp reminders",
-        "item3": "Booking by link or QR code"
+        "item1": "more confirmed bookings with automated reminders",
+        "item2": "fewer no-shows with WhatsApp confirmations",
+        "item3": "to create your schedule and open your calendar",
+        "trigger1": "Social proof",
+        "trigger2": "Urgency",
+        "trigger3": "Action"
       }
     },
     "features": {

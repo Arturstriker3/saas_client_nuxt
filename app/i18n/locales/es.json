@@ -31,9 +31,12 @@
       "demoCta": "¿Quieres hablar o ver una demo en vivo?",
       "viewDemo": "Ver demo",
       "trust": {
-        "item1": "Agenda personal y de equipo",
-        "item2": "Recordatorios automáticos por WhatsApp",
-        "item3": "Reserva por enlace o código QR"
+        "item1": "más reservas confirmadas con recordatorios automáticos",
+        "item2": "menos ausencias con confirmaciones por WhatsApp",
+        "item3": "para crear tu horario y abrir la agenda",
+        "trigger1": "Prueba social",
+        "trigger2": "Urgencia",
+        "trigger3": "Acción"
       }
     },
     "features": {
