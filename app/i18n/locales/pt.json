@@ -8,8 +8,8 @@
   },
   "landing": {
     "seo": {
-      "title": "Cloudhub — Plataforma de Monitoramento Sintético",
-      "description": "Crie, inspecione e aplique monitoramento sintético em escala."
+      "title": "Plataforma de Agendamento Inteligente",
+      "description": "Crie, gerencie e compartilhe agendamentos para equipes e profissionais em segundos."
     },
     "nav": {
       "product": "Produto",
@@ -88,7 +88,7 @@
       "testing": "Testes"
     },
     "footer": {
-      "description": "Monitore seu SaaS com clareza, velocidade e confiança.",
+      "description": "Monitore seu horários com clareza, velocidade e confiança.",
       "links": {
         "product": {
           "title": "Produto",
