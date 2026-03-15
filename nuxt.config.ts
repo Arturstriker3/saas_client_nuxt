@@ -24,9 +24,17 @@ export default defineNuxtConfig({
     head: {
       title: appName,
       titleTemplate: "%s",
+      meta: [
+        { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+        { name: "format-detection", content: "telephone=no, date=no, email=no, address=no" },
+        { name: "apple-mobile-web-app-capable", content: "yes" },
+        { name: "apple-mobile-web-app-status-bar-style", content: "default" },
+        { name: "mobile-web-app-capable", content: "yes" },
+      ],
       link: [
-        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-        { rel: "alternate icon", href: "/favicon.ico" },
+        { rel: "icon", type: "image/svg+xml", href: "/app-logo.svg" },
+        { rel: "shortcut icon", href: "/app-logo.svg" },
+        { rel: "apple-touch-icon", href: "/app-logo.svg" },
       ],
     },
   },

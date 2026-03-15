@@ -2,9 +2,31 @@
 @import "@nuxt/ui";
 
 body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+.layout-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .layout-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-container {
+    padding-inline: 2rem;
+  }
 }
 
 button:not(:disabled),

@@ -1,82 +1,123 @@
 <template>
   <div class="bg-white text-[#0f172a] transition-colors dark:bg-slate-950 dark:text-slate-100">
     <header class="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-sm transition-colors dark:border-white/10 dark:bg-slate-950/90">
-      <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-2">
-          <div class="flex h-8 w-8 items-center justify-center rounded-full bg-(--ui-primary) text-xs font-bold text-white">
-            C
-          </div>
-          <span class="text-sm font-extrabold tracking-tight">{{ appName }}</span>
-        </div>
-        <nav class="hidden items-center gap-7 text-sm font-medium text-[#334155] lg:flex dark:text-slate-300">
-          <a v-for="item in navItems" :key="item" href="#" class="transition hover:text-[#0f172a] dark:hover:text-slate-100">{{ item }}</a>
-        </nav>
-        <div class="flex items-center gap-2 sm:gap-3">
-          <USelectMenu
-            v-model="selectedLocale"
-            value-key="code"
-            label-key="label"
-            :search-input="false"
-            :items="localeOptions"
-            :icon="selectedLocaleOption?.icon"
-            class="w-36 sm:w-44"
-          />
-          <UButton color="neutral" variant="outline" size="lg" square @click="toggleTheme">
-            <UIcon :name="themeIcon" class="h-5 w-5" />
-          </UButton>
-          <UButton color="neutral" variant="ghost" size="lg">{{ t("landing.header.login") }}</UButton>
-          <UButton color="primary" size="lg" class="rounded-full px-6">
+      <div class="layout-container grid grid-cols-[auto_1fr_auto] items-center gap-3 py-4 lg:hidden">
+        <img src="/app-logo.svg" alt="Logo" class="h-11 w-11 shrink-0" >
+        <div class="flex items-center justify-center">
+          <UButton color="primary" size="sm" class="rounded-full px-4 text-sm whitespace-nowrap">
             {{ t("landing.header.startForFree") }}
           </UButton>
         </div>
+        <div class="flex shrink-0 items-center justify-end">
+          <UButton color="neutral" variant="outline" size="xl" square @click="isMobileMenuOpen = true">
+            <UIcon name="i-lucide-menu" class="h-5 w-5" />
+          </UButton>
+        </div>
       </div>
+
+      <div class="layout-container hidden items-center justify-between gap-6 py-4 lg:flex">
+        <div class="flex min-w-0 items-center gap-10">
+          <img src="/app-logo.svg" alt="Logo" class="h-12 w-12 shrink-0" >
+          <nav class="hidden min-w-0 items-center gap-7 text-base font-semibold text-[#334155] lg:flex dark:text-slate-300">
+            <a v-for="item in navItems" :key="item" href="#" class="whitespace-nowrap transition hover:text-[#0f172a] dark:hover:text-slate-100">{{ item }}</a>
+          </nav>
+        </div>
+        <div class="flex shrink-0 items-center gap-3">
+          <UButton color="neutral" variant="ghost" size="lg" class="min-w-24 justify-center text-base whitespace-nowrap">{{ t("landing.header.login") }}</UButton>
+          <UButton color="primary" size="lg" class="min-w-36 justify-center rounded-full px-6 text-base whitespace-nowrap">
+            {{ t("landing.header.startForFree") }}
+          </UButton>
+          <div class="h-6 w-px bg-black/10 dark:bg-white/15" />
+          <UDropdownMenu :items="localeMenuItems" :content="{ align: 'start' }">
+            <UButton color="neutral" variant="outline" size="xl" square>
+              <UIcon :name="selectedLocaleIcon" class="h-5 w-5" />
+            </UButton>
+          </UDropdownMenu>
+          <UButton color="neutral" variant="outline" size="xl" square @click="toggleTheme">
+            <UIcon :name="themeIcon" class="h-5 w-5" />
+          </UButton>
+        </div>
+      </div>
+
+      <USlideover v-model:open="isMobileMenuOpen" side="right" :close="false">
+        <template #header="{ close }">
+          <div class="flex w-full items-center justify-between">
+            <div class="flex items-center gap-2">
+              <UDropdownMenu :items="localeMenuItems" :content="{ align: 'end' }">
+                <UButton color="neutral" variant="outline" size="xl" square>
+                  <UIcon :name="selectedLocaleIcon" class="h-5 w-5" />
+                </UButton>
+              </UDropdownMenu>
+              <UButton color="neutral" variant="outline" size="xl" square @click="toggleTheme">
+                <UIcon :name="themeIcon" class="h-5 w-5" />
+              </UButton>
+            </div>
+            <UButton color="neutral" variant="outline" size="xl" square class="ml-auto" @click="close">
+              <UIcon name="i-lucide-x" class="h-5 w-5" />
+            </UButton>
+          </div>
+        </template>
+
+        <template #body="{ close }">
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <a
+                v-for="item in mobileNavItems"
+                :key="item.label"
+                href="#"
+                class="flex items-center gap-3 rounded-xl border border-black/10 px-4 py-3 text-base font-semibold text-[#334155] transition hover:border-black/20 hover:bg-black/5 dark:border-white/15 dark:text-slate-200 dark:hover:border-white/30 dark:hover:bg-white/10"
+                @click="close"
+              >
+                <UIcon :name="item.icon" class="h-5 w-5 text-primary" />
+                <span>{{ item.label }}</span>
+              </a>
+            </div>
+
+            <div class="space-y-3 border-t border-black/10 pt-4 dark:border-white/15">
+              <UButton color="neutral" variant="ghost" size="lg" block class="justify-center gap-2 text-base" @click="close">
+                <UIcon name="i-lucide-log-in" class="h-5 w-5" />
+                {{ t("landing.header.login") }}
+              </UButton>
+            </div>
+          </div>
+        </template>
+      </USlideover>
     </header>
 
     <main>
       <section class="relative overflow-hidden">
         <div class="absolute inset-0 opacity-80" :style="heroLinesStyle" />
-        <div class="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-18 pt-20 text-center sm:px-6 lg:px-8">
+        <div class="layout-container relative flex flex-col items-center pb-18 pt-20 text-center">
           <p class="mb-5 rounded-full border border-(--ui-primary) bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-(--ui-primary) dark:bg-slate-900">
             {{ t("landing.hero.tagline") }}
           </p>
-          <h1 class="max-w-5xl text-balance text-5xl font-extrabold leading-[1.04] tracking-tight md:max-w-6xl md:text-7xl">
+          <h1 class="min-h-[3.3em] max-w-5xl text-balance text-5xl font-extrabold leading-[1.04] tracking-tight md:min-h-[2.2em] md:max-w-6xl md:text-7xl">
             {{ t("landing.hero.title") }}
           </h1>
-          <p class="mt-6 max-w-3xl text-lg text-[#64748b] dark:text-slate-300">
+          <p class="mt-6 min-h-14 max-w-3xl text-lg text-[#64748b] dark:text-slate-300">
             {{ t("landing.hero.subtitle") }}
           </p>
-          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <UButton color="primary" size="lg" class="rounded-full px-8">
-              {{ t("landing.hero.startForFree") }}
-            </UButton>
-            <button class="inline-flex items-center gap-2 text-sm font-semibold text-[#334155] transition hover:text-[#0f172a] dark:text-slate-300 dark:hover:text-slate-100">
-              <span class="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white dark:border-white/20 dark:bg-slate-900">
-                <UIcon name="i-lucide-play" class="h-4 w-4 text-(--ui-primary)" />
-              </span>
-              {{ t("landing.hero.demoCta") }}
-            </button>
-          </div>
         </div>
       </section>
 
       <section class="border-y border-black/5 bg-white transition-colors dark:border-white/10 dark:bg-slate-950">
-        <div class="mx-auto grid w-full max-w-7xl grid-cols-2 items-center gap-8 px-4 py-8 text-center sm:grid-cols-4 sm:px-6 lg:grid-cols-8 lg:px-8">
+        <div class="layout-container grid grid-cols-2 items-center gap-8 py-8 text-center sm:grid-cols-4 lg:grid-cols-8">
           <p v-for="logo in topLogos" :key="logo" class="text-sm font-semibold tracking-wide text-[#1e293b] dark:text-slate-300">
             {{ logo }}
           </p>
         </div>
       </section>
 
-      <section class="mx-auto w-full max-w-7xl space-y-16 px-4 py-20 sm:px-6 lg:px-8">
+      <section class="layout-container space-y-16 py-20">
         <div class="grid items-center gap-10 lg:grid-cols-2">
           <div>
-            <p class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-(--ui-primary)">{{ t("landing.features.workflowsLabel") }}</p>
+            <p class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">{{ t("landing.features.workflowsLabel") }}</p>
             <h2 class="max-w-md text-4xl font-extrabold leading-tight tracking-tight">{{ t("landing.features.shareTitle") }}</h2>
             <p class="mt-4 max-w-md text-[#64748b] dark:text-slate-300">
               {{ t("landing.features.shareSubtitle") }}
             </p>
             <div class="mt-6 flex items-center gap-3 text-sm font-semibold text-[#0f172a] dark:text-slate-100">
-              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-(--ui-primary) text-white">→</span>
+              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">→</span>
               {{ t("landing.features.seeAllFeatures") }}
             </div>
           </div>
@@ -105,7 +146,7 @@
             </div>
           </div>
           <div class="order-1 lg:order-2">
-            <p class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-(--ui-primary)">{{ t("landing.features.commentsLabel") }}</p>
+            <p class="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">{{ t("landing.features.commentsLabel") }}</p>
             <h2 class="max-w-md text-4xl font-extrabold leading-tight tracking-tight">{{ t("landing.features.feedbackTitle") }}</h2>
             <p class="mt-4 max-w-md text-[#64748b] dark:text-slate-300">
               {{ t("landing.features.feedbackSubtitle") }}
@@ -114,8 +155,8 @@
         </div>
       </section>
 
-      <section class="bg-(--ui-primary) py-20 text-white">
-        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section class="bg-primary py-20 text-white">
+        <div class="layout-container">
           <h2 class="text-center text-4xl font-extrabold tracking-tight">{{ t("landing.notifications.title") }}</h2>
           <div class="mt-10 rounded-3xl bg-[#111827] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
             <div class="grid gap-4 md:grid-cols-3">
@@ -128,14 +169,14 @@
         </div>
       </section>
 
-      <section class="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section class="layout-container py-20">
         <h2 class="text-center text-4xl font-extrabold tracking-tight">{{ t("landing.metrics.title") }}</h2>
         <div class="mt-10 grid gap-6 md:grid-cols-2">
           <UCard v-for="metric in metrics" :key="metric.label" class="rounded-3xl border border-black/10 dark:border-white/10">
             <div class="space-y-4">
               <p class="text-sm text-[#64748b] dark:text-slate-300">{{ metric.label }}</p>
               <p class="text-4xl font-extrabold">{{ metric.value }}</p>
-              <div class="h-20 rounded-xl bg-gradient-to-r from-[#fff1ec] to-[#ffe8e2]" />
+              <div class="h-20 rounded-xl bg-linear-to-r from-[#fff1ec] to-[#ffe8e2]" />
             </div>
           </UCard>
         </div>
@@ -148,7 +189,7 @@
       </section>
 
       <section class="border-y border-black/5 bg-white transition-colors dark:border-white/10 dark:bg-slate-950">
-        <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="layout-container py-16">
           <h3 class="text-center text-3xl font-extrabold tracking-tight">{{ t("landing.brands.title") }}</h3>
           <div class="mt-8 grid grid-cols-2 gap-4 text-center md:grid-cols-4">
             <div v-for="brand in brands" :key="brand" class="rounded-xl border border-black/10 px-4 py-4 text-sm font-bold text-[#334155] dark:border-white/10 dark:text-slate-300">
@@ -158,8 +199,8 @@
         </div>
       </section>
 
-      <section class="bg-(--ui-primary) py-20 text-white">
-        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section class="bg-primary py-20 text-white">
+        <div class="layout-container">
           <h2 class="text-center text-4xl font-extrabold tracking-tight">{{ t("landing.loop.title") }}</h2>
           <p class="mx-auto mt-4 max-w-2xl text-center text-white/90">
             {{ t("landing.loop.subtitle") }}
@@ -177,13 +218,11 @@
     </main>
 
     <footer class="border-t border-black/5 bg-white transition-colors dark:border-white/10 dark:bg-slate-950">
-      <div class="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="layout-container py-12">
         <div class="flex flex-col gap-10 md:flex-row md:justify-between">
           <div>
             <div class="flex items-center gap-2">
-              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-(--ui-primary) text-xs font-bold text-white">
-                C
-              </div>
+              <img src="/app-logo.svg" alt="Logo" class="h-11 w-11" >
               <span class="text-sm font-extrabold tracking-tight">{{ appName }}</span>
             </div>
             <p class="mt-4 max-w-xs text-sm text-[#64748b] dark:text-slate-300">
@@ -215,8 +254,8 @@ type FooterColumn = {
 const { public: { appName } } = useRuntimeConfig()
 const { t } = useI18n()
 const { locale, availableLocales, changeLocale } = useLocaleSwitcher()
-const selectedLocale = ref<SupportedLocale>(locale.value as SupportedLocale)
 const colorMode = useColorMode()
+const isMobileMenuOpen = ref(false)
 
 const localeFlagIcons: Record<SupportedLocale, string> = {
   pt: "i-circle-flags-br",
@@ -224,30 +263,38 @@ const localeFlagIcons: Record<SupportedLocale, string> = {
   es: "i-circle-flags-es",
 }
 
-const localeOptions = computed(() =>
+const localeMenuItems = computed(() =>
   availableLocales.value.map((localeOption) => {
     const localeCode = localeOption.code as SupportedLocale
     const icon = localeFlagIcons[localeCode] ?? "i-lucide-globe"
 
     return {
-      ...localeOption,
       label: localeOption.name,
       icon,
+      onSelect: async () => {
+        await changeLocale(localeCode)
+      },
     }
   }),
 )
 
-const selectedLocaleOption = computed(() =>
-  localeOptions.value.find((localeOption) => localeOption.code === selectedLocale.value),
-)
+const selectedLocaleIcon = computed(() => {
+  const localeCode = locale.value as SupportedLocale
+  return localeFlagIcons[localeCode] ?? "i-lucide-globe"
+})
 
 const navItems = computed(() => [
   t("landing.nav.product"),
   t("landing.nav.home"),
   t("landing.nav.shop"),
   t("landing.nav.pages"),
-  t("landing.nav.integrations"),
-  t("landing.nav.developers"),
+])
+
+const mobileNavItems = computed(() => [
+  { label: t("landing.nav.product"), icon: "i-lucide-package" },
+  { label: t("landing.nav.home"), icon: "i-lucide-house" },
+  { label: t("landing.nav.shop"), icon: "i-lucide-shopping-bag" },
+  { label: t("landing.nav.pages"), icon: "i-lucide-files" },
 ])
 const topLogos = ["PATREON", "airbnb", "Topticals", "cobana", "Griffin", "hipcast", "RAYO", "Snyk"]
 
@@ -318,11 +365,4 @@ useSeoMeta({
   description: () => t("landing.seo.description"),
 })
 
-watch(selectedLocale, async (nextLocale) => {
-  await changeLocale(nextLocale)
-})
-
-watch(locale, (nextLocale) => {
-  selectedLocale.value = nextLocale as SupportedLocale
-})
 </script>
