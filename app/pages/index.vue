@@ -52,6 +52,7 @@
 import type { SupportedLocale } from "~/composables/use-locale-switcher.composable"
 
 const { t } = useI18n()
+const { public: { appName } } = useRuntimeConfig()
 const { locale, availableLocales, changeLocale } = useLocaleSwitcher()
 const selectedLocale = ref<SupportedLocale>(locale.value as SupportedLocale)
 
@@ -73,7 +74,7 @@ watch(locale, (nextLocale) => {
 })
 
 useSeoMeta({
-  title: t("app.title"),
+  title: `${t("app.title")} | ${appName}`,
   description: "Nuxt modular architecture with Pinia, Vue Query and i18n support.",
 })
 </script>

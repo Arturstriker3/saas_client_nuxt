@@ -1,5 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 
+const appName = process.env.NUXT_PUBLIC_APP_NAME || "SaaS Client";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -11,11 +13,22 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "/api",
+      appName,
     },
   },
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
-    name: "SaaS Client",
+    name: appName,
+  },
+  app: {
+    head: {
+      title: appName,
+      titleTemplate: "%s",
+      link: [
+        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+        { rel: "alternate icon", href: "/favicon.ico" },
+      ],
+    },
   },
   modules: [
     "@nuxt/fonts",
@@ -24,6 +37,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@pinia/nuxt",
     "@vueuse/nuxt",
+    "@vueuse/motion/nuxt",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
   ],
