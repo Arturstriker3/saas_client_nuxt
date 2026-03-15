@@ -33,10 +33,10 @@
       "trust": {
         "item1": "más reservas confirmadas con recordatorios automáticos",
         "item2": "menos ausencias con confirmaciones por WhatsApp",
-        "item3": "para crear tu horario y abrir la agenda",
-        "trigger1": "Prueba social",
-        "trigger2": "Urgencia",
-        "trigger3": "Acción"
+        "item3": "en pocos minutos configuras tus horarios y abres tu agenda",
+        "trigger1": "Más conversión",
+        "trigger2": "Menos ausencias",
+        "trigger3": "Configuración rápida"
       }
     },
     "features": {

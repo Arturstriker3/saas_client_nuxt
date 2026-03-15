@@ -32,11 +32,11 @@
       "viewDemo": "Ver demo",
       "trust": {
         "item1": "mais confirmações com lembretes automáticos",
-        "item2": "menos faltas com confirmação no WhatsApp",
-        "item3": "para cria seu horario e abrir a agenda",
-        "trigger1": "Prova social",
-        "trigger2": "Urgência",
-        "trigger3": "Ação imediata"
+        "item2": "menos faltas com confirmações pelo WhatsApp",
+        "item3": "em poucos minutos, você configura os horários e abre sua agenda",
+        "trigger1": "Mais conversão",
+        "trigger2": "Menos faltas",
+        "trigger3": "Setup rápido"
       }
     },
     "features": {
