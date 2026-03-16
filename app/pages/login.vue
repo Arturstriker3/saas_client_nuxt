@@ -10,23 +10,11 @@
         <div class="pointer-events-none absolute -bottom-24 -right-12 h-64 w-64 rounded-full bg-indigo-300/45 blur-3xl" />
         <div class="relative z-10">
           <div
-            class="inline-flex rounded-[2rem] border border-white/70 bg-white/60 p-3 shadow-[0_14px_36px_rgba(14,116,144,0.24)] backdrop-blur-xl transition-all duration-700 ease-out"
+            class="inline-flex rounded-[2rem] border border-white/70 bg-white/60 p-2 shadow-[0_14px_36px_rgba(14,116,144,0.24)] backdrop-blur-xl transition-all duration-700 ease-out"
             :class="isContentVisible ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-6 scale-75 opacity-0'"
             :style="{ transitionDelay: isContentVisible ? '260ms' : '0ms' }"
           >
-            <svg viewBox="0 0 128 128" class="h-36 w-36" aria-label="Logo" role="img" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="4" width="120" height="120" rx="24" fill="url(#authLogoLoginHero)" />
-              <rect x="20" y="30" width="66" height="56" rx="10" fill="white" />
-              <rect x="20" y="30" width="66" height="14" rx="10" fill="#1F7A59" />
-              <circle cx="84" cy="52" r="24" fill="white" stroke="#2E6D86" stroke-width="6" />
-              <path d="M84 41V52H73" stroke="#0B365B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
-              <defs>
-                <linearGradient id="authLogoLoginHero" x1="14" y1="8" x2="114" y2="120" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#0E5A78" />
-                  <stop offset="1" stop-color="#0A3957" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="/marcato.logo.png" alt="Logo" class="h-72 w-72 object-cover" >
           </div>
           <p class="mt-6 text-sm font-bold uppercase tracking-[0.18em] text-emerald-700">{{ appName }}</p>
           <h1 class="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-slate-900">{{ t("auth.login.hero.title") }}</h1>
