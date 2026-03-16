@@ -104,6 +104,76 @@
       "title": "Keep your calendar fully organized",
       "subtitle": "Whether you work solo or manage a team, Marcato streamlines scheduling and improves customer experience."
     },
+    "pricing": {
+      "title": "Plans and pricing",
+      "subtitle": "Pick the billing cycle that fits your operation and scale appointments with predictable costs.",
+      "cycles": {
+        "monthly": "Monthly",
+        "quarterly": "Quarterly",
+        "semiannual": "Semiannual"
+      },
+      "framing": {
+        "monthly": "Flexible to start now and adjust later.",
+        "quarterly": "Best balance between monthly cost and predictability.",
+        "semiannual": "Highest monthly savings for a stable operation."
+      },
+      "perMonth": "/month",
+      "saveShort": "-{value}%",
+      "savingsTag": "{value}% savings in this cycle",
+      "totalForCycle": "Cycle total: monthly-equivalent pricing in {cycle}",
+      "popularBadge": "Most popular",
+      "trust": {
+        "item1": "No hidden fees",
+        "item2": "Always transparent billing",
+        "item3": "Simple cancellation"
+      },
+      "commitment": {
+        "monthly": "Billed monthly, cancel anytime.",
+        "quarterly": "Billed quarterly with a lower monthly cost.",
+        "semiannual": "Billed every six months with the best monthly price."
+      },
+      "plans": {
+        "basic": {
+          "name": "Basic",
+          "description": "Perfect for solo professionals starting online bookings.",
+          "priceMonthly": "$19",
+          "priceQuarterly": "$16",
+          "priceSemiannual": "$14",
+          "cta": "Start for free",
+          "features": {
+            "item1": "Custom booking page",
+            "item2": "Automatic WhatsApp confirmation",
+            "item3": "1-hour reminder"
+          }
+        },
+        "pro": {
+          "name": "Pro",
+          "description": "For professionals who need more automation and scheduling control.",
+          "priceMonthly": "$39",
+          "priceQuarterly": "$34",
+          "priceSemiannual": "$29",
+          "cta": "Subscribe to Pro",
+          "features": {
+            "item1": "Everything in Basic",
+            "item2": "Reschedule and cancellation flows",
+            "item3": "No-show and conversion reports"
+          }
+        },
+        "team": {
+          "name": "Team",
+          "description": "For clinics and teams that need shared scheduling at scale.",
+          "priceMonthly": "$79",
+          "priceQuarterly": "$69",
+          "priceSemiannual": "$59",
+          "cta": "Talk to sales",
+          "features": {
+            "item1": "Everything in Pro",
+            "item2": "Multiple staff and services",
+            "item3": "Role-based permissions"
+          }
+        }
+      }
+    },
     "dashboardCards": {
       "projects": "Projects",
       "design": "Design",
@@ -231,6 +301,78 @@
       "title": "Serious engineering for real business",
       "description": "We build a platform for professional operations, not a fragile prototype. Performance, security, and consistency come first so scheduling works reliably every day.",
       "cta": "Back to home"
+    }
+  },
+  "auth": {
+    "common": {
+      "backToHome": "Back to home",
+      "or": "or",
+      "continueWithGoogle": "Continue with Google",
+      "allRightsReserved": "All rights reserved."
+    },
+    "languages": {
+      "pt": "Portuguese",
+      "en": "English",
+      "es": "Spanish"
+    },
+    "login": {
+      "switchToRegister": "Create account",
+      "title": "Login",
+      "subtitle": "Access your account to continue.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you{'@'}company.com",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot my password",
+      "submit": "Sign in",
+      "hero": {
+        "title": "Fewer gaps, more booked schedules.",
+        "subtitle": "The dashboard reduces uncertainty, improves predictability, and speeds up daily decision-making with a clear view.",
+        "item1": {
+          "title": "Predictable operations",
+          "description": "Busy teams prioritize automatic confirmation to reduce no-shows."
+        },
+        "item2": {
+          "title": "More daily attendance",
+          "description": "Every lost slot impacts monthly revenue and customer recurrence."
+        }
+      }
+    },
+    "register": {
+      "switchToLogin": "Sign in",
+      "title": "Register",
+      "subtitle": "Create your account and activate your workspace.",
+      "nameLabel": "Full name",
+      "namePlaceholder": "Your name",
+      "phoneLabel": "Phone",
+      "phoneCodePlaceholder": "Code",
+      "phonePlaceholder": "(11) 99999-9999",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you{'@'}company.com",
+      "birthDateLabel": "Birth date",
+      "languageLabel": "Language",
+      "languagePlaceholder": "Select",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Create a password",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Repeat your password",
+      "submit": "Create account",
+      "phoneErrors": {
+        "required": "Enter your phone number.",
+        "selectCountry": "Select a country.",
+        "invalidForCountry": "Invalid phone number for the selected country."
+      },
+      "hero": {
+        "title": "Start with a schedule ready to convert.",
+        "subtitle": "Objective signup, guided activation, and your first workflow configured with less friction.",
+        "item1": {
+          "title": "Simplified onboarding",
+          "description": "Create your account now and complete details at the right moment."
+        },
+        "item2": {
+          "title": "Fast first activation",
+          "description": "A clear flow to go from zero to an active booking page."
+        }
+      }
     }
   }
 }

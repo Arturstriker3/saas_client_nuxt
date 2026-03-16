@@ -104,6 +104,76 @@
       "title": "Mantén tu agenda siempre organizada",
       "subtitle": "Trabajando solo o con equipo, Marcato simplifica los agendamientos y mejora la experiencia del cliente."
     },
+    "pricing": {
+      "title": "Planes y precios",
+      "subtitle": "Elige el ciclo de cobro ideal para tu operación y escala tus reservas con costos previsibles.",
+      "cycles": {
+        "monthly": "Mensual",
+        "quarterly": "Trimestral",
+        "semiannual": "Semestral"
+      },
+      "framing": {
+        "monthly": "Flexible para empezar ahora y ajustar después.",
+        "quarterly": "Mejor equilibrio entre costo mensual y previsibilidad.",
+        "semiannual": "Mayor ahorro mensual para una operación estable."
+      },
+      "perMonth": "/mes",
+      "saveShort": "-{value}%",
+      "savingsTag": "Ahorro de {value}% en este ciclo",
+      "totalForCycle": "Total del ciclo: precio mensual equivalente en {cycle}",
+      "popularBadge": "Más elegido",
+      "trust": {
+        "item1": "Sin cargos ocultos",
+        "item2": "Cobro siempre transparente",
+        "item3": "Cancelación simple"
+      },
+      "commitment": {
+        "monthly": "Cobro mensual, cancela cuando quieras.",
+        "quarterly": "Cobro trimestral con menor costo mensual.",
+        "semiannual": "Cobro semestral con el mejor precio por mes."
+      },
+      "plans": {
+        "basic": {
+          "name": "Básico",
+          "description": "Ideal para profesionales independientes que inician reservas online.",
+          "priceMonthly": "$19",
+          "priceQuarterly": "$16",
+          "priceSemiannual": "$14",
+          "cta": "Empezar gratis",
+          "features": {
+            "item1": "Página de reservas personalizada",
+            "item2": "Confirmación automática por WhatsApp",
+            "item3": "Recordatorio 1 hora antes"
+          }
+        },
+        "pro": {
+          "name": "Pro",
+          "description": "Para quienes necesitan más automatización y control de agenda.",
+          "priceMonthly": "$39",
+          "priceQuarterly": "$34",
+          "priceSemiannual": "$29",
+          "cta": "Suscribirme al Pro",
+          "features": {
+            "item1": "Todo lo del Básico",
+            "item2": "Flujos de reprogramación y cancelación",
+            "item3": "Reportes de ausencias y conversión"
+          }
+        },
+        "team": {
+          "name": "Equipo",
+          "description": "Para clínicas y equipos con agenda compartida y alta demanda.",
+          "priceMonthly": "$79",
+          "priceQuarterly": "$69",
+          "priceSemiannual": "$59",
+          "cta": "Hablar con ventas",
+          "features": {
+            "item1": "Todo lo del Pro",
+            "item2": "Múltiples profesionales y servicios",
+            "item3": "Permisos por rol"
+          }
+        }
+      }
+    },
     "dashboardCards": {
       "projects": "Proyectos",
       "design": "Diseño",
@@ -198,6 +268,78 @@
       "title": "Ingeniería seria para negocio real",
       "description": "Construimos una plataforma para operación profesional, no un prototipo frágil. Priorizamos rendimiento, seguridad y consistencia para que el agendamiento funcione de verdad cada día.",
       "cta": "Volver al inicio"
+    }
+  },
+  "auth": {
+    "common": {
+      "backToHome": "Volver al inicio",
+      "or": "o",
+      "continueWithGoogle": "Continuar con Google",
+      "allRightsReserved": "Todos los derechos reservados."
+    },
+    "languages": {
+      "pt": "Portugués",
+      "en": "Inglés",
+      "es": "Español"
+    },
+    "login": {
+      "switchToRegister": "Crear cuenta",
+      "title": "Iniciar sesión",
+      "subtitle": "Accede a tu cuenta para continuar.",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu{'@'}empresa.com",
+      "passwordLabel": "Contraseña",
+      "forgotPassword": "Olvidé mi contraseña",
+      "submit": "Entrar",
+      "hero": {
+        "title": "Menos huecos, más agenda llena.",
+        "subtitle": "El panel reduce la incertidumbre, mejora la previsibilidad y acelera tus decisiones con una vista diaria clara.",
+        "item1": {
+          "title": "Operación previsible",
+          "description": "Los negocios con rutina llena priorizan la confirmación automática para reducir ausencias."
+        },
+        "item2": {
+          "title": "Más asistencia diaria",
+          "description": "Cada horario perdido afecta ingresos y recurrencia de clientes en el mes."
+        }
+      }
+    },
+    "register": {
+      "switchToLogin": "Iniciar sesión",
+      "title": "Registro",
+      "subtitle": "Crea tu cuenta y activa tu espacio.",
+      "nameLabel": "Nombre completo",
+      "namePlaceholder": "Tu nombre",
+      "phoneLabel": "Teléfono",
+      "phoneCodePlaceholder": "Código",
+      "phonePlaceholder": "(11) 99999-9999",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu{'@'}empresa.com",
+      "birthDateLabel": "Fecha de nacimiento",
+      "languageLabel": "Idioma",
+      "languagePlaceholder": "Selecciona",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Crea una contraseña",
+      "confirmPasswordLabel": "Confirmar contraseña",
+      "confirmPasswordPlaceholder": "Repite tu contraseña",
+      "submit": "Crear cuenta",
+      "phoneErrors": {
+        "required": "Ingresa el teléfono.",
+        "selectCountry": "Selecciona el país.",
+        "invalidForCountry": "Teléfono inválido para el país seleccionado."
+      },
+      "hero": {
+        "title": "Empieza con agenda lista para convertir.",
+        "subtitle": "Registro objetivo, activación guiada y primera rutina configurada con menos fricción.",
+        "item1": {
+          "title": "Entrada simplificada",
+          "description": "Creas la cuenta ahora y completas los detalles en el momento correcto."
+        },
+        "item2": {
+          "title": "Primera activación rápida",
+          "description": "Flujo claro para pasar de cero a una página de reservas activa."
+        }
+      }
     }
   }
 }

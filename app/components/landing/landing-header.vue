@@ -28,9 +28,11 @@
         </defs>
       </svg>
       <div class="flex items-center justify-center">
-        <UButton color="primary" size="sm" class="rounded-full px-4 text-sm whitespace-nowrap">
-          {{ t("landing.header.startForFree") }}
-        </UButton>
+        <NuxtLink to="/registro">
+          <UButton color="primary" size="sm" class="rounded-full px-4 text-sm whitespace-nowrap">
+            {{ t("landing.header.startForFree") }}
+          </UButton>
+        </NuxtLink>
       </div>
       <div class="flex shrink-0 items-center justify-end">
         <UButton color="neutral" variant="outline" size="xl" square @click="openMobileMenu">
@@ -69,10 +71,14 @@
         </nav>
       </div>
       <div class="flex shrink-0 items-center gap-3">
-        <UButton color="neutral" variant="ghost" size="lg" class="min-w-24 justify-center text-base whitespace-nowrap">{{ t("landing.header.login") }}</UButton>
-        <UButton color="primary" size="lg" class="min-w-36 justify-center rounded-full px-6 text-base whitespace-nowrap">
-          {{ t("landing.header.startForFree") }}
-        </UButton>
+        <NuxtLink to="/login">
+          <UButton color="neutral" variant="ghost" size="lg" class="min-w-24 justify-center text-base whitespace-nowrap">{{ t("landing.header.login") }}</UButton>
+        </NuxtLink>
+        <NuxtLink to="/registro">
+          <UButton color="primary" size="lg" class="min-w-36 justify-center rounded-full px-6 text-base whitespace-nowrap">
+            {{ t("landing.header.startForFree") }}
+          </UButton>
+        </NuxtLink>
         <div class="h-6 w-px bg-black/10 dark:bg-white/15" />
         <UDropdownMenu :items="localeMenuItems" :content="{ align: 'start' }">
           <UButton color="neutral" variant="outline" size="xl" square>
@@ -120,10 +126,12 @@
           </div>
 
           <div class="space-y-3 border-t border-black/10 pt-4 dark:border-white/15">
-            <UButton color="neutral" variant="ghost" size="lg" block class="justify-center gap-2 text-base" @click="closeAndSync(close)">
-              <UIcon name="i-lucide-log-in" class="h-5 w-5" />
-              {{ t("landing.header.login") }}
-            </UButton>
+            <NuxtLink to="/login">
+              <UButton color="neutral" variant="ghost" size="lg" block class="justify-center gap-2 text-base" @click="closeAndSync(close)">
+                <UIcon name="i-lucide-log-in" class="h-5 w-5" />
+                {{ t("landing.header.login") }}
+              </UButton>
+            </NuxtLink>
           </div>
         </div>
       </template>

@@ -104,6 +104,76 @@
       "title": "Mantenha sua agenda sempre organizada",
       "subtitle": "Trabalhando sozinho ou em equipe, o Marcato simplifica agendamentos e melhora a experiência do cliente."
     },
+    "pricing": {
+      "title": "Planos e preços",
+      "subtitle": "Escolha o ciclo que faz mais sentido para sua operação e escale seus agendamentos com previsibilidade.",
+      "cycles": {
+        "monthly": "Mensal",
+        "quarterly": "Trimestral",
+        "semiannual": "Semestral"
+      },
+      "framing": {
+        "monthly": "Flexível para começar agora e ajustar depois.",
+        "quarterly": "Equilíbrio entre custo mensal e previsibilidade.",
+        "semiannual": "Maior economia mensal para operação estável."
+      },
+      "perMonth": "/mês",
+      "saveShort": "-{value}%",
+      "savingsTag": "Economia de {value}% no ciclo",
+      "totalForCycle": "Total no ciclo: preço mensal equivalente em {cycle}",
+      "popularBadge": "Mais escolhido",
+      "trust": {
+        "item1": "Sem taxas ocultas",
+        "item2": "Cobrança sempre transparente",
+        "item3": "Cancelamento simples"
+      },
+      "commitment": {
+        "monthly": "Cobrança mensal, cancele quando quiser.",
+        "quarterly": "Cobrança trimestral com melhor custo por mês.",
+        "semiannual": "Cobrança semestral com o melhor valor mensal."
+      },
+      "plans": {
+        "basic": {
+          "name": "Básico",
+          "description": "Ideal para profissionais autônomos iniciando os atendimentos online.",
+          "priceMonthly": "R$ 49",
+          "priceQuarterly": "R$ 44",
+          "priceSemiannual": "R$ 39",
+          "cta": "Começar grátis",
+          "features": {
+            "item1": "Página de agendamento personalizada",
+            "item2": "Confirmação automática por WhatsApp",
+            "item3": "Lembrete 1 hora antes"
+          }
+        },
+        "pro": {
+          "name": "Profissional",
+          "description": "Para quem precisa de mais automação e controle da rotina de atendimentos.",
+          "priceMonthly": "R$ 89",
+          "priceQuarterly": "R$ 79",
+          "priceSemiannual": "R$ 69",
+          "cta": "Assinar plano Pro",
+          "features": {
+            "item1": "Tudo do Básico",
+            "item2": "Fluxos de confirmação e remarcação",
+            "item3": "Relatórios de faltas e conversão"
+          }
+        },
+        "team": {
+          "name": "Equipe",
+          "description": "Para clínicas e equipes que precisam de agenda compartilhada e escala.",
+          "priceMonthly": "R$ 159",
+          "priceQuarterly": "R$ 139",
+          "priceSemiannual": "R$ 119",
+          "cta": "Falar com vendas",
+          "features": {
+            "item1": "Tudo do Profissional",
+            "item2": "Múltiplos profissionais e serviços",
+            "item3": "Permissões por função"
+          }
+        }
+      }
+    },
     "dashboardCards": {
       "projects": "Projetos",
       "design": "Design",
@@ -231,6 +301,78 @@
       "title": "Engenharia séria para negócio real",
       "description": "Construímos uma plataforma para operação profissional, não um protótipo frágil. Priorizamos performance, segurança e consistência para que o agendamento funcione de verdade no dia a dia.",
       "cta": "Voltar para a home"
+    }
+  },
+  "auth": {
+    "common": {
+      "backToHome": "Voltar para home",
+      "or": "ou",
+      "continueWithGoogle": "Continuar com Google",
+      "allRightsReserved": "Todos os direitos reservados."
+    },
+    "languages": {
+      "pt": "Português",
+      "en": "English",
+      "es": "Español"
+    },
+    "login": {
+      "switchToRegister": "Criar conta",
+      "title": "Login",
+      "subtitle": "Acesse sua conta para continuar.",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "voce{'@'}empresa.com",
+      "passwordLabel": "Senha",
+      "forgotPassword": "Esqueci minha senha",
+      "submit": "Entrar",
+      "hero": {
+        "title": "Menos lacunas, mais agenda preenchida.",
+        "subtitle": "O painel reduz incerteza, reforça previsibilidade e acelera sua tomada de decisão com visão diária clara.",
+        "item1": {
+          "title": "Operação previsível",
+          "description": "Negócios com rotina cheia priorizam confirmação automática para reduzir ausência."
+        },
+        "item2": {
+          "title": "Mais presença no dia",
+          "description": "Cada horário perdido custa receita e recorrência de cliente no mês."
+        }
+      }
+    },
+    "register": {
+      "switchToLogin": "Fazer login",
+      "title": "Registro",
+      "subtitle": "Crie sua conta e ative seu espaço.",
+      "nameLabel": "Nome completo",
+      "namePlaceholder": "Seu nome",
+      "phoneLabel": "Telefone",
+      "phoneCodePlaceholder": "Código",
+      "phonePlaceholder": "(11) 99999-9999",
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "voce{'@'}empresa.com",
+      "birthDateLabel": "Data de nascimento",
+      "languageLabel": "Idioma",
+      "languagePlaceholder": "Selecione",
+      "passwordLabel": "Senha",
+      "passwordPlaceholder": "Crie uma senha",
+      "confirmPasswordLabel": "Confirmar senha",
+      "confirmPasswordPlaceholder": "Repita sua senha",
+      "submit": "Criar conta",
+      "phoneErrors": {
+        "required": "Informe o telefone.",
+        "selectCountry": "Selecione o país.",
+        "invalidForCountry": "Telefone inválido para o país selecionado."
+      },
+      "hero": {
+        "title": "Comece com agenda pronta para converter.",
+        "subtitle": "Cadastro objetivo, ativação guiada e primeira rotina configurada com menos fricção.",
+        "item1": {
+          "title": "Entrada simplificada",
+          "description": "Você cria conta agora e completa os detalhes no momento certo."
+        },
+        "item2": {
+          "title": "Primeira ativação rápida",
+          "description": "Fluxo claro para sair do zero com página de agendamento ativa."
+        }
+      }
     }
   }
 }

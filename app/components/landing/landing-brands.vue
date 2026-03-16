@@ -18,9 +18,11 @@
         </div>
       </div>
       <div class="mt-10 flex flex-wrap items-center justify-center gap-3 transition-all duration-700 ease-out" :style="ctaStyle">
-        <UButton color="primary" size="xl" class="rounded-full px-8 text-base">
-          {{ t("landing.header.startForFree") }}
-        </UButton>
+        <NuxtLink to="/registro">
+          <UButton color="primary" size="xl" class="rounded-full px-8 text-base">
+            {{ t("landing.header.startForFree") }}
+          </UButton>
+        </NuxtLink>
         <UButton color="neutral" variant="outline" size="xl" class="rounded-full px-8 text-base">
           {{ t("landing.hero.viewDemo") }}
         </UButton>

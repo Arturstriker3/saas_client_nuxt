@@ -73,7 +73,7 @@ const props = withDefaults(defineProps<{
   finalCtaTitle: "",
   finalCtaDescription: "",
   finalCtaLabel: "",
-  finalCtaTo: "/",
+  finalCtaTo: "/registro",
 })
 
 const { t } = useI18n()
@@ -116,7 +116,7 @@ const backLabel = computed(() => props.backLabel || t("landing.nav.home"))
 const finalCtaTitle = computed(() => props.finalCtaTitle)
 const finalCtaDescription = computed(() => props.finalCtaDescription)
 const finalCtaLabel = computed(() => props.finalCtaLabel || t("landing.header.startForFree"))
-const finalCtaTo = computed(() => props.finalCtaTo || "/")
+const finalCtaTo = computed(() => props.finalCtaTo || "/registro")
 const showFinalCta = computed(() => Boolean(finalCtaTitle.value && finalCtaDescription.value))
 const currentYear = new Date().getFullYear()
 

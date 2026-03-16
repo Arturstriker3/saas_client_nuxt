@@ -19,7 +19,7 @@
       <LandingNotifications :notifications="notifications" />
       <LandingMetrics :metrics="metrics" :quotes="quotes" />
       <LandingBrands :brands="brands" />
-      <LandingLoop :dashboard-cards="dashboardCards" />
+      <LandingLoop />
     </main>
 
     <LandingFooter :app-name="appName" :footer-links="footerLinks" :current-year="currentYear" />
@@ -211,13 +211,6 @@ const quotes = computed<QuoteItem[]>(() => [
 ])
 
 const brands = ["UPWORK", "AIRBUS", "HAYS", "SENTRY", "MEDWING", "AUTO DESK", "Linear", "Autolader"]
-
-const dashboardCards = computed<string[]>(() => [
-  t("landing.dashboardCards.projects"),
-  t("landing.dashboardCards.design"),
-  t("landing.dashboardCards.development"),
-  t("landing.dashboardCards.testing"),
-])
 
 const footerLinks = computed<FooterColumn[]>(() => [
   {
