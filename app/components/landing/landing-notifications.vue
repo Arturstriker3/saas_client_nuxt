@@ -43,8 +43,6 @@ const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const sectionVisible = ref(false)
 
-const { top } = useElementBounding(sectionRef)
-
 useIntersectionObserver(sectionRef, ([entry]) => {
   if (!entry?.isIntersecting || sectionVisible.value) {
     return
@@ -52,11 +50,6 @@ useIntersectionObserver(sectionRef, ([entry]) => {
 
   sectionVisible.value = true
 }, { threshold: 0.22 })
-
-const parallaxOffset = computed(() => {
-  const motion = (top.value - 380) * -0.028
-  return Math.max(-16, Math.min(16, motion))
-})
 
 const titleStyle = computed(() => ({
   opacity: sectionVisible.value ? "1" : "0",
@@ -66,7 +59,7 @@ const titleStyle = computed(() => ({
 
 const boardStyle = computed(() => ({
   opacity: sectionVisible.value ? "1" : "0",
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value}px, 0)` : "translate3d(0, 22px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 22px, 0)",
   transitionDelay: sectionVisible.value ? "120ms" : "0ms",
 }))
 
@@ -81,7 +74,7 @@ const getNotificationStyle = (index: number) => {
 
   return {
     opacity: "1",
-    transform: `translate3d(0, ${parallaxOffset.value * 0.2}px, 0)`,
+    transform: "translate3d(0, 0, 0)",
     transitionDelay: `${index * 100 + 160}ms`,
   }
 }

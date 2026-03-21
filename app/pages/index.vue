@@ -22,7 +22,10 @@
       <LandingLoop />
     </main>
 
-    <LandingFooter :app-name="appName" :footer-links="footerLinks" :current-year="currentYear" />
+    <div>
+      <LandingFooter :app-name="appName" :footer-links="footerLinks" :current-year="currentYear" />
+    </div>
+    <LandingBackToTop :visible="isBackToTopVisible" />
   </div>
 </template>
 
@@ -93,6 +96,24 @@ const { locale, availableLocales, changeLocale } = useLocaleSwitcher()
 const colorMode = useColorMode()
 const isMobileMenuOpen = ref(false)
 const { y } = useWindowScroll()
+const isBackToTopVisible = ref(false)
+
+const updateBackToTopVisibility = () => {
+  const currentBottom = window.scrollY + window.innerHeight
+  const pageBottom = document.documentElement.scrollHeight
+  isBackToTopVisible.value = currentBottom >= pageBottom - 120
+}
+
+onMounted(() => {
+  updateBackToTopVisibility()
+  window.addEventListener("scroll", updateBackToTopVisibility, { passive: true })
+  window.addEventListener("resize", updateBackToTopVisibility)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", updateBackToTopVisibility)
+  window.removeEventListener("resize", updateBackToTopVisibility)
+})
 
 const localeFlagIcons: Record<SupportedLocale, string> = {
   pt: "i-circle-flags-br",
@@ -166,7 +187,7 @@ const heroTrustItems = computed<HeroTrustItem[]>(() => [
 ])
 
 const topLogos: TopLogoItem[] = [
-  { name: "Bun", icon: "i-simple-icons-bun", color: "#2B2B2B" },
+  { name: "Bun", icon: "i-simple-icons-bun", color: "#D2A35C" },
   { name: "Nuxt", icon: "i-simple-icons-nuxt", color: "#00DC82" },
   { name: "MongoDB", icon: "i-simple-icons-mongodb", color: "#47A248" },
   { name: "TypeScript", icon: "i-simple-icons-typescript", color: "#3178C6" },

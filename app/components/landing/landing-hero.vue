@@ -78,8 +78,6 @@ const hasAnimated = ref(false)
 const animatedSources = props.trustItems.map(() => ref(0))
 const animatedValues = animatedSources.map((source) => useTransition(source, { duration: 1200 }))
 
-const { top } = useElementBounding(heroSection)
-
 useIntersectionObserver(heroSection, ([entry]) => {
   if (!entry?.isIntersecting) {
     return
@@ -103,18 +101,13 @@ watch(hasAnimated, (isActive) => {
   }
 
   props.trustItems.forEach((item, index) => {
-    animatedSources[index].value = item.value
+    const source = animatedSources[index]
+    if (source) source.value = item.value
   })
-})
-
-const parallaxOffset = computed(() => {
-  const motion = (top.value - 280) * -0.035
-  return Math.max(-26, Math.min(26, motion))
 })
 
 const heroBackgroundStyle = computed(() => ({
   ...props.heroLinesStyle,
-  transform: `translate3d(0, ${parallaxOffset.value * 0.45}px, 0)`,
 }))
 
 const getTrustCardStyle = (index: number) => {
@@ -126,11 +119,9 @@ const getTrustCardStyle = (index: number) => {
     }
   }
 
-  const direction = index % 2 === 0 ? 1 : -1
-
   return {
     opacity: "1",
-    transform: `translate3d(0, ${parallaxOffset.value * direction * 0.2}px, 0)`,
+    transform: "translate3d(0, 0, 0)",
     transitionDelay: `${index * 100 + 180}ms`,
   }
 }

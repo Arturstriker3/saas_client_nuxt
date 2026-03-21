@@ -4,7 +4,9 @@
     :class="isHeaderElevated ? 'shadow-sm shadow-black/10 dark:shadow-black/40' : ''"
   >
     <div class="layout-container flex items-center justify-between gap-3 py-4 lg:hidden">
-      <img src="/marcato.logo.png" alt="Logo" class="h-10 w-auto max-w-[140px] shrink-0 object-contain" >
+      <button type="button" class="shrink-0" @click="scrollToTop">
+        <img src="/marcato.logo.png" alt="Marcato" class="h-10 w-auto max-w-[140px] shrink-0 object-contain" >
+      </button>
       <div class="flex shrink-0 items-center justify-end">
         <UButton color="neutral" variant="outline" size="xl" square @click="openMobileMenu">
           <UIcon name="i-lucide-menu" class="h-5 w-5" />
@@ -14,7 +16,9 @@
 
     <div class="layout-container hidden items-center justify-between gap-6 py-4 lg:flex">
       <div class="flex min-w-0 items-center gap-10">
-        <img src="/marcato.logo.png" alt="Logo" class="h-12 w-auto max-w-[220px] shrink-0 object-contain" >
+        <button type="button" class="shrink-0" @click="scrollToTop">
+          <img src="/marcato.logo.png" alt="Marcato" class="h-12 w-auto max-w-[220px] shrink-0 object-contain" >
+        </button>
         <nav class="hidden min-w-0 items-center gap-7 text-base font-semibold text-[#334155] lg:flex dark:text-slate-300">
           <a v-for="item in navItems" :key="item" href="#" class="whitespace-nowrap transition hover:text-[#0f172a] dark:hover:text-slate-100">{{ item }}</a>
         </nav>
@@ -132,5 +136,9 @@ const updateMobileMenuOpen = (value: boolean) => {
 const closeAndSync = (close: () => void) => {
   close()
   emit("update:isMobileMenuOpen", false)
+}
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" })
 }
 </script>

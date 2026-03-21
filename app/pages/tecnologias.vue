@@ -83,7 +83,7 @@ const { public: { appName } } = useRuntimeConfig()
 const { t } = useI18n()
 
 const technologies = computed<TechnologyItem[]>(() => [
-  { name: "Bun", icon: "i-simple-icons-bun", color: "#000000", impact: t("technologiesPage.tech.items.item1.impact"), reason: t("technologiesPage.tech.items.item1.reason") },
+  { name: "Bun", icon: "i-simple-icons-bun", color: "#D2A35C", impact: t("technologiesPage.tech.items.item1.impact"), reason: t("technologiesPage.tech.items.item1.reason") },
   { name: "Nuxt", icon: "i-simple-icons-nuxt", color: "#00DC82", impact: t("technologiesPage.tech.items.item2.impact"), reason: t("technologiesPage.tech.items.item2.reason") },
   { name: "MongoDB", icon: "i-simple-icons-mongodb", color: "#47A248", impact: t("technologiesPage.tech.items.item3.impact"), reason: t("technologiesPage.tech.items.item3.reason") },
   { name: "TypeScript", icon: "i-simple-icons-typescript", color: "#3178C6", impact: t("technologiesPage.tech.items.item4.impact"), reason: t("technologiesPage.tech.items.item4.reason") },

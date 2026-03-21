@@ -75,8 +75,6 @@ const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const sectionVisible = ref(false)
 
-const { top } = useElementBounding(sectionRef)
-
 useIntersectionObserver(sectionRef, ([entry]) => {
   if (!entry?.isIntersecting || sectionVisible.value) {
     return
@@ -85,31 +83,26 @@ useIntersectionObserver(sectionRef, ([entry]) => {
   sectionVisible.value = true
 }, { threshold: 0.2 })
 
-const parallaxOffset = computed(() => {
-  const motion = (top.value - 360) * -0.035
-  return Math.max(-22, Math.min(22, motion))
-})
-
 const leftColumnStyle = computed(() => ({
   transitionDelay: sectionVisible.value ? "80ms" : "0ms",
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value * 0.2}px, 0)` : "translate3d(0, 18px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 18px, 0)",
   opacity: sectionVisible.value ? "1" : "0",
 }))
 
 const rightColumnStyle = computed(() => ({
   transitionDelay: sectionVisible.value ? "220ms" : "0ms",
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value * -0.16}px, 0)` : "translate3d(0, 18px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 18px, 0)",
   opacity: sectionVisible.value ? "1" : "0",
 }))
 
 const codeCardStyle = computed(() => ({
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value}px, 0)` : "translate3d(0, 22px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 22px, 0)",
   opacity: sectionVisible.value ? "1" : "0",
   transitionDelay: sectionVisible.value ? "160ms" : "0ms",
 }))
 
 const feedbackCardStyle = computed(() => ({
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value * -0.75}px, 0)` : "translate3d(0, 22px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 22px, 0)",
   opacity: sectionVisible.value ? "1" : "0",
   transitionDelay: sectionVisible.value ? "200ms" : "0ms",
 }))

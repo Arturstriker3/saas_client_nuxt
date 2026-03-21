@@ -25,16 +25,16 @@
             </sup>
           </button>
         </div>
-        <p class="mt-3 text-center text-sm text-white/85">{{ t(`landing.pricing.framing.${selectedCycle}`) }}</p>
+        <p class="mt-3 hidden text-center text-sm text-white/85 md:block">{{ t(`landing.pricing.framing.${selectedCycle}`) }}</p>
       </div>
       <div class="mt-10 rounded-3xl border border-white/20 bg-[#111827] p-8 shadow-[0_20px_80px_rgba(0,0,0,0.35)] transition-transform duration-700 ease-out" :style="panelStyle">
-        <div class="mb-6 grid gap-2 md:grid-cols-3">
+        <div class="mb-6 hidden gap-2 lg:grid lg:grid-cols-3">
           <div v-for="pillar in trustPillars" :key="pillar.label" class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/85">
             <UIcon :name="pillar.icon" class="h-4 w-4 text-emerald-300" />
             <span>{{ pillar.label }}</span>
           </div>
         </div>
-        <div class="grid gap-4 lg:grid-cols-3">
+        <div class="hidden gap-4 lg:grid lg:grid-cols-3">
           <article
             v-for="(plan, index) in pricingPlans"
             :key="plan.id"
@@ -42,19 +42,18 @@
             :class="plan.highlight ? 'border-emerald-300/70 bg-[#0e1c2f]' : 'border-white/10 bg-[#0f172a]'"
             :style="getCardStyle(index)"
           >
-            <span v-if="plan.discountSeal" class="absolute left-4 top-4 rounded-full border border-emerald-200/30 bg-emerald-300/15 px-3 py-1 text-[0.7rem] font-bold text-emerald-100">
-              {{ plan.discountSeal }}
-            </span>
             <span v-if="plan.badge" class="absolute right-4 top-4 rounded-full bg-emerald-300/20 px-3 py-1 text-xs font-semibold text-emerald-200">
               {{ plan.badge }}
             </span>
-            <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/60" :class="plan.discountSeal ? 'mt-8' : ''">{{ plan.name }}</p>
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/60">{{ plan.name }}</p>
             <p class="mt-2 text-sm text-white/80">{{ plan.description }}</p>
             <div class="mt-5 flex items-end gap-2">
               <p class="text-4xl font-extrabold leading-none">{{ plan.price }}</p>
-              <p class="pb-1 text-sm text-white/70">{{ t("landing.pricing.perMonth") }}</p>
+              <p class="pb-1 text-sm text-white/70">
+                {{ t("landing.pricing.perMonth") }}
+                <sup v-if="plan.cycleBadge" class="ml-1.5 text-[0.68rem] font-extrabold text-emerald-200">{{ plan.cycleBadge }}</sup>
+              </p>
             </div>
-            <p v-if="plan.cycleSavings" class="mt-2 text-xs font-semibold text-emerald-200">{{ plan.cycleSavings }}</p>
             <p class="mt-1 text-xs text-white/70">{{ plan.totalCycleLabel }}</p>
             <p class="mt-2 text-xs text-emerald-200/90">{{ plan.commitment }}</p>
             <ul class="mt-5 space-y-2 text-sm text-white/85">
@@ -84,6 +83,77 @@
             </UButton>
           </article>
         </div>
+        <div class="touch-pan-y select-none lg:hidden" @pointerdown="handlePlanPointerDown" @pointermove="handlePlanPointerMove" @pointerup="handlePlanPointerUp" @pointercancel="handlePlanPointerCancel" @pointerleave="handlePlanPointerLeave">
+          <Transition name="mobile-plan-fade" mode="out-in" appear :duration="{ enter: 340, leave: 180 }">
+            <article
+              v-if="activeMobilePlan"
+              :key="activeMobilePlan.id"
+              class="relative rounded-2xl border p-6 transition-all duration-500 ease-out"
+              :class="activeMobilePlan.highlight ? 'border-emerald-300/70 bg-[#0e1c2f]' : 'border-white/10 bg-[#0f172a]'"
+              :style="mobileCardStyle"
+            >
+              <span v-if="activeMobilePlan.badge" class="absolute right-4 top-4 rounded-full bg-emerald-300/20 px-3 py-1 text-xs font-semibold text-emerald-200">
+                {{ activeMobilePlan.badge }}
+              </span>
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/60">{{ activeMobilePlan.name }}</p>
+              <p class="mt-2 text-sm text-white/80">{{ activeMobilePlan.description }}</p>
+              <div class="mt-5 flex items-end gap-2">
+                <p class="text-4xl font-extrabold leading-none">{{ activeMobilePlan.price }}</p>
+                <p class="pb-1 text-sm text-white/70">
+                  {{ t("landing.pricing.perMonth") }}
+                  <sup v-if="activeMobilePlan.cycleBadge" class="ml-1.5 text-[0.68rem] font-extrabold text-emerald-200">{{ activeMobilePlan.cycleBadge }}</sup>
+                </p>
+              </div>
+              <p class="mt-1 text-xs text-white/70">{{ activeMobilePlan.totalCycleLabel }}</p>
+              <p class="mt-2 text-xs text-emerald-200/90">{{ activeMobilePlan.commitment }}</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/85">
+                <li v-for="feature in activeMobilePlan.features" :key="feature" class="flex items-start gap-2">
+                  <UIcon name="i-lucide-check" class="mt-0.5 h-4 w-4 text-emerald-300" />
+                  <span>{{ feature }}</span>
+                </li>
+              </ul>
+              <NuxtLink v-if="activeMobilePlan.ctaTo" :to="activeMobilePlan.ctaTo" class="mt-6 block">
+                <UButton
+                  class="w-full justify-center rounded-xl"
+                  :color="activeMobilePlan.highlight ? 'primary' : 'neutral'"
+                  :variant="activeMobilePlan.highlight ? 'solid' : 'outline'"
+                  size="lg"
+                >
+                  {{ activeMobilePlan.cta }}
+                </UButton>
+              </NuxtLink>
+              <UButton
+                v-else
+                class="mt-6 w-full justify-center rounded-xl"
+                :color="activeMobilePlan.highlight ? 'primary' : 'neutral'"
+                :variant="activeMobilePlan.highlight ? 'solid' : 'outline'"
+                size="lg"
+              >
+                {{ activeMobilePlan.cta }}
+              </UButton>
+            </article>
+          </Transition>
+        </div>
+        <div class="mt-4 flex items-center justify-center gap-2 lg:hidden">
+          <div class="flex items-center gap-2">
+            <button
+              v-for="(plan, index) in pricingPlans"
+              :key="`dot-${plan.id}`"
+              type="button"
+              class="h-2.5 rounded-full transition-all duration-200"
+              :class="index === mobilePlanIndex ? 'w-6 bg-emerald-300' : 'w-2.5 bg-white/35'"
+              @click="goToPlan(index)"
+            />
+          </div>
+        </div>
+        <div class="mt-4 lg:hidden">
+          <Transition name="mobile-pillar-carousel" mode="out-in">
+            <div v-if="activeTrustPillar" :key="`mobile-${activeTrustPillar.label}`" class="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/85">
+              <UIcon :name="activeTrustPillar.icon" class="h-4 w-4 text-emerald-300" />
+              <span>{{ activeTrustPillar.label }}</span>
+            </div>
+          </Transition>
+        </div>
       </div>
     </div>
   </section>
@@ -97,8 +167,7 @@ type PricingPlan = {
   name: string
   description: string
   price: string
-  cycleSavings?: string
-  discountSeal?: string
+  cycleBadge?: string
   totalCycleLabel: string
   commitment: string
   features: string[]
@@ -113,13 +182,25 @@ type TrustPillar = {
   icon: string
 }
 
+type DragStart = {
+  x: number
+  y: number
+  pointerId: number
+}
+
 const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)
 const sectionVisible = ref(false)
 const selectedCycle = ref<BillingCycle>("monthly")
-
-const { top } = useElementBounding(sectionRef)
+const mobilePlanIndex = ref(0)
+const planDragStart = ref<DragStart | null>(null)
+const planDragOffsetX = ref(0)
+const planDragAxis = ref<"horizontal" | "vertical" | null>(null)
+const swipeReleaseDirection = ref<"next" | "prev" | null>(null)
+const activeTrustPillarIndex = ref(0)
+let trustPillarCycleInterval: ReturnType<typeof setInterval> | null = null
+let swipeSwitchTimeout: ReturnType<typeof setTimeout> | null = null
 
 useIntersectionObserver(sectionRef, ([entry]) => {
   if (!entry?.isIntersecting || sectionVisible.value) {
@@ -129,20 +210,15 @@ useIntersectionObserver(sectionRef, ([entry]) => {
   sectionVisible.value = true
 }, { threshold: 0.2 })
 
-const parallaxOffset = computed(() => {
-  const motion = (top.value - 340) * -0.03
-  return Math.max(-20, Math.min(20, motion))
-})
-
 const titleStyle = computed(() => ({
   opacity: sectionVisible.value ? "1" : "0",
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value * 0.18}px, 0)` : "translate3d(0, 14px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 14px, 0)",
   transition: "all 640ms ease",
 }))
 
 const subtitleStyle = computed(() => ({
   opacity: sectionVisible.value ? "1" : "0",
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value * 0.1}px, 0)` : "translate3d(0, 16px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
   transition: "all 680ms ease",
   transitionDelay: sectionVisible.value ? "80ms" : "0ms",
 }))
@@ -173,7 +249,6 @@ const pricingPlans = computed<PricingPlan[]>(() => {
   const cycleLabel = t(`landing.pricing.cycles.${selectedCycle.value}`)
   const cycleTotalLabel = t("landing.pricing.totalForCycle", { cycle: cycleLabel })
   const cycleDiscount = cycleSavings ? t("landing.pricing.saveShort", { value: cycleSavings }) : ""
-  const cycleDiscountSeal = cycleSavings ? `${cycleLabel} ${cycleDiscount}` : ""
 
   return [
     {
@@ -181,8 +256,7 @@ const pricingPlans = computed<PricingPlan[]>(() => {
       name: t("landing.pricing.plans.basic.name"),
       description: t("landing.pricing.plans.basic.description"),
       price: t(`landing.pricing.plans.basic.price${cycleKey}`),
-      cycleSavings: cycleSavings ? t("landing.pricing.savingsTag", { value: cycleSavings }) : undefined,
-      discountSeal: cycleDiscountSeal || undefined,
+      cycleBadge: cycleDiscount || undefined,
       totalCycleLabel: cycleTotalLabel,
       commitment: t(`landing.pricing.commitment.${selectedCycle.value}`),
       features: [
@@ -199,8 +273,7 @@ const pricingPlans = computed<PricingPlan[]>(() => {
       name: t("landing.pricing.plans.pro.name"),
       description: t("landing.pricing.plans.pro.description"),
       price: t(`landing.pricing.plans.pro.price${cycleKey}`),
-      cycleSavings: cycleSavings ? t("landing.pricing.savingsTag", { value: cycleSavings }) : undefined,
-      discountSeal: cycleDiscountSeal || undefined,
+      cycleBadge: cycleDiscount || undefined,
       totalCycleLabel: cycleTotalLabel,
       commitment: t(`landing.pricing.commitment.${selectedCycle.value}`),
       features: [
@@ -217,8 +290,7 @@ const pricingPlans = computed<PricingPlan[]>(() => {
       name: t("landing.pricing.plans.team.name"),
       description: t("landing.pricing.plans.team.description"),
       price: t(`landing.pricing.plans.team.price${cycleKey}`),
-      cycleSavings: cycleSavings ? t("landing.pricing.savingsTag", { value: cycleSavings }) : undefined,
-      discountSeal: cycleDiscountSeal || undefined,
+      cycleBadge: cycleDiscount || undefined,
       totalCycleLabel: cycleTotalLabel,
       commitment: t(`landing.pricing.commitment.${selectedCycle.value}`),
       features: [
@@ -232,9 +304,233 @@ const pricingPlans = computed<PricingPlan[]>(() => {
   ]
 })
 
+const planCount = computed(() => pricingPlans.value.length)
+const activeMobilePlan = computed(() => pricingPlans.value[mobilePlanIndex.value] ?? null)
+const activeTrustPillar = computed(() => trustPillars.value[activeTrustPillarIndex.value] ?? null)
+const mobileCardStyle = computed(() => {
+  if (!sectionVisible.value) {
+    return {
+      opacity: "0",
+      transform: "translate3d(0, 14px, 0)",
+      transitionDelay: "0ms",
+    }
+  }
+
+  if (swipeReleaseDirection.value) {
+    const targetX = swipeReleaseDirection.value === "next" ? -84 : 84
+
+    return {
+      opacity: "0",
+      transform: `translate3d(${targetX}px, 0, 0) scale(0.985)`,
+      transitionDelay: "0ms",
+      transition: "transform 190ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 190ms ease",
+    }
+  }
+
+  const dragDistance = Math.max(Math.min(planDragOffsetX.value, 160), -160)
+  const dragOpacity = 1 - Math.min(Math.abs(dragDistance) / 260, 0.45)
+  const dragRotation = dragDistance / 24
+
+  return {
+    opacity: dragOpacity.toFixed(3),
+    transform: `translate3d(${dragDistance}px, 0, 0) rotate(${dragRotation.toFixed(2)}deg)`,
+    transitionDelay: "260ms",
+    transition: planDragStart.value ? "none" : "transform 220ms ease, opacity 220ms ease",
+  }
+})
+
+const goToPlan = (index: number) => {
+  if (!planCount.value) {
+    return
+  }
+
+  mobilePlanIndex.value = (index + planCount.value) % planCount.value
+}
+
+const goToPreviousPlan = () => {
+  goToPlan(mobilePlanIndex.value - 1)
+}
+
+const goToNextPlan = () => {
+  goToPlan(mobilePlanIndex.value + 1)
+}
+
+const resetPlanDrag = (resetOffset = true) => {
+  planDragStart.value = null
+  planDragAxis.value = null
+
+  if (resetOffset) {
+    planDragOffsetX.value = 0
+  }
+}
+
+const handlePlanPointerDown = (event: PointerEvent) => {
+  if (swipeReleaseDirection.value) {
+    return
+  }
+
+  if (event.button !== 0) {
+    return
+  }
+
+  planDragStart.value = {
+    x: event.clientX,
+    y: event.clientY,
+    pointerId: event.pointerId,
+  }
+
+  planDragAxis.value = null
+  planDragOffsetX.value = 0
+
+  const target = event.currentTarget as HTMLElement | null
+  target?.setPointerCapture?.(event.pointerId)
+}
+
+const handlePlanPointerMove = (event: PointerEvent) => {
+  if (!planDragStart.value || event.pointerId !== planDragStart.value.pointerId) {
+    return
+  }
+
+  const deltaX = event.clientX - planDragStart.value.x
+  const deltaY = event.clientY - planDragStart.value.y
+
+  if (!planDragAxis.value && (Math.abs(deltaX) > 6 || Math.abs(deltaY) > 6)) {
+    planDragAxis.value = Math.abs(deltaX) > Math.abs(deltaY) ? "horizontal" : "vertical"
+  }
+
+  if (planDragAxis.value !== "horizontal") {
+    return
+  }
+
+  if (event.cancelable) {
+    event.preventDefault()
+  }
+
+  planDragOffsetX.value = deltaX
+}
+
+const finalizePlanDrag = (shouldNavigate: boolean) => {
+  if (!planDragStart.value) {
+    return
+  }
+
+  const deltaX = planDragOffsetX.value
+  const minSwipeDistance = 42
+  const swipedNext = deltaX <= -minSwipeDistance
+  const swipedPrevious = deltaX >= minSwipeDistance
+  const horizontalSwipe = planDragAxis.value === "horizontal"
+
+  if (!horizontalSwipe || !shouldNavigate) {
+    resetPlanDrag()
+    return
+  }
+
+  if (swipedNext) {
+    resetPlanDrag(false)
+    swipeReleaseDirection.value = "next"
+    swipeSwitchTimeout = setTimeout(() => {
+      goToNextPlan()
+      swipeReleaseDirection.value = null
+      planDragOffsetX.value = 0
+    }, 175)
+    return
+  }
+
+  if (swipedPrevious) {
+    resetPlanDrag(false)
+    swipeReleaseDirection.value = "prev"
+    swipeSwitchTimeout = setTimeout(() => {
+      goToPreviousPlan()
+      swipeReleaseDirection.value = null
+      planDragOffsetX.value = 0
+    }, 175)
+    return
+  }
+
+  resetPlanDrag()
+}
+
+const handlePlanPointerUp = (event: PointerEvent) => {
+  if (!planDragStart.value || event.pointerId !== planDragStart.value.pointerId) {
+    return
+  }
+
+  finalizePlanDrag(true)
+
+  const target = event.currentTarget as HTMLElement | null
+  target?.releasePointerCapture?.(event.pointerId)
+}
+
+const handlePlanPointerCancel = (event: PointerEvent) => {
+  if (!planDragStart.value || event.pointerId !== planDragStart.value.pointerId) {
+    return
+  }
+
+  finalizePlanDrag(false)
+
+  const target = event.currentTarget as HTMLElement | null
+  target?.releasePointerCapture?.(event.pointerId)
+}
+
+const handlePlanPointerLeave = (event: PointerEvent) => {
+  if (!planDragStart.value || event.pointerId !== planDragStart.value.pointerId) {
+    return
+  }
+
+  if (event.pointerType === "mouse") {
+    finalizePlanDrag(false)
+  }
+}
+
+watch(planCount, (count) => {
+  if (!count) {
+    mobilePlanIndex.value = 0
+    return
+  }
+
+  if (mobilePlanIndex.value >= count) {
+    mobilePlanIndex.value = 0
+  }
+})
+
+watch(() => trustPillars.value.length, (count) => {
+  if (!count) {
+    activeTrustPillarIndex.value = 0
+    return
+  }
+
+  if (activeTrustPillarIndex.value >= count) {
+    activeTrustPillarIndex.value = 0
+  }
+})
+
+onMounted(() => {
+  trustPillarCycleInterval = setInterval(() => {
+    const count = trustPillars.value.length
+
+    if (count < 2) {
+      return
+    }
+
+    activeTrustPillarIndex.value = (activeTrustPillarIndex.value + 1) % count
+  }, 2600)
+})
+
+onBeforeUnmount(() => {
+  if (swipeSwitchTimeout) {
+    clearTimeout(swipeSwitchTimeout)
+  }
+
+  if (!trustPillarCycleInterval) {
+    return
+  }
+
+  clearInterval(trustPillarCycleInterval)
+})
+
 const panelStyle = computed(() => ({
   opacity: sectionVisible.value ? "1" : "0",
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value}px, 0)` : "translate3d(0, 18px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 18px, 0)",
   transitionDelay: sectionVisible.value ? "180ms" : "0ms",
 }))
 
@@ -247,12 +543,42 @@ const getCardStyle = (index: number) => {
     }
   }
 
-  const direction = index === 1 ? -1 : 1
-
   return {
     opacity: "1",
-    transform: `translate3d(0, ${parallaxOffset.value * direction * 0.18}px, 0)`,
+    transform: "translate3d(0, 0, 0)",
     transitionDelay: `${index * 70 + 260}ms`,
   }
 }
 </script>
+
+<style scoped>
+.mobile-plan-fade-enter-active,
+.mobile-plan-fade-leave-active {
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.mobile-plan-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.988);
+}
+
+.mobile-plan-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.992);
+}
+
+.mobile-pillar-carousel-enter-active,
+.mobile-pillar-carousel-leave-active {
+  transition: transform 280ms ease, opacity 280ms ease;
+}
+
+.mobile-pillar-carousel-enter-from {
+  opacity: 0;
+  transform: translate3d(18px, 0, 0);
+}
+
+.mobile-pillar-carousel-leave-to {
+  opacity: 0;
+  transform: translate3d(-18px, 0, 0);
+}
+</style>

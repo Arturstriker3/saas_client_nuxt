@@ -46,8 +46,6 @@ const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const sectionVisible = ref(false)
 
-const { top } = useElementBounding(sectionRef)
-
 useIntersectionObserver(sectionRef, ([entry]) => {
   if (!entry?.isIntersecting || sectionVisible.value) {
     return
@@ -56,15 +54,10 @@ useIntersectionObserver(sectionRef, ([entry]) => {
   sectionVisible.value = true
 }, { threshold: 0.2 })
 
-const parallaxOffset = computed(() => {
-  const motion = (top.value - 320) * -0.03
-  return Math.max(-14, Math.min(14, motion))
-})
-
 const repeatedLogos = computed<TopLogoItem[]>(() => [...props.logos, ...props.logos])
 
 const motionStyle = computed(() => ({
-  transform: `translate3d(0, ${parallaxOffset.value * 0.35}px, 0)`,
+  transform: "translate3d(0, 0, 0)",
 }))
 
 const getLogoStyle = (index: number) => {

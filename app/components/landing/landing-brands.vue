@@ -41,8 +41,6 @@ const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const sectionVisible = ref(false)
 
-const { top } = useElementBounding(sectionRef)
-
 useIntersectionObserver(sectionRef, ([entry]) => {
   if (!entry?.isIntersecting || sectionVisible.value) {
     return
@@ -50,11 +48,6 @@ useIntersectionObserver(sectionRef, ([entry]) => {
 
   sectionVisible.value = true
 }, { threshold: 0.2 })
-
-const parallaxOffset = computed(() => {
-  const motion = (top.value - 340) * -0.025
-  return Math.max(-12, Math.min(12, motion))
-})
 
 const getBrandStyle = (index: number) => {
   if (!sectionVisible.value) {
@@ -67,14 +60,14 @@ const getBrandStyle = (index: number) => {
 
   return {
     opacity: "1",
-    transform: `translate3d(0, ${parallaxOffset.value * ((index % 3) - 1) * 0.28}px, 0)`,
+    transform: "translate3d(0, 0, 0)",
     transitionDelay: `${index * 70 + 120}ms`,
   }
 }
 
 const ctaStyle = computed(() => ({
   opacity: sectionVisible.value ? "1" : "0",
-  transform: sectionVisible.value ? `translate3d(0, ${parallaxOffset.value * -0.2}px, 0)` : "translate3d(0, 16px, 0)",
+  transform: sectionVisible.value ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
   transitionDelay: sectionVisible.value ? "300ms" : "0ms",
 }))
 </script>
