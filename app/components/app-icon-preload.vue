@@ -20,5 +20,6 @@ const preloadedIcons = [
   "i-lucide-globe",
   "i-lucide-arrow-left",
   "i-lucide-cpu",
+  "i-logos-google-icon",
 ] as const
 </script>

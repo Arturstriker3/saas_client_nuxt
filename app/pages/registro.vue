@@ -3,33 +3,35 @@
     <div class="pointer-events-none absolute inset-0 opacity-80 dark:opacity-70" :style="backgroundStyle" />
     <div class="relative mx-auto grid min-h-screen w-full max-w-7xl items-center gap-8 px-5 py-10 lg:grid-cols-2 lg:px-8">
       <section
-        class="relative hidden overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(145deg,#f8fffd_0%,#ebf5ff_46%,#f4edff_100%)] p-10 text-[#0f172a] shadow-[0_28px_80px_rgba(15,23,42,0.14)] transition-all duration-700 ease-out lg:block"
+        class="hidden p-2 transition-all duration-700 ease-out lg:block"
         :class="isContentVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'"
       >
-        <div class="pointer-events-none absolute -left-16 -top-20 h-56 w-56 rounded-full bg-emerald-300/40 blur-3xl" />
-        <div class="pointer-events-none absolute -bottom-24 -right-12 h-64 w-64 rounded-full bg-indigo-300/45 blur-3xl" />
-        <div class="relative z-10">
-          <div
-            class="inline-flex rounded-[2rem] border border-white/70 bg-white/60 p-2 shadow-[0_14px_36px_rgba(14,116,144,0.24)] backdrop-blur-xl transition-all duration-700 ease-out"
-            :class="isContentVisible ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-6 scale-75 opacity-0'"
-            :style="{ transitionDelay: isContentVisible ? '260ms' : '0ms' }"
+        <div>
+          <img
+            src="/marcato.logo.png"
+            alt="Logo Marcato"
+            class="h-auto w-full max-w-[24rem] object-contain transition-all duration-700 ease-out"
+            :class="isContentVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'"
+            :style="{ transitionDelay: isContentVisible ? '220ms' : '0ms' }"
           >
-            <img src="/marcato.logo.png" alt="Logo" class="h-72 w-72 object-cover" >
-          </div>
-          <p class="mt-6 text-sm font-bold uppercase tracking-[0.18em] text-emerald-700">{{ appName }}</p>
-          <h1 class="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-slate-900">{{ t("auth.register.hero.title") }}</h1>
-          <p class="mt-4 text-base text-slate-700">
-            {{ t("auth.register.hero.subtitle") }}
-          </p>
-          <div class="mt-8 space-y-3">
-            <div class="rounded-2xl border border-white/70 bg-white/60 p-4 backdrop-blur-sm">
-              <p class="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700">{{ t("auth.register.hero.item1.title") }}</p>
-              <p class="mt-2 text-sm text-slate-700">{{ t("auth.register.hero.item1.description") }}</p>
-            </div>
-            <div class="rounded-2xl border border-white/70 bg-white/60 p-4 backdrop-blur-sm">
-              <p class="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700">{{ t("auth.register.hero.item2.title") }}</p>
-              <p class="mt-2 text-sm text-slate-700">{{ t("auth.register.hero.item2.description") }}</p>
-            </div>
+          <div class="mt-10 space-y-3">
+            <article
+              v-for="item in heroHighlights"
+              :key="item.title"
+              class="rounded-2xl border border-black/10 bg-white/80 p-4 transition-all duration-700 ease-out dark:border-white/10 dark:bg-slate-900/70"
+              :class="isContentVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'"
+              :style="{ transitionDelay: isContentVisible ? `${item.delay}ms` : '0ms' }"
+            >
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
+                  <UIcon :name="item.icon" class="h-4 w-4" />
+                </span>
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700">{{ item.title }}</p>
+                  <p class="mt-1.5 text-sm text-slate-700 dark:text-slate-300">{{ item.description }}</p>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -70,8 +72,21 @@
             />
           </div>
           <div class="space-y-2">
+            <label for="email" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.emailLabel") }}</label>
+            <UInput
+              id="email"
+              type="email"
+              required
+              size="xl"
+              color="primary"
+              variant="outline"
+              class="w-full"
+              :placeholder="t('auth.register.emailPlaceholder')"
+            />
+          </div>
+          <div class="space-y-2">
             <label class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.phoneLabel") }}</label>
-            <div class="flex gap-2">
+            <div class="grid gap-2 sm:grid-cols-5">
               <USelect
                 id="phoneCode"
                 v-model="selectedPhoneCountry"
@@ -82,7 +97,7 @@
                 size="xl"
                 color="primary"
                 variant="outline"
-                class="w-52"
+                class="w-full sm:col-span-2"
                 :placeholder="t('auth.register.phoneCodePlaceholder')"
               >
                 <template #leading>
@@ -98,7 +113,7 @@
                 size="xl"
                 color="primary"
                 variant="outline"
-                class="w-full"
+                class="w-full sm:col-span-3"
                 :placeholder="t('auth.register.phonePlaceholder')"
               />
             </div>
@@ -107,52 +122,37 @@
             </p>
           </div>
           <div class="space-y-2">
-            <label for="email" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.emailLabel") }}</label>
+            <label for="birthDate" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.birthDateLabel") }}</label>
             <UInput
-              id="email"
-              type="email"
+              id="birthDate"
+              v-model="birthDate"
+              type="date"
               required
               size="xl"
               color="primary"
               variant="outline"
               class="w-full"
-              :placeholder="t('auth.register.emailPlaceholder')"
             />
           </div>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div class="space-y-2">
-              <label for="birthDate" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.birthDateLabel") }}</label>
-              <UInput
-                id="birthDate"
-                v-model="birthDate"
-                type="date"
-                required
-                size="xl"
-                color="primary"
-                variant="outline"
-                class="w-full"
-              />
-            </div>
-            <div class="space-y-2">
-              <label for="language" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.languageLabel") }}</label>
-              <USelect
-                id="language"
-                v-model="selectedLanguage"
-                :items="languageOptions"
-                value-key="code"
-                label-key="label"
-                required
-                size="xl"
-                color="primary"
-                variant="outline"
-                class="w-full"
-                :placeholder="t('auth.register.languagePlaceholder')"
-              >
-                <template #leading>
-                  <UIcon :name="selectedLanguageOption?.icon ?? 'i-lucide-globe'" class="h-4 w-4" />
-                </template>
-              </USelect>
-            </div>
+          <div class="space-y-2">
+            <label for="language" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.languageLabel") }}</label>
+            <USelect
+              id="language"
+              v-model="selectedLanguage"
+              :items="languageOptions"
+              value-key="code"
+              label-key="label"
+              required
+              size="xl"
+              color="primary"
+              variant="outline"
+              class="w-full"
+              :placeholder="t('auth.register.languagePlaceholder')"
+            >
+              <template #leading>
+                <UIcon :name="selectedLanguageOption?.icon ?? 'i-lucide-globe'" class="h-4 w-4" />
+              </template>
+            </USelect>
           </div>
           <div class="space-y-2">
             <label for="password" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.passwordLabel") }}</label>
@@ -212,7 +212,7 @@
             <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-xs font-semibold text-[#64748b] dark:bg-slate-900 dark:text-slate-300">{{ t("auth.common.or") }}</span>
           </div>
           <UButton type="button" color="neutral" variant="outline" size="xl" class="w-full justify-center gap-3 rounded-xl border-[#d0d7e2] bg-white text-[#0f172a] hover:bg-slate-50 dark:border-white/20 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900">
-            <UIcon name="i-simple-icons-google" class="h-4 w-4 text-[#4285F4]" />
+            <UIcon name="i-logos-google-icon" class="h-4 w-4" />
             {{ t("auth.common.continueWithGoogle") }}
           </UButton>
         </form>
@@ -250,6 +250,13 @@ type MaskaDetail = {
   unmasked: string
 }
 
+type HeroHighlight = {
+  icon: string
+  title: string
+  description: string
+  delay: number
+}
+
 const { t } = useI18n()
 const { public: { appName } } = useRuntimeConfig()
 const isContentVisible = ref(false)
@@ -258,6 +265,20 @@ const { locale, changeLocale } = useLocaleSwitcher()
 const showRegisterPassword = ref(false)
 const showRegisterConfirmPassword = ref(false)
 const birthDate = ref("")
+const heroHighlights = computed<HeroHighlight[]>(() => [
+  {
+    icon: "i-lucide-zap",
+    title: t("auth.register.hero.item1.title"),
+    description: t("auth.register.hero.item1.description"),
+    delay: 320,
+  },
+  {
+    icon: "i-lucide-rocket",
+    title: t("auth.register.hero.item2.title"),
+    description: t("auth.register.hero.item2.description"),
+    delay: 420,
+  },
+])
 const registerPhone = ref("")
 const registerPhoneUnmasked = ref("")
 const registerPhoneError = ref("")
