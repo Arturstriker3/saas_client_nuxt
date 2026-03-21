@@ -99,6 +99,8 @@
                 variant="outline"
                 class="w-full sm:col-span-2"
                 :placeholder="t('auth.register.phoneCodePlaceholder')"
+                @pointerdown="ensurePhoneCountryCodesLoaded"
+                @focus="ensurePhoneCountryCodesLoaded"
               >
                 <template #leading>
                   <UIcon :name="selectedPhoneCountryOption?.icon ?? 'i-lucide-flag'" class="h-4 w-4" />
@@ -282,18 +284,37 @@ const heroHighlights = computed<HeroHighlight[]>(() => [
 const registerPhone = ref("")
 const registerPhoneUnmasked = ref("")
 const registerPhoneError = ref("")
-const phoneCountryCodes = computed<PhoneCountryCode[]>(() =>
-  getCountries().map((country) => {
-    const code = `+${getCountryCallingCode(country)}`
-    return {
-      value: `${country}-${code}`,
-      code,
-      iso2: country,
-      icon: `i-circle-flags-${country.toLowerCase()}`,
-      label: `${country} ${code}`,
-    }
-  }),
-)
+const preferredPhoneCountryIso2: CountryCode[] = ["BR", "US", "PT", "ES", "AR", "MX"]
+const buildPhoneCountryCodeItem = (country: CountryCode): PhoneCountryCode => {
+  const code = `+${getCountryCallingCode(country)}`
+  return {
+    value: `${country}-${code}`,
+    code,
+    iso2: country,
+    icon: `i-circle-flags-${country.toLowerCase()}`,
+    label: `${country} ${code}`,
+  }
+}
+
+const buildPhoneCountryCodeList = (countries: CountryCode[]) =>
+  countries.map(buildPhoneCountryCodeItem)
+
+const initialPhoneCountryCodes = buildPhoneCountryCodeList(preferredPhoneCountryIso2)
+const phoneCountryCodes = ref<PhoneCountryCode[]>(initialPhoneCountryCodes)
+const phoneCountryCodesLoaded = ref(false)
+
+const ensurePhoneCountryCodesLoaded = () => {
+  if (phoneCountryCodesLoaded.value) {
+    return
+  }
+
+  phoneCountryCodesLoaded.value = true
+
+  setTimeout(() => {
+    phoneCountryCodes.value = buildPhoneCountryCodeList(getCountries())
+  }, 0)
+}
+
 const selectedPhoneCountry = ref("BR-+55")
 const selectedPhoneCountryOption = computed(() =>
   phoneCountryCodes.value.find(country => country.value === selectedPhoneCountry.value),
@@ -379,6 +400,17 @@ const backgroundStyle = {
 }
 
 onMounted(() => {
+  if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+    window.requestIdleCallback(() => {
+      ensurePhoneCountryCodesLoaded()
+    }, { timeout: 1200 })
+  }
+  else {
+    setTimeout(() => {
+      ensurePhoneCountryCodesLoaded()
+    }, 450)
+  }
+
   requestAnimationFrame(() => {
     isContentVisible.value = true
   })
