@@ -220,9 +220,9 @@
     "backHome": "Voltar para a home",
     "tagline": "Stack de alta performance",
     "title": "Tecnologias que usamos e por que nosso sistema é mais rápido, estável e seguro.",
-    "subtitle": "Nosso foco é engenharia de produto: baixa latência, menos bugs em produção e uma operação robusta para agendamentos críticos.",
+    "subtitle": "Nosso foco é engenharia de produto: baixa latência, menos bugs em produção e uma operação robusta para agendamentos.",
     "tech": {
-      "title": "Stack principal e impacto real",
+      "title": "Tech stack",
       "subtitle": "Cada tecnologia foi escolhida para resolver velocidade, confiabilidade, entrega contínua e experiência do usuário.",
       "items": {
         "item1": {
@@ -272,7 +272,7 @@
       }
     },
     "bias": {
-      "title": "Por que nossa base técnica supera boilerplates genéricos",
+      "title": "Base técnica superior",
       "subtitle": "Aqui está o que diferencia uma arquitetura pensada para produção de templates rápidos que acumulam falhas.",
       "items": {
         "item1": {

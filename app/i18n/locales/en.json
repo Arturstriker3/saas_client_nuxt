@@ -220,9 +220,9 @@
     "backHome": "Back to home",
     "tagline": "High-performance stack",
     "title": "Technologies we use and why our system is faster, safer, and more stable.",
-    "subtitle": "Our focus is product engineering: low latency, fewer production bugs, and robust operations for critical scheduling workflows.",
+    "subtitle": "Our focus is product engineering: low latency, fewer production bugs, and robust operations for scheduling workflows.",
     "tech": {
-      "title": "Core stack and real impact",
+      "title": "Tech stack",
       "subtitle": "Every technology was selected to solve speed, reliability, continuous delivery, and user experience.",
       "items": {
         "item1": {
@@ -272,7 +272,7 @@
       }
     },
     "bias": {
-      "title": "Why our technical foundation outperforms generic boilerplates",
+      "title": "Superior technical foundation",
       "subtitle": "This is what separates production-ready architecture from quick templates that accumulate failures.",
       "items": {
         "item1": {

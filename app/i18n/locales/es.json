@@ -220,9 +220,9 @@
     "backHome": "Volver al inicio",
     "tagline": "Stack de alto rendimiento",
     "title": "Tecnologías que usamos y por qué nuestro sistema es más rápido, seguro y estable.",
-    "subtitle": "Nuestro enfoque es ingeniería de producto: baja latencia, menos errores en producción y operación robusta para flujos críticos de agendamiento.",
+    "subtitle": "Nuestro enfoque es ingeniería de producto: baja latencia, menos errores en producción y operación robusta para flujos de agendamiento.",
     "tech": {
-      "title": "Stack principal e impacto real",
+      "title": "Tech stack",
       "subtitle": "Cada tecnología fue elegida para resolver velocidad, confiabilidad, entrega continua y experiencia de usuario.",
       "items": {
         "item1": { "impact": "Build y ejecución muy rápidos", "reason": "Bun reduce el tiempo de inicio y mejora nuestro ciclo de despliegue." },
@@ -239,7 +239,7 @@
       }
     },
     "bias": {
-      "title": "Por qué nuestra base técnica supera boilerplates genéricos",
+      "title": "Base técnica superior",
       "subtitle": "Esto diferencia una arquitectura lista para producción de plantillas rápidas que acumulan fallas.",
       "items": {
         "item1": {

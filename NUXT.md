@@ -56,6 +56,7 @@ app/
  │       └ types.ts
  │
  ├ components/
+ │   ├ app-icon-preload.vue
  │   └ app-shell.vue
  ├ composables/
  │   └ use-locale-switcher.composable.ts
@@ -134,6 +135,7 @@ Configuração:
 - Contratos explícitos via DTO de request/response
 - Estado compartilhado em `stores` (global ou por módulo)
 - `core` concentra infraestrutura reutilizável
+- Preload global de ícones fica em componente dedicado (`components/app-icon-preload.vue`) para manter `app.vue` limpo
 
 Fluxo padrão:
 
@@ -173,6 +175,7 @@ Mapeamento para tipos de domínio/UI
 - `imports.dirs` inclui composables/stores de módulos
 - `components` inclui componentes globais e de módulos
 - `app.config.ts` centraliza tokens de tema e branding
+- Ícones críticos de navegação e idioma são pré-carregados no bootstrap para evitar atraso visual em sidebar/dropdowns
 
 ---
 

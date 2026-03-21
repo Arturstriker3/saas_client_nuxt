@@ -24,7 +24,7 @@
       </div>
     </header>
 
-    <section class="relative">
+    <section :class="heroSectionClass">
       <div class="layout-container py-10 md:py-14">
         <div class="rounded-[2rem] border border-black/10 bg-white/85 p-6 shadow-[0_20px_70px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-colors md:p-10 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-[0_20px_70px_rgba(2,6,23,0.45)]">
           <p class="text-xs font-bold uppercase tracking-[0.18em] text-primary">{{ eyebrow }}</p>
@@ -63,12 +63,14 @@ const props = withDefaults(defineProps<{
   eyebrow: string
   title: string
   subtitle: string
+  hideHeroOnMobile?: boolean
   backLabel?: string
   finalCtaTitle?: string
   finalCtaDescription?: string
   finalCtaLabel?: string
   finalCtaTo?: string
 }>(), {
+  hideHeroOnMobile: false,
   backLabel: "",
   finalCtaTitle: "",
   finalCtaDescription: "",
@@ -118,6 +120,7 @@ const finalCtaDescription = computed(() => props.finalCtaDescription)
 const finalCtaLabel = computed(() => props.finalCtaLabel || t("landing.header.startForFree"))
 const finalCtaTo = computed(() => props.finalCtaTo || "/registro")
 const showFinalCta = computed(() => Boolean(finalCtaTitle.value && finalCtaDescription.value))
+const heroSectionClass = computed(() => (props.hideHeroOnMobile ? "relative hidden md:block" : "relative"))
 const currentYear = new Date().getFullYear()
 
 type FooterLinkItem = {
