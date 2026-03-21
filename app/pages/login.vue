@@ -64,6 +64,7 @@
               id="email"
               v-model="email"
               type="email"
+              maxlength="254"
               required
               size="xl"
               color="primary"
@@ -76,7 +77,9 @@
             <label for="password" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.login.passwordLabel") }}</label>
             <UInput
               id="password"
+              v-model="password"
               :type="showLoginPassword ? 'text' : 'password'"
+              maxlength="72"
               required
               size="xl"
               color="primary"
@@ -131,6 +134,7 @@ type HeroHighlight = {
 
 const showLoginPassword = ref(false)
 const email = ref("")
+const password = ref("")
 const heroHighlights = computed<HeroHighlight[]>(() => [
   {
     icon: "i-lucide-check-check",

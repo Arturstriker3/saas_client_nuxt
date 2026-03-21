@@ -63,6 +63,7 @@
             <UInput
               id="name"
               type="text"
+              maxlength="120"
               required
               size="xl"
               color="primary"
@@ -76,6 +77,7 @@
             <UInput
               id="email"
               type="email"
+              maxlength="254"
               required
               size="xl"
               color="primary"
@@ -108,15 +110,16 @@
               </USelect>
               <UInput
                 id="phone"
-                v-model="registerPhone"
-                v-maska="registerPhoneMaskOptions"
+                :model-value="registerPhone"
                 type="tel"
+                maxlength="22"
                 required
                 size="xl"
                 color="primary"
                 variant="outline"
                 class="w-full sm:col-span-3"
                 :placeholder="t('auth.register.phonePlaceholder')"
+                @update:model-value="handleRegisterPhoneInput"
               />
             </div>
             <p v-if="registerPhoneError" class="text-xs font-semibold text-rose-600 dark:text-rose-400">
@@ -160,7 +163,9 @@
             <label for="password" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.passwordLabel") }}</label>
             <UInput
               id="password"
+              v-model="registerPassword"
               :type="showRegisterPassword ? 'text' : 'password'"
+              maxlength="72"
               required
               size="xl"
               color="primary"
@@ -186,27 +191,44 @@
             <label for="confirmPassword" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.confirmPasswordLabel") }}</label>
             <UInput
               id="confirmPassword"
+              v-model="registerConfirmPassword"
               :type="showRegisterConfirmPassword ? 'text' : 'password'"
+              maxlength="72"
               required
               size="xl"
-              color="primary"
+              :color="confirmPasswordFieldColor"
               variant="outline"
               class="w-full"
               :placeholder="t('auth.register.confirmPasswordPlaceholder')"
             >
               <template #trailing>
-                <UButton
-                  type="button"
-                  color="neutral"
-                  variant="ghost"
-                  size="sm"
-                  square
-                  @click="showRegisterConfirmPassword = !showRegisterConfirmPassword"
-                >
-                  <UIcon :name="showRegisterConfirmPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'" class="h-5 w-5" />
-                </UButton>
+                <div class="flex items-center gap-1">
+                  <UIcon
+                    v-if="isConfirmPasswordDirty"
+                    :name="areRegisterPasswordsMatching ? 'i-lucide-check-circle-2' : 'i-lucide-circle-alert'"
+                    :class="areRegisterPasswordsMatching ? 'text-emerald-500' : 'text-rose-500'"
+                    class="h-4 w-4"
+                  />
+                  <UButton
+                    type="button"
+                    color="neutral"
+                    variant="ghost"
+                    size="sm"
+                    square
+                    @click="showRegisterConfirmPassword = !showRegisterConfirmPassword"
+                  >
+                    <UIcon :name="showRegisterConfirmPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'" class="h-5 w-5" />
+                  </UButton>
+                </div>
               </template>
             </UInput>
+            <p
+              v-if="isConfirmPasswordDirty"
+              class="text-xs font-semibold"
+              :class="areRegisterPasswordsMatching ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'"
+            >
+              {{ areRegisterPasswordsMatching ? t("auth.register.passwordMatch.match") : t("auth.register.passwordMatch.mismatch") }}
+            </p>
           </div>
           <UButton type="submit" color="primary" size="xl" class="mt-1 w-full justify-center rounded-xl">{{ t("auth.register.submit") }}</UButton>
           <div class="relative py-1">
@@ -226,12 +248,13 @@
 
 <script setup lang="ts">
 import {
+  AsYouType,
   getCountries,
   getCountryCallingCode,
   parsePhoneNumberFromString,
+  validatePhoneNumberLength,
   type CountryCode,
 } from "libphonenumber-js"
-import { vMaska } from "maska/vue"
 import type { SupportedLocale } from "~/composables/use-locale-switcher.composable"
 
 type PhoneCountryCode = {
@@ -248,10 +271,6 @@ type LanguageOption = {
   icon: string
 }
 
-type MaskaDetail = {
-  unmasked: string
-}
-
 type HeroHighlight = {
   icon: string
   title: string
@@ -266,6 +285,8 @@ const currentYear = new Date().getFullYear()
 const { locale, changeLocale } = useLocaleSwitcher()
 const showRegisterPassword = ref(false)
 const showRegisterConfirmPassword = ref(false)
+const registerPassword = ref("")
+const registerConfirmPassword = ref("")
 const birthDate = ref("")
 const heroHighlights = computed<HeroHighlight[]>(() => [
   {
@@ -319,22 +340,43 @@ const selectedPhoneCountry = ref("BR-+55")
 const selectedPhoneCountryOption = computed(() =>
   phoneCountryCodes.value.find(country => country.value === selectedPhoneCountry.value),
 )
-const phoneMaskByIso2: Partial<Record<PhoneCountryCode["iso2"], string>> = {
-  BR: "(##) #####-####",
-  US: "(###) ###-####",
-  CA: "(###) ###-####",
-  MX: "## #### ####",
+const getDigitsOnly = (value: string) => value.replace(/\D/g, "")
+const clampPhoneDigitsByCountry = (digits: string, country: CountryCode) => {
+  let nextDigits = digits
+
+  while (nextDigits.length && validatePhoneNumberLength(nextDigits, country) === "TOO_LONG") {
+    nextDigits = nextDigits.slice(0, -1)
+  }
+
+  return nextDigits
 }
-const registerPhoneMask = computed(() =>
-  phoneMaskByIso2[selectedPhoneCountryOption.value?.iso2 ?? "BR"] ?? "###############",
+
+const handleRegisterPhoneInput = (nextValue: string | number) => {
+  const inputValue = String(nextValue ?? "")
+  const selectedIso2 = selectedPhoneCountryOption.value?.iso2 as CountryCode | undefined
+  const country = selectedIso2 ?? "BR"
+  const formatter = new AsYouType(country)
+  const normalizedDigits = clampPhoneDigitsByCountry(getDigitsOnly(inputValue), country)
+  const formattedValue = formatter.input(normalizedDigits)
+
+  registerPhone.value = formattedValue
+  registerPhoneUnmasked.value = getDigitsOnly(formatter.getChars())
+  registerPhoneError.value = ""
+}
+const isConfirmPasswordDirty = computed(() =>
+  registerConfirmPassword.value.length > 0,
 )
-const registerPhoneMaskOptions = computed(() => ({
-  mask: registerPhoneMask.value,
-  eager: true,
-  onMaska: (detail: MaskaDetail) => {
-    registerPhoneUnmasked.value = detail.unmasked
-  },
-}))
+const areRegisterPasswordsMatching = computed(() =>
+  registerPassword.value.length > 0
+  && registerPassword.value === registerConfirmPassword.value,
+)
+const confirmPasswordFieldColor = computed(() => {
+  if (!isConfirmPasswordDirty.value) {
+    return "primary"
+  }
+
+  return areRegisterPasswordsMatching.value ? "success" : "error"
+})
 const languageOptions = computed<LanguageOption[]>(() => [
   { code: "pt", label: t("auth.languages.pt"), icon: "i-circle-flags-br" },
   { code: "en", label: t("auth.languages.en"), icon: "i-circle-flags-us" },

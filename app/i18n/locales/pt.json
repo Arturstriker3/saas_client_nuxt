@@ -361,6 +361,10 @@
         "selectCountry": "Selecione o país.",
         "invalidForCountry": "Telefone inválido para o país selecionado."
       },
+      "passwordMatch": {
+        "match": "As senhas coincidem.",
+        "mismatch": "As senhas não coincidem."
+      },
       "hero": {
         "title": "Comece com agenda pronta para converter.",
         "subtitle": "Cadastro objetivo, ativação guiada e primeira rotina configurada com menos fricção.",

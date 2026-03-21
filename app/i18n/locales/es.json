@@ -328,6 +328,10 @@
         "selectCountry": "Selecciona el país.",
         "invalidForCountry": "Teléfono inválido para el país seleccionado."
       },
+      "passwordMatch": {
+        "match": "Las contraseñas coinciden.",
+        "mismatch": "Las contraseñas no coinciden."
+      },
       "hero": {
         "title": "Empieza con agenda lista para convertir.",
         "subtitle": "Registro objetivo, activación guiada y primera rutina configurada con menos fricción.",

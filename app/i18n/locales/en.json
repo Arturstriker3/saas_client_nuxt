@@ -361,6 +361,10 @@
         "selectCountry": "Select a country.",
         "invalidForCountry": "Invalid phone number for the selected country."
       },
+      "passwordMatch": {
+        "match": "Passwords match.",
+        "mismatch": "Passwords do not match."
+      },
       "hero": {
         "title": "Start with a schedule ready to convert.",
         "subtitle": "Objective signup, guided activation, and your first workflow configured with less friction.",
