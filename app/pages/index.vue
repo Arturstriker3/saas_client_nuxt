@@ -32,6 +32,10 @@
 <script setup lang="ts">
 import type { SupportedLocale } from "~/composables/use-locale-switcher.composable"
 
+definePageMeta({
+  name: "public-home",
+})
+
 type FooterColumn = {
   title: string
   items: FooterLinkItem[]

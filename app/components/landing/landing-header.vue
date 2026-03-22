@@ -24,10 +24,10 @@
         </nav>
       </div>
       <div class="flex shrink-0 items-center gap-3">
-        <NuxtLink to="/login">
+        <NuxtLink :to="{ name: 'auth-login' }">
           <UButton color="neutral" variant="ghost" size="lg" class="min-w-24 justify-center text-base whitespace-nowrap">{{ t("landing.header.login") }}</UButton>
         </NuxtLink>
-        <NuxtLink to="/registro">
+        <NuxtLink :to="{ name: 'auth-register' }">
           <UButton color="primary" size="lg" class="min-w-36 justify-center rounded-full px-6 text-base whitespace-nowrap">
             {{ t("landing.header.startForFree") }}
           </UButton>
@@ -79,12 +79,12 @@
           </div>
 
           <div class="space-y-3 border-t border-black/10 pt-4 dark:border-white/15">
-            <NuxtLink to="/registro">
+            <NuxtLink :to="{ name: 'auth-register' }">
               <UButton color="primary" size="lg" block class="justify-center gap-2 rounded-full text-base" @click="closeAndSync(close)">
                 {{ t("landing.header.startForFree") }}
               </UButton>
             </NuxtLink>
-            <NuxtLink to="/login">
+            <NuxtLink :to="{ name: 'auth-login' }">
               <UButton color="neutral" variant="ghost" size="lg" block class="justify-center gap-2 text-base" @click="closeAndSync(close)">
                 {{ t("landing.header.login") }}
               </UButton>

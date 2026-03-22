@@ -377,6 +377,10 @@
           "description": "Fluxo claro para sair do zero com página de agendamento ativa."
         }
       }
+    },
+    "oauth": {
+      "processing": "Conectando com sua conta Google...",
+      "error": "Não foi possível concluir o login."
     }
   }
 }

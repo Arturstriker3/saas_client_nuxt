@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="mt-10 flex flex-wrap items-center justify-center gap-3 transition-all duration-700 ease-out" :style="ctaStyle">
-        <NuxtLink to="/registro">
+        <NuxtLink :to="{ name: 'auth-register' }">
           <UButton color="primary" size="xl" class="rounded-full px-8 text-base">
             {{ t("landing.header.startForFree") }}
           </UButton>

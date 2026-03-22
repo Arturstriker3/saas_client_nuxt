@@ -57,6 +57,7 @@
 </template>
 
 <script setup lang="ts">
+import type { RouteLocationRaw } from "vue-router"
 import type { SupportedLocale } from "~/composables/use-locale-switcher.composable"
 
 const props = withDefaults(defineProps<{
@@ -68,14 +69,14 @@ const props = withDefaults(defineProps<{
   finalCtaTitle?: string
   finalCtaDescription?: string
   finalCtaLabel?: string
-  finalCtaTo?: string
+  finalCtaTo?: RouteLocationRaw
 }>(), {
   hideHeroOnMobile: false,
   backLabel: "",
   finalCtaTitle: "",
   finalCtaDescription: "",
   finalCtaLabel: "",
-  finalCtaTo: "/registro",
+  finalCtaTo: () => ({ name: "auth-register" }),
 })
 
 const { t } = useI18n()
@@ -118,7 +119,7 @@ const backLabel = computed(() => props.backLabel || t("landing.nav.home"))
 const finalCtaTitle = computed(() => props.finalCtaTitle)
 const finalCtaDescription = computed(() => props.finalCtaDescription)
 const finalCtaLabel = computed(() => props.finalCtaLabel || t("landing.header.startForFree"))
-const finalCtaTo = computed(() => props.finalCtaTo || "/registro")
+const finalCtaTo = computed(() => props.finalCtaTo || { name: "auth-register" })
 const showFinalCta = computed(() => Boolean(finalCtaTitle.value && finalCtaDescription.value))
 const heroSectionClass = computed(() => (props.hideHeroOnMobile ? "relative hidden md:block" : "relative"))
 const currentYear = new Date().getFullYear()

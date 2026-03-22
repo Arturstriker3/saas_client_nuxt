@@ -135,6 +135,8 @@ Configuração:
 - Contratos explícitos via DTO de request/response
 - Estado compartilhado em `stores` (global ou por módulo)
 - `core` concentra infraestrutura reutilizável
+- `core/api/http-client.ts` é responsável por anexar token, refresh automático e signOut em falhas de autenticação
+- `repository` deve focar em validar payload (DTO), chamar endpoint e mapear resposta, sem regra de autenticação de transporte
 - Preload global de ícones fica em componente dedicado (`components/app-icon-preload.vue`) para manter `app.vue` limpo
 
 Fluxo padrão:

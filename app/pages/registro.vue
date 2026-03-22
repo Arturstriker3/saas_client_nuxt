@@ -49,7 +49,7 @@
           >
             <UIcon name="i-lucide-arrow-left" class="h-4 w-4" />
           </NuxtLink>
-          <NuxtLink to="/login" class="text-sm font-semibold text-primary hover:underline">
+          <NuxtLink :to="{ name: 'auth-login' }" class="text-sm font-semibold text-primary hover:underline">
             {{ t("auth.register.switchToLogin") }}
           </NuxtLink>
         </div>
@@ -62,6 +62,7 @@
             <label for="name" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.nameLabel") }}</label>
             <UInput
               id="name"
+              v-model="registerName"
               type="text"
               maxlength="120"
               required
@@ -76,6 +77,7 @@
             <label for="email" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.emailLabel") }}</label>
             <UInput
               id="email"
+              v-model="registerEmail"
               type="email"
               maxlength="254"
               required
@@ -230,12 +232,30 @@
               {{ areRegisterPasswordsMatching ? t("auth.register.passwordMatch.match") : t("auth.register.passwordMatch.mismatch") }}
             </p>
           </div>
-          <UButton type="submit" color="primary" size="xl" class="mt-1 w-full justify-center rounded-xl">{{ t("auth.register.submit") }}</UButton>
+          <UButton
+            type="submit"
+            color="primary"
+            size="xl"
+            class="mt-1 w-full justify-center rounded-xl"
+            :loading="isRegisterLoading"
+            :disabled="isRegisterLoading"
+          >
+            {{ t("auth.register.submit") }}
+          </UButton>
           <div class="relative py-1">
             <div class="h-px bg-black/10 dark:bg-white/10" />
             <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-xs font-semibold text-[#64748b] dark:bg-slate-900 dark:text-slate-300">{{ t("auth.common.or") }}</span>
           </div>
-          <UButton type="button" color="neutral" variant="outline" size="xl" class="w-full justify-center gap-3 rounded-xl border-[#d0d7e2] bg-white text-[#0f172a] hover:bg-slate-50 dark:border-white/20 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900">
+          <UButton
+            type="button"
+            color="neutral"
+            variant="outline"
+            size="xl"
+            class="w-full justify-center gap-3 rounded-xl border-[#d0d7e2] bg-white text-[#0f172a] hover:bg-slate-50 dark:border-white/20 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+            :loading="isGoogleOAuthLoading"
+            :disabled="isGoogleOAuthLoading"
+            @click="handleGoogleOAuthStart"
+          >
             <UIcon name="i-logos-google-icon" class="h-4 w-4" />
             {{ t("auth.common.continueWithGoogle") }}
           </UButton>
@@ -255,7 +275,13 @@ import {
   validatePhoneNumberLength,
   type CountryCode,
 } from "libphonenumber-js"
+import { useAuthOAuth } from "~/modules/auth/composables/use-auth-oauth.composable"
+import { useAuthSession } from "~/modules/auth/composables/use-auth-session.composable"
 import type { SupportedLocale } from "~/composables/use-locale-switcher.composable"
+
+definePageMeta({
+  name: "auth-register",
+})
 
 type PhoneCountryCode = {
   value: string
@@ -280,11 +306,15 @@ type HeroHighlight = {
 
 const { t } = useI18n()
 const { public: { appName } } = useRuntimeConfig()
+const { startGoogleOAuth } = useAuthOAuth()
+const { registerAndSignIn } = useAuthSession()
 const isContentVisible = ref(false)
 const currentYear = new Date().getFullYear()
 const { locale, changeLocale } = useLocaleSwitcher()
 const showRegisterPassword = ref(false)
 const showRegisterConfirmPassword = ref(false)
+const registerName = ref("")
+const registerEmail = ref("")
 const registerPassword = ref("")
 const registerConfirmPassword = ref("")
 const birthDate = ref("")
@@ -305,6 +335,8 @@ const heroHighlights = computed<HeroHighlight[]>(() => [
 const registerPhone = ref("")
 const registerPhoneUnmasked = ref("")
 const registerPhoneError = ref("")
+const isRegisterLoading = ref(false)
+const isGoogleOAuthLoading = ref(false)
 const preferredPhoneCountryIso2: CountryCode[] = ["BR", "US", "PT", "ES", "AR", "MX"]
 const buildPhoneCountryCodeItem = (country: CountryCode): PhoneCountryCode => {
   const code = `+${getCountryCallingCode(country)}`
@@ -423,8 +455,58 @@ const validateRegisterPhone = () => {
   return true
 }
 
-const handleRegisterSubmit = () => {
-  validateRegisterPhone()
+const mapLocaleCodeToBackendLanguage = (localeCode: SupportedLocale) => {
+  const languageMap: Record<SupportedLocale, "portuguese" | "english" | "spanish"> = {
+    pt: "portuguese",
+    en: "english",
+    es: "spanish",
+  }
+
+  return languageMap[localeCode]
+}
+
+const handleRegisterSubmit = async () => {
+  const isPhoneValid = validateRegisterPhone()
+  if (!isPhoneValid || !areRegisterPasswordsMatching.value) {
+    return
+  }
+
+  const normalizedEmail = registerEmail.value.trim().toLowerCase()
+  if (!registerName.value.trim() || !normalizedEmail || !birthDate.value) {
+    return
+  }
+
+  isRegisterLoading.value = true
+
+  try {
+    await registerAndSignIn({
+      name: registerName.value.trim(),
+      email: normalizedEmail,
+      password: registerPassword.value,
+      birthDate: birthDate.value,
+      language: mapLocaleCodeToBackendLanguage(selectedLanguage.value),
+    })
+  }
+  catch {
+    return
+  }
+  finally {
+    isRegisterLoading.value = false
+  }
+}
+
+const handleGoogleOAuthStart = async () => {
+  isGoogleOAuthLoading.value = true
+
+  try {
+    await startGoogleOAuth("dashboard")
+  }
+  catch {
+    return
+  }
+  finally {
+    isGoogleOAuthLoading.value = false
+  }
 }
 
 const backgroundStyle = {

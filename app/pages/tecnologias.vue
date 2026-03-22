@@ -8,7 +8,7 @@
     :final-cta-title="t('technologiesPage.ethics.title')"
     :final-cta-description="t('technologiesPage.ethics.description')"
     :final-cta-label="t('landing.header.startForFree')"
-    final-cta-to="/registro"
+    :final-cta-to="{ name: 'auth-register' }"
   >
     <div class="layout-container space-y-12 py-12 md:space-y-16 md:py-16">
       <section class="rounded-3xl border border-black/10 bg-white/90 p-5 shadow-[0_16px_50px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-colors sm:p-6 md:p-8 dark:border-white/10 dark:bg-slate-900/75 dark:shadow-[0_16px_50px_rgba(2,6,23,0.45)]">
@@ -105,6 +105,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  name: "public-technologies",
+})
+
 type TechnologyItem = {
   name: string
   icon: string

@@ -377,6 +377,10 @@
           "description": "A clear flow to go from zero to an active booking page."
         }
       }
+    },
+    "oauth": {
+      "processing": "Connecting your Google account...",
+      "error": "Could not complete sign in."
     }
   }
 }

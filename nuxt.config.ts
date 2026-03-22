@@ -83,6 +83,15 @@ export default defineNuxtConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: [
+        "zod",
+        "libphonenumber-js",
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "@tanstack/vue-query",
+      ],
+    },
   },
   i18n: {
     defaultLocale: "pt",

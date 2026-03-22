@@ -344,6 +344,10 @@
           "description": "Flujo claro para pasar de cero a una página de reservas activa."
         }
       }
+    },
+    "oauth": {
+      "processing": "Conectando con tu cuenta de Google...",
+      "error": "No fue posible completar el inicio de sesión."
     }
   }
 }

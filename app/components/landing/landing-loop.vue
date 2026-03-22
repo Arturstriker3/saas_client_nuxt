@@ -160,6 +160,8 @@
 </template>
 
 <script setup lang="ts">
+import type { RouteLocationRaw } from "vue-router"
+
 type BillingCycle = "monthly" | "quarterly" | "semiannual"
 
 type PricingPlan = {
@@ -172,7 +174,7 @@ type PricingPlan = {
   commitment: string
   features: string[]
   cta: string
-  ctaTo?: string
+  ctaTo?: RouteLocationRaw
   badge?: string
   highlight: boolean
 }
@@ -265,7 +267,7 @@ const pricingPlans = computed<PricingPlan[]>(() => {
         t("landing.pricing.plans.basic.features.item3"),
       ],
       cta: t("landing.pricing.plans.basic.cta"),
-      ctaTo: "/registro",
+      ctaTo: { name: "auth-register" },
       highlight: false,
     },
     {

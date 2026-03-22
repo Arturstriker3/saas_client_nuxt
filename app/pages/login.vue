@@ -49,7 +49,7 @@
           >
             <UIcon name="i-lucide-arrow-left" class="h-4 w-4" />
           </NuxtLink>
-          <NuxtLink to="/registro" class="text-sm font-semibold text-primary hover:underline">
+          <NuxtLink :to="{ name: 'auth-register' }" class="text-sm font-semibold text-primary hover:underline">
             {{ t("auth.login.switchToRegister") }}
           </NuxtLink>
         </div>
@@ -104,12 +104,30 @@
           <div class="flex justify-end">
             <NuxtLink to="/esqueci-senha" class="text-xs font-semibold text-primary hover:underline">{{ t("auth.login.forgotPassword") }}</NuxtLink>
           </div>
-          <UButton type="submit" color="primary" size="xl" class="mt-1 w-full justify-center rounded-xl">{{ t("auth.login.submit") }}</UButton>
+          <UButton
+            type="submit"
+            color="primary"
+            size="xl"
+            class="mt-1 w-full justify-center rounded-xl"
+            :loading="isLoginLoading"
+            :disabled="isLoginLoading"
+          >
+            {{ t("auth.login.submit") }}
+          </UButton>
           <div class="relative py-1">
             <div class="h-px bg-black/10 dark:bg-white/10" />
             <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-xs font-semibold text-[#64748b] dark:bg-slate-900 dark:text-slate-300">{{ t("auth.common.or") }}</span>
           </div>
-          <UButton type="button" color="neutral" variant="outline" size="xl" class="w-full justify-center gap-3 rounded-xl border-[#d0d7e2] bg-white text-[#0f172a] hover:bg-slate-50 dark:border-white/20 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900">
+          <UButton
+            type="button"
+            color="neutral"
+            variant="outline"
+            size="xl"
+            class="w-full justify-center gap-3 rounded-xl border-[#d0d7e2] bg-white text-[#0f172a] hover:bg-slate-50 dark:border-white/20 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+            :loading="isGoogleOAuthLoading"
+            :disabled="isGoogleOAuthLoading"
+            @click="handleGoogleOAuthStart"
+          >
             <UIcon name="i-logos-google-icon" class="h-4 w-4" />
             {{ t("auth.common.continueWithGoogle") }}
           </UButton>
@@ -121,8 +139,20 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthOAuth } from "~/modules/auth/composables/use-auth-oauth.composable"
+import { useAuthSession } from "~/modules/auth/composables/use-auth-session.composable"
+
+definePageMeta({
+  name: "auth-login",
+})
+
 const { t } = useI18n()
-const { public: { appName } } = useRuntimeConfig()
+const {
+  public: { appName },
+} = useRuntimeConfig()
+const route = useRoute()
+const { startGoogleOAuth } = useAuthOAuth()
+const { signInWithPassword } = useAuthSession()
 const isContentVisible = ref(false)
 const currentYear = new Date().getFullYear()
 type HeroHighlight = {
@@ -131,10 +161,13 @@ type HeroHighlight = {
   description: string
   delay: number
 }
+type AuthRedirectRouteName = "dashboard"
 
 const showLoginPassword = ref(false)
 const email = ref("")
 const password = ref("")
+const isLoginLoading = ref(false)
+const isGoogleOAuthLoading = ref(false)
 const heroHighlights = computed<HeroHighlight[]>(() => [
   {
     icon: "i-lucide-check-check",
@@ -150,7 +183,49 @@ const heroHighlights = computed<HeroHighlight[]>(() => [
   },
 ])
 
-const handleLoginSubmit = () => {
+const getSafeRedirectRouteName = (redirectValue: unknown): AuthRedirectRouteName => {
+  if (redirectValue === "dashboard") {
+    return redirectValue
+  }
+
+  return "dashboard"
+}
+
+const handleLoginSubmit = async () => {
+  const normalizedEmail = email.value.trim().toLowerCase()
+  if (!normalizedEmail || !password.value) {
+    return
+  }
+
+  isLoginLoading.value = true
+
+  try {
+    await signInWithPassword({
+      email: normalizedEmail,
+      password: password.value,
+      redirectRouteName: route.query.redirect,
+    })
+  }
+  catch {
+    return
+  }
+  finally {
+    isLoginLoading.value = false
+  }
+}
+
+const handleGoogleOAuthStart = async () => {
+  isGoogleOAuthLoading.value = true
+
+  try {
+    await startGoogleOAuth(getSafeRedirectRouteName(route.query.redirect))
+  }
+  catch {
+    return
+  }
+  finally {
+    isGoogleOAuthLoading.value = false
+  }
 }
 
 const backgroundStyle = {
