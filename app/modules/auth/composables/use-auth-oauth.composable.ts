@@ -1,21 +1,21 @@
-import { authRepository } from "../repository/auth.repository";
-import { useAuthSession } from "./use-auth-session.composable";
+import { authRepository } from "../repository/auth.repository"
+import { useCompleteGoogleOAuthMutation } from "../mutations/use-complete-google-oauth.mutation"
 
-const OAUTH_REDIRECT_STORAGE_KEY = "oauth_redirect_after_login";
-type AuthRedirectRouteName = "dashboard";
+const OAUTH_REDIRECT_STORAGE_KEY = "oauth_redirect_after_login"
+type AuthRedirectRouteName = "dashboard"
 
 const getSafeRedirectRouteName = (
   routeName: unknown,
 ): AuthRedirectRouteName => {
   if (routeName === "dashboard") {
-    return routeName;
+    return routeName
   }
 
-  return "dashboard";
-};
+  return "dashboard"
+}
 
 export const useAuthOAuth = () => {
-  const { applyTokensAndLoadCurrentUser } = useAuthSession();
+  const completeGoogleOAuthMutation = useCompleteGoogleOAuthMutation()
 
   const startGoogleOAuth = async (
     redirectRouteName?: AuthRedirectRouteName,
@@ -24,39 +24,24 @@ export const useAuthOAuth = () => {
       sessionStorage.setItem(
         OAUTH_REDIRECT_STORAGE_KEY,
         getSafeRedirectRouteName(redirectRouteName),
-      );
+      )
     }
 
-    const authorizationUrl = await authRepository.startGoogleOAuth();
-    window.location.href = authorizationUrl;
-  };
+    const authorizationUrl = await authRepository.startGoogleOAuth()
+    window.location.href = authorizationUrl
+  }
 
   const completeGoogleOAuth = async (input: {
-    code: string;
-    state: string;
-    redirect?: unknown;
+    code: string
+    state: string
+    redirect?: unknown
   }) => {
-    const tokens = await authRepository.completeGoogleOAuth({
-      code: input.code,
-      state: input.state,
-    });
-
-    await applyTokensAndLoadCurrentUser(tokens);
-
-    const persistedRedirectRouteName = sessionStorage.getItem(
-      OAUTH_REDIRECT_STORAGE_KEY,
-    );
-    sessionStorage.removeItem(OAUTH_REDIRECT_STORAGE_KEY);
-
-    await navigateTo({
-      name: getSafeRedirectRouteName(
-        input.redirect ?? persistedRedirectRouteName,
-      ),
-    });
-  };
+    await completeGoogleOAuthMutation.mutateAsync(input)
+  }
 
   return {
     startGoogleOAuth,
     completeGoogleOAuth,
-  };
-};
+    isGoogleOAuthCompleting: completeGoogleOAuthMutation.isPending,
+  }
+}

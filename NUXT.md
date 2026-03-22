@@ -37,8 +37,16 @@ app/
  │
  ├ modules/
  │   ├ auth/
- │   │   ├ stores/
- │   │   │   └ auth.store.ts
+ │   │   ├ repository/
+ │   │   │   └ auth.repository.ts
+ │   │   ├ queries/
+ │   │   │   ├ auth.keys.ts
+ │   │   │   └ use-me.query.ts
+ │   │   ├ mutations/
+ │   │   │   ├ use-login.mutation.ts
+ │   │   │   ├ use-register-and-sign-in.mutation.ts
+ │   │   │   ├ use-complete-google-oauth.mutation.ts
+ │   │   │   └ use-logout.mutation.ts
  │   │   └ types.ts
  │   │
  │   └ users/
@@ -128,42 +136,92 @@ Configuração:
 
 # Convenções de Arquitetura
 
-- Regras de domínio ficam em `modules/<dominio>`
-- Páginas em `pages/` orquestram módulos e SEO
-- Lógica de negócio em `composables`
-- Chamadas de API em `repository`
-- Contratos explícitos via DTO de request/response
-- Estado compartilhado em `stores` (global ou por módulo)
-- `core` concentra infraestrutura reutilizável
-- `core/api/http-client.ts` é responsável por anexar token, refresh automático e signOut em falhas de autenticação
-- `repository` deve focar em validar payload (DTO), chamar endpoint e mapear resposta, sem regra de autenticação de transporte
-- Preload global de ícones fica em componente dedicado (`components/app-icon-preload.vue`) para manter `app.vue` limpo
+Princípios gerais:
 
-Fluxo padrão:
+- TanStack Query é a fonte de verdade para server state
+- Pinia é usado para client/UI state
+- Repository fica responsável por comunicação com API, validação DTO e mapeamento
+- Query/Mutation orquestra estado assíncrono
+- UI consome hooks, sem lógica de API no componente
 
-```
-Page
- ↓
-Composable
- ↓
-Repository
- ↓
-API
+Regra de ouro:
+
+| Tipo de estado | Ferramenta     |
+| -------------- | -------------- |
+| Dados da API   | TanStack Query |
+| Sessão (user)  | TanStack Query |
+| Estado de UI   | Pinia          |
+| Estado local   | ref/computed   |
+
+Padrões por tipo de operação:
+
+- GET deve usar `useQuery`
+- POST/PUT/DELETE deve usar `useMutation`
+- Após mutações relevantes, invalidar queries relacionadas
+- Evitar strings soltas em query key; centralizar keys por domínio
+
+Exemplo de query key por domínio:
+
+```ts
+export const authKeys = {
+  all: ["auth"] as const,
+  me: () => [...authKeys.all, "me"] as const,
+};
 ```
 
-Fluxo com contrato:
+Estrutura recomendada por módulo:
 
+```bash
+modules/
+  auth/
+    repository/
+    queries/
+      auth.keys.ts
+      use-me.query.ts
+    mutations/
+      use-login.mutation.ts
+      use-register-and-sign-in.mutation.ts
+      use-complete-google-oauth.mutation.ts
+      use-logout.mutation.ts
 ```
-Page
- ↓
-Composable
- ↓
-Repository
- ↓
-Request DTO -> API -> Response DTO
- ↓
-Mapeamento para tipos de domínio/UI
+
+Camadas:
+
+- `core/api/http-client.ts` centraliza auth header, refresh token, interceptors e tratamento global de erro
+- `repository` valida payload de entrada, chama endpoint e faz parse/mapeamento de DTO
+- `queries` e `mutations` encapsulam loading/error/success e sincronização de cache
+
+Sessão do usuário:
+
+- A fonte de verdade de sessão é a query `me`
+- Store de sessão, quando existir, deve ser apenas espelho opcional
+- Login/logout/refresh deve invalidar `authKeys.me()`
+
+Prefetch para rotas privadas:
+
+```ts
+await queryClient.prefetchQuery({
+  queryKey: authKeys.me(),
+  queryFn: getMe,
+});
 ```
+
+Padronização de erros:
+
+```ts
+function parseApiError(error: unknown): AppError;
+```
+
+```ts
+onError: (error) => {
+  const parsed = parseApiError(error);
+};
+```
+
+Política de cache:
+
+- Definir `staleTime` e `gcTime` por domínio
+- Evitar defaults genéricos para toda aplicação
 
 ---
 
