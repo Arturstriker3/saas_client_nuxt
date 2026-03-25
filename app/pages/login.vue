@@ -57,7 +57,11 @@
           <h2 class="text-3xl font-extrabold tracking-tight">{{ t("auth.login.title") }}</h2>
           <p class="mt-2 text-sm text-[#64748b] dark:text-slate-300">{{ t("auth.login.subtitle") }}</p>
         </div>
-        <form class="mt-8 space-y-4" @submit.prevent="handleLoginSubmit">
+        <form
+          class="mt-8 space-y-4 transition-all duration-200"
+          :class="isAuthActionLoading ? 'pointer-events-none opacity-80 blur-[1px]' : ''"
+          @submit.prevent="handleLoginSubmit"
+        >
           <div class="space-y-2">
             <label for="email" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.login.emailLabel") }}</label>
             <UInput
@@ -71,7 +75,11 @@
               variant="outline"
               class="w-full"
               :placeholder="t('auth.login.emailPlaceholder')"
+              :disabled="isAuthActionLoading"
             />
+            <p v-if="loginEmailError" class="text-xs font-semibold text-rose-600 dark:text-rose-400">
+              {{ loginEmailError }}
+            </p>
           </div>
           <div class="space-y-2">
             <label for="password" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.login.passwordLabel") }}</label>
@@ -86,6 +94,7 @@
               variant="outline"
               class="w-full"
               placeholder="••••••••"
+              :disabled="isAuthActionLoading"
             >
               <template #trailing>
                 <UButton
@@ -94,6 +103,7 @@
                   variant="ghost"
                   size="sm"
                   square
+                  :disabled="isAuthActionLoading"
                   @click="showLoginPassword = !showLoginPassword"
                 >
                   <UIcon :name="showLoginPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'" class="h-5 w-5" />
@@ -110,9 +120,9 @@
             size="xl"
             class="mt-1 w-full justify-center rounded-xl"
             :loading="isLoginLoading"
-            :disabled="isLoginLoading"
+            :disabled="isAuthActionLoading"
           >
-            {{ t("auth.login.submit") }}
+            <span v-if="!isLoginLoading">{{ t("auth.login.submit") }}</span>
           </UButton>
           <div class="relative py-1">
             <div class="h-px bg-black/10 dark:bg-white/10" />
@@ -125,7 +135,7 @@
             size="xl"
             class="w-full justify-center gap-3 rounded-xl border-[#d0d7e2] bg-white text-[#0f172a] hover:bg-slate-50 dark:border-white/20 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
             :loading="isGoogleOAuthLoading"
-            :disabled="isGoogleOAuthLoading"
+            :disabled="isAuthActionLoading"
             @click="handleGoogleOAuthStart"
           >
             <UIcon name="i-logos-google-icon" class="h-4 w-4" />
@@ -139,6 +149,7 @@
 </template>
 
 <script setup lang="ts">
+import { z } from "zod"
 import { useAuthOAuth } from "~/modules/auth/composables/use-auth-oauth.composable"
 import { useAuthSession } from "~/modules/auth/composables/use-auth-session.composable"
 
@@ -166,8 +177,12 @@ type AuthRedirectRouteName = "dashboard"
 const showLoginPassword = ref(false)
 const email = ref("")
 const password = ref("")
+const loginEmailError = ref("")
 const isLoginLoading = ref(false)
 const isGoogleOAuthLoading = ref(false)
+const isAuthActionLoading = computed(() =>
+  isLoginLoading.value || isGoogleOAuthLoading.value,
+)
 const heroHighlights = computed<HeroHighlight[]>(() => [
   {
     icon: "i-lucide-check-check",
@@ -193,7 +208,15 @@ const getSafeRedirectRouteName = (redirectValue: unknown): AuthRedirectRouteName
 
 const handleLoginSubmit = async () => {
   const normalizedEmail = email.value.trim().toLowerCase()
-  if (!normalizedEmail || !password.value) {
+  const isEmailValid = z.string().email().safeParse(normalizedEmail).success
+  if (!isEmailValid) {
+    loginEmailError.value = t("auth.login.errors.invalidEmail")
+    return
+  }
+
+  loginEmailError.value = ""
+
+  if (!password.value) {
     return
   }
 
@@ -213,6 +236,10 @@ const handleLoginSubmit = async () => {
     isLoginLoading.value = false
   }
 }
+
+watch(email, () => {
+  loginEmailError.value = ""
+})
 
 const handleGoogleOAuthStart = async () => {
   isGoogleOAuthLoading.value = true

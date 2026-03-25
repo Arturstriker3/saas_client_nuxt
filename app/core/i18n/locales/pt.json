@@ -321,6 +321,9 @@
       "subtitle": "Acesse sua conta para continuar.",
       "emailLabel": "E-mail",
       "emailPlaceholder": "voce{'@'}empresa.com",
+      "errors": {
+        "invalidEmail": "Digite um e-mail válido."
+      },
       "passwordLabel": "Senha",
       "forgotPassword": "Esqueci minha senha",
       "submit": "Entrar",
@@ -361,6 +364,15 @@
         "selectCountry": "Selecione o país.",
         "invalidForCountry": "Telefone inválido para o país selecionado."
       },
+      "errors": {
+        "nameRequired": "Informe seu nome completo.",
+        "emailRequired": "Informe seu e-mail.",
+        "invalidEmail": "Digite um e-mail válido.",
+        "birthDateRequired": "Informe sua data de nascimento.",
+        "birthDateMinAge": "Você precisa ter pelo menos 16 anos.",
+        "passwordRequired": "Informe sua senha.",
+        "passwordMinLength": "A senha deve ter no mínimo 8 caracteres."
+      },
       "passwordMatch": {
         "match": "As senhas coincidem.",
         "mismatch": "As senhas não coincidem."
@@ -381,6 +393,30 @@
     "oauth": {
       "processing": "Conectando com sua conta Google...",
       "error": "Não foi possível concluir o login."
+    },
+    "toasts": {
+      "success": {
+        "login": "Login realizado com sucesso",
+        "register": "Conta criada com sucesso",
+        "googleLogin": "Login com Google realizado com sucesso",
+        "logout": "Sessão encerrada"
+      },
+      "error": {
+        "defaultTitle": "Não foi possível concluir a ação",
+        "login": "Não foi possível entrar",
+        "register": "Não foi possível concluir o cadastro",
+        "googleLogin": "Não foi possível entrar com Google",
+        "logout": "Não foi possível sair da sessão"
+      }
+    },
+    "errors": {
+      "invalidCredentials": "Credenciais inválidas.",
+      "validation": "Revise os campos informados.",
+      "sessionExpired": "Sessão expirada. Faça login novamente.",
+      "forbidden": "Você não tem permissão para executar esta ação.",
+      "notFound": "Recurso não encontrado.",
+      "server": "Erro interno no servidor. Tente novamente.",
+      "generic": "Não foi possível concluir a operação. Tente novamente."
     }
   }
 }

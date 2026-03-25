@@ -225,17 +225,50 @@
       "title": "Tech stack",
       "subtitle": "Cada tecnología fue elegida para resolver velocidad, confiabilidad, entrega continua y experiencia de usuario.",
       "items": {
-        "item1": { "impact": "Build y ejecución muy rápidos", "reason": "Bun reduce el tiempo de inicio y mejora nuestro ciclo de despliegue." },
-        "item2": { "impact": "Navegación fluida y alto rendimiento", "reason": "Nuxt permite páginas rápidas con estructura limpia y escalable." },
-        "item3": { "impact": "Datos flexibles para agendamientos", "reason": "MongoDB facilita evolucionar el esquema a medida que crece el producto." },
-        "item4": { "impact": "Menos errores en producción", "reason": "TypeScript define contratos claros entre frontend y backend." },
-        "item5": { "impact": "Mensajería confiable para eventos", "reason": "RabbitMQ orquesta confirmaciones, recordatorios e integraciones asíncronas." },
-        "item6": { "impact": "Confirmaciones con alta lectura", "reason": "WhatsApp Business reduce ausencias y mejora el tiempo de respuesta." },
-        "item7": { "impact": "Backend modular y testeable", "reason": "NestJS organiza reglas de negocio por dominio con alta mantenibilidad." },
-        "item8": { "impact": "Entrega de mensajes transaccionales", "reason": "Resend garantiza envíos rápidos y trazables por correo." },
-        "item9": { "impact": "Entornos previsibles en todas las etapas", "reason": "Docker estandariza desarrollo, QA y producción." },
-        "item10": { "impact": "Más seguridad y menor latencia", "reason": "Cloudflare protege el edge y acelera carga a escala global." },
-        "item11": { "impact": "Interfaz reactiva y consistente", "reason": "Vue simplifica componentes y hace la experiencia más predecible." }
+        "item1": {
+          "impact": "Build y ejecución muy rápidos",
+          "reason": "Bun reduce el tiempo de inicio y mejora nuestro ciclo de despliegue."
+        },
+        "item2": {
+          "impact": "Navegación fluida y alto rendimiento",
+          "reason": "Nuxt permite páginas rápidas con estructura limpia y escalable."
+        },
+        "item3": {
+          "impact": "Datos flexibles para agendamientos",
+          "reason": "MongoDB facilita evolucionar el esquema a medida que crece el producto."
+        },
+        "item4": {
+          "impact": "Menos errores en producción",
+          "reason": "TypeScript define contratos claros entre frontend y backend."
+        },
+        "item5": {
+          "impact": "Mensajería confiable para eventos",
+          "reason": "RabbitMQ orquesta confirmaciones, recordatorios e integraciones asíncronas."
+        },
+        "item6": {
+          "impact": "Confirmaciones con alta lectura",
+          "reason": "WhatsApp Business reduce ausencias y mejora el tiempo de respuesta."
+        },
+        "item7": {
+          "impact": "Backend modular y testeable",
+          "reason": "NestJS organiza reglas de negocio por dominio con alta mantenibilidad."
+        },
+        "item8": {
+          "impact": "Entrega de mensajes transaccionales",
+          "reason": "Resend garantiza envíos rápidos y trazables por correo."
+        },
+        "item9": {
+          "impact": "Entornos previsibles en todas las etapas",
+          "reason": "Docker estandariza desarrollo, QA y producción."
+        },
+        "item10": {
+          "impact": "Más seguridad y menor latencia",
+          "reason": "Cloudflare protege el edge y acelera carga a escala global."
+        },
+        "item11": {
+          "impact": "Interfaz reactiva y consistente",
+          "reason": "Vue simplifica componentes y hace la experiencia más predecible."
+        }
       }
     },
     "bias": {
@@ -288,6 +321,9 @@
       "subtitle": "Accede a tu cuenta para continuar.",
       "emailLabel": "Correo electrónico",
       "emailPlaceholder": "tu{'@'}empresa.com",
+      "errors": {
+        "invalidEmail": "Ingresa un correo electrónico válido."
+      },
       "passwordLabel": "Contraseña",
       "forgotPassword": "Olvidé mi contraseña",
       "submit": "Entrar",
@@ -328,6 +364,15 @@
         "selectCountry": "Selecciona el país.",
         "invalidForCountry": "Teléfono inválido para el país seleccionado."
       },
+      "errors": {
+        "nameRequired": "Ingresa tu nombre completo.",
+        "emailRequired": "Ingresa tu correo electrónico.",
+        "invalidEmail": "Ingresa un correo electrónico válido.",
+        "birthDateRequired": "Ingresa tu fecha de nacimiento.",
+        "birthDateMinAge": "Debes tener al menos 16 años.",
+        "passwordRequired": "Ingresa tu contraseña.",
+        "passwordMinLength": "La contraseña debe tener al menos 8 caracteres."
+      },
       "passwordMatch": {
         "match": "Las contraseñas coinciden.",
         "mismatch": "Las contraseñas no coinciden."
@@ -348,6 +393,30 @@
     "oauth": {
       "processing": "Conectando con tu cuenta de Google...",
       "error": "No fue posible completar el inicio de sesión."
+    },
+    "toasts": {
+      "success": {
+        "login": "Inicio de sesión exitoso",
+        "register": "Cuenta creada con éxito",
+        "googleLogin": "Inicio con Google exitoso",
+        "logout": "Sesión cerrada"
+      },
+      "error": {
+        "defaultTitle": "No se pudo completar la acción",
+        "login": "No fue posible iniciar sesión",
+        "register": "No fue posible completar el registro",
+        "googleLogin": "No fue posible iniciar con Google",
+        "logout": "No fue posible cerrar sesión"
+      }
+    },
+    "errors": {
+      "invalidCredentials": "Credenciales inválidas.",
+      "validation": "Revisa los campos informados.",
+      "sessionExpired": "Sesión expirada. Inicia sesión de nuevo.",
+      "forbidden": "No tienes permiso para ejecutar esta acción.",
+      "notFound": "Recurso no encontrado.",
+      "server": "Error interno del servidor. Inténtalo de nuevo.",
+      "generic": "No se pudo completar la operación. Inténtalo de nuevo."
     }
   }
 }

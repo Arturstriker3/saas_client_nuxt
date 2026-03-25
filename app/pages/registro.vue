@@ -57,8 +57,13 @@
           <h2 class="text-3xl font-extrabold tracking-tight">{{ t("auth.register.title") }}</h2>
           <p class="mt-2 text-sm text-[#64748b] dark:text-slate-300">{{ t("auth.register.subtitle") }}</p>
         </div>
-        <form class="mt-8 space-y-4" @submit.prevent="handleRegisterSubmit">
-          <div class="space-y-2">
+        <form class="mt-8" @submit.prevent="handleRegisterSubmit">
+          <fieldset
+            class="space-y-4 transition-all duration-200"
+            :disabled="isAuthActionLoading"
+            :class="isAuthActionLoading ? 'pointer-events-none opacity-80 blur-[1px]' : ''"
+          >
+          <div class="space-c:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngc:\Users\artur\AppData\Local\Packages\MicrosoftWindows.Client.Core_cw5n1h2txyewy\TempState\ScreenClip\{E0288914-C3BA-4840-8242-CE98D7F06111}.pngy-2">
             <label for="name" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.nameLabel") }}</label>
             <UInput
               id="name"
@@ -72,6 +77,9 @@
               :placeholder="t('auth.register.namePlaceholder')"
               class="w-full"
             />
+            <p v-if="registerNameError" class="text-xs font-semibold text-rose-600 dark:text-rose-400">
+              {{ registerNameError }}
+            </p>
           </div>
           <div class="space-y-2">
             <label for="email" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.emailLabel") }}</label>
@@ -87,6 +95,9 @@
               class="w-full"
               :placeholder="t('auth.register.emailPlaceholder')"
             />
+            <p v-if="registerEmailError" class="text-xs font-semibold text-rose-600 dark:text-rose-400">
+              {{ registerEmailError }}
+            </p>
           </div>
           <div class="space-y-2">
             <label class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.phoneLabel") }}</label>
@@ -140,6 +151,9 @@
               variant="outline"
               class="w-full"
             />
+            <p v-if="registerBirthDateError" class="text-xs font-semibold text-rose-600 dark:text-rose-400">
+              {{ registerBirthDateError }}
+            </p>
           </div>
           <div class="space-y-2">
             <label for="language" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.languageLabel") }}</label>
@@ -188,6 +202,9 @@
                 </UButton>
               </template>
             </UInput>
+            <p v-if="registerPasswordError" class="text-xs font-semibold text-rose-600 dark:text-rose-400">
+              {{ registerPasswordError }}
+            </p>
           </div>
           <div class="space-y-2">
             <label for="confirmPassword" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.confirmPasswordLabel") }}</label>
@@ -238,9 +255,9 @@
             size="xl"
             class="mt-1 w-full justify-center rounded-xl"
             :loading="isRegisterLoading"
-            :disabled="isRegisterLoading"
+            :disabled="isAuthActionLoading"
           >
-            {{ t("auth.register.submit") }}
+            <span v-if="!isRegisterLoading">{{ t("auth.register.submit") }}</span>
           </UButton>
           <div class="relative py-1">
             <div class="h-px bg-black/10 dark:bg-white/10" />
@@ -253,12 +270,13 @@
             size="xl"
             class="w-full justify-center gap-3 rounded-xl border-[#d0d7e2] bg-white text-[#0f172a] hover:bg-slate-50 dark:border-white/20 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
             :loading="isGoogleOAuthLoading"
-            :disabled="isGoogleOAuthLoading"
+            :disabled="isAuthActionLoading"
             @click="handleGoogleOAuthStart"
           >
             <UIcon name="i-logos-google-icon" class="h-4 w-4" />
             {{ t("auth.common.continueWithGoogle") }}
           </UButton>
+          </fieldset>
         </form>
       </section>
     </div>
@@ -275,6 +293,8 @@ import {
   validatePhoneNumberLength,
   type CountryCode,
 } from "libphonenumber-js"
+import { z } from "zod"
+import { parseApiError } from "~/core/utils/parse-api-error.util"
 import { useAuthOAuth } from "~/modules/auth/composables/use-auth-oauth.composable"
 import { useAuthSession } from "~/modules/auth/composables/use-auth-session.composable"
 import type { SupportedLocale } from "~/composables/use-locale-switcher.composable"
@@ -318,6 +338,10 @@ const registerEmail = ref("")
 const registerPassword = ref("")
 const registerConfirmPassword = ref("")
 const birthDate = ref("")
+const registerNameError = ref("")
+const registerEmailError = ref("")
+const registerBirthDateError = ref("")
+const registerPasswordError = ref("")
 const heroHighlights = computed<HeroHighlight[]>(() => [
   {
     icon: "i-lucide-zap",
@@ -337,6 +361,9 @@ const registerPhoneUnmasked = ref("")
 const registerPhoneError = ref("")
 const isRegisterLoading = ref(false)
 const isGoogleOAuthLoading = ref(false)
+const isAuthActionLoading = computed(() =>
+  isRegisterLoading.value || isGoogleOAuthLoading.value,
+)
 const preferredPhoneCountryIso2: CountryCode[] = ["BR", "US", "PT", "ES", "AR", "MX"]
 const buildPhoneCountryCodeItem = (country: CountryCode): PhoneCountryCode => {
   const code = `+${getCountryCallingCode(country)}`
@@ -395,6 +422,39 @@ const handleRegisterPhoneInput = (nextValue: string | number) => {
   registerPhoneUnmasked.value = getDigitsOnly(formatter.getChars())
   registerPhoneError.value = ""
 }
+
+const clearRegisterFieldErrors = () => {
+  registerNameError.value = ""
+  registerEmailError.value = ""
+  registerBirthDateError.value = ""
+  registerPasswordError.value = ""
+}
+
+const mapRegisterValidationDetail = (detail: string) => {
+  const normalizedDetail = detail.toLowerCase()
+
+  if (normalizedDetail.includes("password") && normalizedDetail.includes("too small")) {
+    registerPasswordError.value = t("auth.register.errors.passwordMinLength")
+    return
+  }
+
+  if (normalizedDetail.includes("birthdate") && normalizedDetail.includes("at least 16 years old")) {
+    registerBirthDateError.value = t("auth.register.errors.birthDateMinAge")
+    return
+  }
+
+  if (normalizedDetail.includes("email") && normalizedDetail.includes("invalid")) {
+    registerEmailError.value = t("auth.register.errors.invalidEmail")
+    return
+  }
+
+  if (
+    normalizedDetail.startsWith("name:")
+    && (normalizedDetail.includes("too small") || normalizedDetail.includes("required"))
+  ) {
+    registerNameError.value = t("auth.register.errors.nameRequired")
+  }
+}
 const isConfirmPasswordDirty = computed(() =>
   registerConfirmPassword.value.length > 0,
 )
@@ -433,6 +493,22 @@ watch(selectedPhoneCountry, () => {
   registerPhoneError.value = ""
 })
 
+watch(registerName, () => {
+  registerNameError.value = ""
+})
+
+watch(registerEmail, () => {
+  registerEmailError.value = ""
+})
+
+watch(birthDate, () => {
+  registerBirthDateError.value = ""
+})
+
+watch(registerPassword, () => {
+  registerPasswordError.value = ""
+})
+
 const validateRegisterPhone = () => {
   if (!registerPhoneUnmasked.value) {
     registerPhoneError.value = t("auth.register.phoneErrors.required")
@@ -466,13 +542,42 @@ const mapLocaleCodeToBackendLanguage = (localeCode: SupportedLocale) => {
 }
 
 const handleRegisterSubmit = async () => {
+  clearRegisterFieldErrors()
+
   const isPhoneValid = validateRegisterPhone()
   if (!isPhoneValid || !areRegisterPasswordsMatching.value) {
     return
   }
 
   const normalizedEmail = registerEmail.value.trim().toLowerCase()
-  if (!registerName.value.trim() || !normalizedEmail || !birthDate.value) {
+  if (!registerName.value.trim()) {
+    registerNameError.value = t("auth.register.errors.nameRequired")
+    return
+  }
+
+  if (!normalizedEmail) {
+    registerEmailError.value = t("auth.register.errors.emailRequired")
+    return
+  }
+
+  const isEmailValid = z.string().email().safeParse(normalizedEmail).success
+  if (!isEmailValid) {
+    registerEmailError.value = t("auth.register.errors.invalidEmail")
+    return
+  }
+
+  if (!birthDate.value) {
+    registerBirthDateError.value = t("auth.register.errors.birthDateRequired")
+    return
+  }
+
+  if (!registerPassword.value) {
+    registerPasswordError.value = t("auth.register.errors.passwordRequired")
+    return
+  }
+
+  if (registerPassword.value.length < 8) {
+    registerPasswordError.value = t("auth.register.errors.passwordMinLength")
     return
   }
 
@@ -487,7 +592,11 @@ const handleRegisterSubmit = async () => {
       language: mapLocaleCodeToBackendLanguage(selectedLanguage.value),
     })
   }
-  catch {
+  catch (error) {
+    const parsedError = parseApiError(error)
+    if (parsedError.messageKey === "auth.errors.validation" && parsedError.details?.length) {
+      parsedError.details.forEach(mapRegisterValidationDetail)
+    }
     return
   }
   finally {

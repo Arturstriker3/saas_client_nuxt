@@ -321,6 +321,9 @@
       "subtitle": "Access your account to continue.",
       "emailLabel": "Email",
       "emailPlaceholder": "you{'@'}company.com",
+      "errors": {
+        "invalidEmail": "Enter a valid email address."
+      },
       "passwordLabel": "Password",
       "forgotPassword": "Forgot my password",
       "submit": "Sign in",
@@ -361,6 +364,15 @@
         "selectCountry": "Select a country.",
         "invalidForCountry": "Invalid phone number for the selected country."
       },
+      "errors": {
+        "nameRequired": "Enter your full name.",
+        "emailRequired": "Enter your email address.",
+        "invalidEmail": "Enter a valid email address.",
+        "birthDateRequired": "Enter your birth date.",
+        "birthDateMinAge": "You must be at least 16 years old.",
+        "passwordRequired": "Enter your password.",
+        "passwordMinLength": "Password must be at least 8 characters long."
+      },
       "passwordMatch": {
         "match": "Passwords match.",
         "mismatch": "Passwords do not match."
@@ -381,6 +393,30 @@
     "oauth": {
       "processing": "Connecting your Google account...",
       "error": "Could not complete sign in."
+    },
+    "toasts": {
+      "success": {
+        "login": "Sign in successful",
+        "register": "Account created successfully",
+        "googleLogin": "Google sign in successful",
+        "logout": "Session ended"
+      },
+      "error": {
+        "defaultTitle": "Could not complete the action",
+        "login": "Could not sign in",
+        "register": "Could not complete registration",
+        "googleLogin": "Could not sign in with Google",
+        "logout": "Could not sign out"
+      }
+    },
+    "errors": {
+      "invalidCredentials": "Invalid credentials.",
+      "validation": "Review the provided fields.",
+      "sessionExpired": "Session expired. Please sign in again.",
+      "forbidden": "You do not have permission to perform this action.",
+      "notFound": "Resource not found.",
+      "server": "Internal server error. Please try again.",
+      "generic": "Could not complete the operation. Please try again."
     }
   }
 }

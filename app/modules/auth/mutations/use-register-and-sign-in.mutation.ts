@@ -7,6 +7,8 @@ import { AUTH_ME_STALE_TIME } from "../queries/use-me.query";
 export const useRegisterAndSignInMutation = () => {
   const authStore = useAuthStore();
   const queryClient = useQueryClient();
+  const appToast = useAppToast();
+  const { t } = useI18n();
 
   return useMutation({
     mutationFn: async (payload: RegisterRequestDto) => {
@@ -31,7 +33,15 @@ export const useRegisterAndSignInMutation = () => {
       }
     },
     onSuccess: async () => {
+      appToast.success({
+        title: t("auth.toasts.success.register"),
+      });
       await navigateTo({ name: "dashboard" });
+    },
+    onError: (error) => {
+      appToast.apiError(error, {
+        title: t("auth.toasts.error.register"),
+      });
     },
   });
 };

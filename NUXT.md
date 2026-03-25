@@ -31,7 +31,8 @@ app/
  │   ├ middleware/
  │   │   └ auth.global.ts
  │   ├ utils/
- │   │   └ date.util.ts
+ │   │   ├ date.util.ts
+ │   │   └ parse-api-error.util.ts
  │   └ types/
  │       └ pagination.type.ts
  │
@@ -67,6 +68,7 @@ app/
  │   ├ app-icon-preload.vue
  │   └ app-shell.vue
  ├ composables/
+ │   ├ use-app-toast.composable.ts
  │   └ use-locale-switcher.composable.ts
  ├ stores/
  │   └ app.store.ts
@@ -195,7 +197,8 @@ Sessão do usuário:
 
 - A fonte de verdade de sessão é a query `me`
 - Store de sessão, quando existir, deve ser apenas espelho opcional
-- Login/logout/refresh deve invalidar `authKeys.me()`
+- Login/register/oauth deve pré-carregar `me` com `fetchQuery` e `staleTime`
+- Logout deve limpar cache de sessão com `removeQueries(authKeys.me())`
 
 Prefetch para rotas privadas:
 
@@ -217,6 +220,25 @@ onError: (error) => {
   const parsed = parseApiError(error);
 };
 ```
+
+Padrão de feedback visual:
+
+```ts
+const appToast = useAppToast();
+```
+
+```ts
+onSuccess: () => {
+  appToast.success({ title: "Operação concluída" });
+};
+onError: (error) => {
+  appToast.apiError(error, { title: "Falha na operação" });
+};
+```
+
+- Todos os títulos/descrições de toast devem usar i18n (`auth.toasts.*` e `auth.errors.*`)
+- Detalhe técnico de erro (ex: `[POST] /auth/login ...`) fica oculto por padrão
+- Para debug manual, ativar `NUXT_PUBLIC_SHOW_TECHNICAL_API_ERRORS=true`
 
 Política de cache:
 

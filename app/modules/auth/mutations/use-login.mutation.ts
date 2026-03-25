@@ -16,6 +16,8 @@ const getSafeRedirectRouteName = (routeName: unknown): AuthRouteName => {
 export const useLoginMutation = () => {
   const authStore = useAuthStore();
   const queryClient = useQueryClient();
+  const appToast = useAppToast();
+  const { t } = useI18n();
 
   return useMutation({
     mutationFn: async (payload: {
@@ -46,7 +48,15 @@ export const useLoginMutation = () => {
       };
     },
     onSuccess: async (result) => {
+      appToast.success({
+        title: t("auth.toasts.success.login"),
+      });
       await navigateTo({ name: result.redirectRouteName });
+    },
+    onError: (error) => {
+      appToast.apiError(error, {
+        title: t("auth.toasts.error.login"),
+      });
     },
   });
 };

@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "/api",
       appName,
+      showTechnicalApiErrors:
+        process.env.NUXT_PUBLIC_SHOW_TECHNICAL_API_ERRORS === "true",
     },
   },
   site: {
