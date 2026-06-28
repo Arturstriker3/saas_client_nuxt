@@ -6,6 +6,7 @@ const guestOnlyRouteNames = new Set([
   "public-technologies",
   "auth-login",
   "auth-register",
+  "auth-forgot-password",
 ]);
 
 const isProtectedRoute = (name: string) =>

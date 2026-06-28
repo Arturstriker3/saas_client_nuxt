@@ -112,7 +112,7 @@
             </UInput>
           </div>
           <div class="flex justify-end">
-            <NuxtLink to="/esqueci-senha" class="text-xs font-semibold text-primary hover:underline">{{ t("auth.login.forgotPassword") }}</NuxtLink>
+            <NuxtLink :to="{ name: 'auth-forgot-password' }" class="text-xs font-semibold text-primary hover:underline">{{ t("auth.login.forgotPassword") }}</NuxtLink>
           </div>
           <UButton
             type="submit"

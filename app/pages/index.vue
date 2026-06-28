@@ -260,7 +260,7 @@ const footerLinks = computed<FooterColumn[]>(() => [
       { label: t("landing.footer.links.resources.blog") },
       { label: t("landing.footer.links.resources.docs") },
       { label: t("landing.footer.links.resources.support") },
-      { label: t("landing.footer.links.resources.technologies"), href: "/tecnologias" },
+      { label: t("landing.footer.links.resources.technologies"), href: "/technologies" },
     ],
   },
   {
