@@ -4,7 +4,35 @@
     "subtitle": "Plataforma inteligente de agendamientos para profesionales y equipos.",
     "users": "Usuarios",
     "loadedAt": "Actualizado en {date}",
-    "localeLabel": "Idioma"
+    "localeLabel": "Idioma",
+    "user": "Usuario",
+    "signOut": "Salir",
+    "nav": {
+      "dashboard": "Dashboard",
+      "schedule": "Agendamientos",
+      "clients": "Clientes",
+      "messages": "Mensajes",
+      "reports": "Reportes",
+      "settings": "Configuración"
+    },
+    "stats": {
+      "agendamentos": "Reservas",
+      "clientes": "Clientes",
+      "confirmacoes": "Confirmaciones",
+      "faturamento": "Ingresos"
+    },
+    "activity": {
+      "title": "Actividad reciente",
+      "subtitle": "Sigue tus últimas reservas y notificaciones.",
+      "empty": "Sin actividad aún. Comienza creando tu primera reserva.",
+      "cta": "Nueva reserva"
+    },
+    "quickActions": {
+      "title": "Acciones rápidas",
+      "newSchedule": "Nueva reserva",
+      "addClient": "Agregar cliente",
+      "shareLink": "Compartir enlace"
+    }
   },
   "landing": {
     "seo": {

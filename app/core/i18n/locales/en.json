@@ -4,7 +4,35 @@
     "subtitle": "Smart scheduling platform for professionals and teams.",
     "users": "Users",
     "loadedAt": "Updated at {date}",
-    "localeLabel": "Language"
+    "localeLabel": "Language",
+    "user": "User",
+    "signOut": "Sign out",
+    "nav": {
+      "dashboard": "Dashboard",
+      "schedule": "Schedule",
+      "clients": "Clients",
+      "messages": "Messages",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "stats": {
+      "agendamentos": "Bookings",
+      "clientes": "Clients",
+      "confirmacoes": "Confirmations",
+      "faturamento": "Revenue"
+    },
+    "activity": {
+      "title": "Recent activity",
+      "subtitle": "Track your latest bookings and notifications.",
+      "empty": "No activity yet. Start by creating your first booking.",
+      "cta": "New booking"
+    },
+    "quickActions": {
+      "title": "Quick actions",
+      "newSchedule": "New booking",
+      "addClient": "Add client",
+      "shareLink": "Share link"
+    }
   },
   "landing": {
     "seo": {
