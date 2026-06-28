@@ -11,6 +11,7 @@ export type StartGoogleOAuthResponseDto = z.infer<
 export const completeGoogleOAuthRequestDtoSchema = z.object({
   code: z.string().min(1),
   state: z.string().min(1),
+  language: z.enum(["portuguese", "english", "spanish"]).optional(),
 });
 
 export type CompleteGoogleOAuthRequestDto = z.infer<

@@ -26,11 +26,13 @@ export const useCompleteGoogleOAuthMutation = () => {
     mutationFn: async (input: {
       code: string;
       state: string;
+      language?: "portuguese" | "english" | "spanish";
       redirect?: unknown;
     }) => {
       const tokens = await authRepository.completeGoogleOAuth({
         code: input.code,
         state: input.state,
+        language: input.language,
       });
 
       authStore.setTokens(tokens);

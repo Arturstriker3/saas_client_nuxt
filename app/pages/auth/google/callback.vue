@@ -20,9 +20,21 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+const { locale } = useI18n()
 const route = useRoute()
 const { completeGoogleOAuth } = useAuthOAuth()
 const statusMessage = ref(t("auth.oauth.processing"))
+
+const mapLocaleToBackendLanguage = (
+  localeCode: string,
+): "portuguese" | "english" | "spanish" => {
+  const map: Record<string, "portuguese" | "english" | "spanish"> = {
+    pt: "portuguese",
+    en: "english",
+    es: "spanish",
+  }
+  return map[localeCode] ?? "english"
+}
 
 onMounted(async () => {
   const code = route.query.code
@@ -38,6 +50,7 @@ onMounted(async () => {
     await completeGoogleOAuth({
       code,
       state,
+      language: mapLocaleToBackendLanguage(locale.value),
       redirect: route.query.redirect,
     })
   }
