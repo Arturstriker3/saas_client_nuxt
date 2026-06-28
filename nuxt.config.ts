@@ -6,9 +6,12 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   srcDir: "app/",
-  ssr: false,
   nitro: {
     preset: "static",
+  },
+  routeRules: {
+    "/dashboard": { ssr: false },
+    "/auth/**": { ssr: false },
   },
   runtimeConfig: {
     public: {

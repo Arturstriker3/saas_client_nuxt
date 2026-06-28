@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <USlideover :open="isMobileMenuOpen" side="right" :close="false" @update:open="updateMobileMenuOpen">
+    <USlideover :open="isMobileMenuOpen" side="right" :close="false" title="Menu de navegação" @update:open="updateMobileMenuOpen">
       <template #header="{ close }">
         <div class="flex w-full items-center justify-between">
           <div class="flex items-center gap-2">

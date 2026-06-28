@@ -390,6 +390,15 @@
         }
       }
     },
+    "forgotPassword": {
+      "title": "Recuperar contraseña",
+      "description": "Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.",
+      "emailPlaceholder": "tu{'@'}empresa.com",
+      "sendLink": "Enviar enlace de recuperación",
+      "backToLogin": "Volver al inicio de sesión",
+      "emailRequired": "Ingresa tu correo electrónico.",
+      "emailSent": "Si el correo existe, recibirás un enlace de recuperación."
+    },
     "oauth": {
       "processing": "Conectando con tu cuenta de Google...",
       "error": "No fue posible completar el inicio de sesión."

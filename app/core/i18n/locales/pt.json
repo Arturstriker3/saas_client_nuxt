@@ -390,6 +390,15 @@
         }
       }
     },
+    "forgotPassword": {
+      "title": "Recuperar senha",
+      "description": "Informe seu e-mail e enviaremos um link para redefinir sua senha.",
+      "emailPlaceholder": "voce{'@'}empresa.com",
+      "sendLink": "Enviar link de recuperação",
+      "backToLogin": "Voltar para o login",
+      "emailRequired": "Informe seu e-mail.",
+      "emailSent": "Se o e-mail existir, você receberá o link de recuperação."
+    },
     "oauth": {
       "processing": "Conectando com sua conta Google...",
       "error": "Não foi possível concluir o login."

@@ -250,8 +250,8 @@ Política de cache:
 # Decisões de Configuração do Nuxt
 
 - `srcDir` aponta para `app/`
-- `ssr: false` define execução client-only sem runtime SSR no servidor
 - `nitro.preset: "static"` gera saída estática para deploy sem processo Node do Nuxt
+- `routeRules` define que `/dashboard` e `/auth/**` são SPA; as demais páginas são prerenderizadas (HTML completo com Schema.org incluso)
 - `runtimeConfig.public.apiBase` centraliza URL base da API
 - `plugins` registra Vue Query globalmente
 - `imports.dirs` inclui composables/stores de módulos

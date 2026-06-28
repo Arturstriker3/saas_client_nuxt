@@ -390,6 +390,15 @@
         }
       }
     },
+    "forgotPassword": {
+      "title": "Reset password",
+      "description": "Enter your email and we'll send you a link to reset your password.",
+      "emailPlaceholder": "you{'@'}company.com",
+      "sendLink": "Send recovery link",
+      "backToLogin": "Back to sign in",
+      "emailRequired": "Enter your email address.",
+      "emailSent": "If the email exists, you'll receive a recovery link."
+    },
     "oauth": {
       "processing": "Connecting your Google account...",
       "error": "Could not complete sign in."
