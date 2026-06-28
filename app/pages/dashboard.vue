@@ -6,10 +6,17 @@
         class="hidden shrink-0 flex-col border-r border-black/5 bg-white transition-all duration-300 ease-in-out lg:flex dark:border-white/10 dark:bg-slate-950"
         :class="isSidebarCollapsed ? 'w-[72px]' : 'w-[260px]'"
       >
-        <div class="flex h-16 items-center gap-3 border-b border-black/5 px-4 dark:border-white/10">
-          <button type="button" class="flex shrink-0 items-center gap-3 overflow-hidden" @click="isSidebarCollapsed = !isSidebarCollapsed">
-            <img src="/marcato.logo.png" alt="Marcato" class="h-9 w-auto min-w-9 shrink-0 object-contain">
-            <span class="whitespace-nowrap text-base font-extrabold tracking-tight transition-opacity duration-200" :class="isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'">Marcato</span>
+        <div class="flex h-16 items-center border-b border-black/5 px-4 dark:border-white/10">
+          <button type="button" class="flex shrink-0 items-center overflow-hidden" @click="isSidebarCollapsed = !isSidebarCollapsed">
+            <img
+              v-if="isSidebarCollapsed"
+              src="/favicon.svg"
+              alt="Marcato"
+              class="h-8 w-8 shrink-0 object-contain"
+            >
+            <div v-else class="flex items-center gap-3">
+              <img src="/marcato.logo.png" alt="Marcato" class="h-9 w-auto shrink-0 object-contain">
+            </div>
           </button>
         </div>
         <nav class="flex-1 overflow-y-auto px-3 py-4">
