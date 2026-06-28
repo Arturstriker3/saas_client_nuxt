@@ -3,7 +3,7 @@
     class="hidden shrink-0 flex-col border-r border-black/5 bg-white transition-all duration-300 ease-in-out lg:flex dark:border-white/10 dark:bg-slate-950"
     :class="isCollapsed ? 'w-[72px]' : 'w-[260px]'"
   >
-    <div class="flex h-16 items-center border-b border-black/5 px-4 dark:border-white/10">
+    <div class="flex h-16 items-center border-b border-black/5 dark:border-white/10" :class="isCollapsed ? 'justify-center px-2' : 'px-4'">
       <button type="button" class="flex shrink-0 items-center overflow-hidden" @click="isCollapsed = !isCollapsed">
         <img
           v-if="isCollapsed"
@@ -17,38 +17,41 @@
       </button>
     </div>
 
-    <nav class="flex-1 overflow-y-auto px-3 py-4">
+    <nav class="flex-1 overflow-y-auto py-4" :class="isCollapsed ? 'px-0' : 'px-3'">
       <ul class="space-y-1">
         <li v-for="item in items" :key="item.to">
           <NuxtLink
             :to="item.to"
-            class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors"
-            active-class="bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300"
-            :class="$route.path === item.to ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300' : 'text-[#64748b] hover:bg-black/5 hover:text-[#0f172a] dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-200'"
+            class="flex items-center rounded-xl text-sm font-medium transition-colors"
+            :class="[
+              isCollapsed ? 'justify-center p-2.5' : 'gap-3 px-3 py-2.5',
+              $route.path === item.to ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300' : 'text-[#64748b] hover:bg-black/5 hover:text-[#0f172a] dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-200',
+            ]"
             :title="isCollapsed ? item.label : undefined"
           >
             <UIcon :name="item.icon" class="h-5 w-5 shrink-0" />
             <span
               class="whitespace-nowrap transition-opacity duration-200"
-              :class="isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'"
+              :class="isCollapsed ? 'hidden' : 'opacity-100'"
             >{{ item.label }}</span>
           </NuxtLink>
         </li>
       </ul>
     </nav>
 
-    <div class="border-t border-black/5 px-3 py-4 dark:border-white/10">
+    <div class="border-t border-black/5 py-4 dark:border-white/10" :class="isCollapsed ? 'px-0' : 'px-3'">
       <UDropdownMenu :items="userMenuItems" :content="{ align: 'start', side: 'right' }">
         <button
           type="button"
-          class="flex w-full items-center gap-3 rounded-xl px-2 py-1.5 -mx-2 text-left transition-colors hover:bg-black/5 dark:hover:bg-white/5"
+          class="flex items-center rounded-xl text-left transition-colors hover:bg-black/5 dark:hover:bg-white/5"
+          :class="isCollapsed ? 'mx-auto p-1' : 'w-full gap-3 px-2 py-1.5 -mx-2'"
         >
           <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
             {{ initials }}
           </div>
           <div
-            class="min-w-0 flex-1 transition-opacity duration-200"
-            :class="isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'"
+            class="min-w-0 flex-1"
+            :class="isCollapsed ? 'hidden' : ''"
           >
             <p class="truncate text-sm font-semibold">{{ me?.name ?? t("app.user") }}</p>
             <p class="truncate text-xs text-[#64748b] dark:text-slate-400">{{ me?.email }}</p>
