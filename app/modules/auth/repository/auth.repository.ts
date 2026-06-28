@@ -6,6 +6,7 @@ import {
   registerRequestDtoSchema,
   refreshTokenRequestDtoSchema,
   startGoogleOAuthResponseDtoSchema,
+  type AuthMeResponseDto,
   type AuthSessionTokensResponseDto,
   type CompleteGoogleOAuthRequestDto,
   type LoginRequestDto,
@@ -70,15 +71,11 @@ export const authRepository = {
     return authSessionTokensResponseDtoSchema.parse(response);
   },
 
-  async getMe(): Promise<{ name: string; email: string }> {
+  async getMe(): Promise<AuthMeResponseDto> {
     const httpClient = useHttpClient();
     const response = await httpClient("/auth/me", {
       method: "GET",
     });
-    const parsedResponse = authMeResponseDtoSchema.parse(response);
-    return {
-      name: parsedResponse.name,
-      email: parsedResponse.email,
-    };
+    return authMeResponseDtoSchema.parse(response);
   },
 };

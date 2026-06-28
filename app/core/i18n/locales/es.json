@@ -7,6 +7,12 @@
     "localeLabel": "Idioma",
     "user": "Usuario",
     "signOut": "Salir",
+    "userMenu": {
+      "profile": "Perfil",
+      "language": "Idioma",
+      "theme": "Tema",
+      "signOut": "Salir"
+    },
     "nav": {
       "dashboard": "Dashboard",
       "schedule": "Agendamientos",
@@ -32,6 +38,22 @@
       "newSchedule": "Nueva reserva",
       "addClient": "Agregar cliente",
       "shareLink": "Compartir enlace"
+    },
+    "profile": {
+      "title": "Perfil",
+      "back": "Volver",
+      "name": "Nombre",
+      "email": "Correo",
+      "role": "Rol",
+      "roleAdmin": "Administrador",
+      "roleUser": "Usuario",
+      "language": "Idioma",
+      "birthDate": "Nacimiento",
+      "memberSince": "Miembro desde",
+      "plan": "Plan",
+      "planFree": "Gratuito",
+      "error": "No se pudieron cargar los datos del perfil.",
+      "notDefined": "No definido"
     }
   },
   "landing": {

@@ -2,6 +2,8 @@
   <UApp>
     <AppIconPreload />
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </UApp>
 </template>

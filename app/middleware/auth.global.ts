@@ -7,7 +7,9 @@ const guestOnlyRouteNames = new Set([
   "auth-login",
   "auth-register",
 ]);
-const protectedRouteNames = new Set(["dashboard"]);
+
+const isProtectedRoute = (name: string) =>
+  name === "dashboard" || name.startsWith("dashboard-");
 
 export default defineNuxtRouteMiddleware((to) => {
   const authStore = useAuthStore();
@@ -18,7 +20,7 @@ export default defineNuxtRouteMiddleware((to) => {
     return navigateTo({ name: "dashboard" });
   }
 
-  if (!protectedRouteNames.has(routeName)) {
+  if (!isProtectedRoute(routeName)) {
     return;
   }
 

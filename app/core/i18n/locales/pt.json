@@ -7,6 +7,12 @@
     "localeLabel": "Idioma",
     "user": "Usuário",
     "signOut": "Sair",
+    "userMenu": {
+      "profile": "Perfil",
+      "language": "Idioma",
+      "theme": "Tema",
+      "signOut": "Sair"
+    },
     "nav": {
       "dashboard": "Dashboard",
       "schedule": "Agendamentos",
@@ -32,6 +38,22 @@
       "newSchedule": "Novo agendamento",
       "addClient": "Adicionar cliente",
       "shareLink": "Compartilhar link"
+    },
+    "profile": {
+      "title": "Perfil",
+      "back": "Voltar",
+      "name": "Nome",
+      "email": "E-mail",
+      "role": "Função",
+      "roleAdmin": "Administrador",
+      "roleUser": "Usuário",
+      "language": "Idioma",
+      "birthDate": "Nascimento",
+      "memberSince": "Membro desde",
+      "plan": "Plano",
+      "planFree": "Gratuito",
+      "error": "Não foi possível carregar os dados do perfil.",
+      "notDefined": "Não definido"
     }
   },
   "landing": {

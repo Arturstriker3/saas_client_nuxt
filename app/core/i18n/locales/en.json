@@ -7,6 +7,12 @@
     "localeLabel": "Language",
     "user": "User",
     "signOut": "Sign out",
+    "userMenu": {
+      "profile": "Profile",
+      "language": "Language",
+      "theme": "Theme",
+      "signOut": "Sign out"
+    },
     "nav": {
       "dashboard": "Dashboard",
       "schedule": "Schedule",
@@ -32,6 +38,22 @@
       "newSchedule": "New booking",
       "addClient": "Add client",
       "shareLink": "Share link"
+    },
+    "profile": {
+      "title": "Profile",
+      "back": "Back",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "roleAdmin": "Administrator",
+      "roleUser": "User",
+      "language": "Language",
+      "birthDate": "Birth date",
+      "memberSince": "Member since",
+      "plan": "Plan",
+      "planFree": "Free",
+      "error": "Unable to load profile data.",
+      "notDefined": "Not defined"
     }
   },
   "landing": {
