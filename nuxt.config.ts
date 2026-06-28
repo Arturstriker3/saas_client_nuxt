@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     "/dashboard": { ssr: false },
     "/auth/**": { ssr: false },
   },
+  experimental: {
+    asyncEntry: true,
+  },
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "/api",
@@ -65,7 +68,7 @@ export default defineNuxtConfig({
       {
         name: "Inter",
         provider: "google",
-        weights: [100, 200, 300, 400, 500, 600, 700, 800],
+        weights: [400, 500, 600, 700],
       },
     ],
   },
