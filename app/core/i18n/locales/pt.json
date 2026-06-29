@@ -53,7 +53,15 @@
       "plan": "Plano",
       "planFree": "Gratuito",
       "error": "Não foi possível carregar os dados do perfil.",
-      "notDefined": "Não definido"
+      "notDefined": "Não definido",
+      "languageUpdated": "Idioma atualizado com sucesso.",
+      "languageError": "Erro ao atualizar idioma.",
+      "birthDateUpdated": "Data de nascimento atualizada com sucesso.",
+      "birthDateError": "Erro ao atualizar data de nascimento.",
+      "changeLanguage": "Alterar idioma",
+      "changeBirthDate": "Alterar data de nascimento",
+      "save": "Salvar",
+      "cancel": "Cancelar"
     }
   },
   "landing": {

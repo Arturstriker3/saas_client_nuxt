@@ -12,7 +12,13 @@ import {
   type LoginRequestDto,
   type RegisterRequestDto,
 } from "../dto/auth.dto";
+import { z } from "zod";
 import { useHttpClient } from "~/core/api/http-client";
+
+const updateBirthDatePayloadSchema = z.object({ birthDate: z.string().min(1) });
+const updateLanguagePayloadSchema = z.object({
+  language: z.enum(["portuguese", "english", "spanish"]),
+});
 
 export const authRepository = {
   async login(payload: LoginRequestDto): Promise<AuthSessionTokensResponseDto> {
@@ -75,6 +81,24 @@ export const authRepository = {
     const httpClient = useHttpClient();
     const response = await httpClient("/auth/me", {
       method: "GET",
+    });
+    return authMeResponseDtoSchema.parse(response);
+  },
+
+  async updateBirthDate(birthDate: string): Promise<AuthMeResponseDto> {
+    const httpClient = useHttpClient();
+    const response = await httpClient("/users/me/birth-date", {
+      method: "POST",
+      body: updateBirthDatePayloadSchema.parse({ birthDate }),
+    });
+    return authMeResponseDtoSchema.parse(response);
+  },
+
+  async updateLanguage(language: string): Promise<AuthMeResponseDto> {
+    const httpClient = useHttpClient();
+    const response = await httpClient("/users/me/language", {
+      method: "POST",
+      body: updateLanguagePayloadSchema.parse({ language }),
     });
     return authMeResponseDtoSchema.parse(response);
   },

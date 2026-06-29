@@ -6,18 +6,22 @@
       <UIcon name="i-lucide-badge-check" class="h-3.5 w-3.5" />
       {{ plan }}
     </span>
-    <span
-      class="inline-flex items-center gap-1.5 rounded-full border border-black/5 bg-white px-3 py-1 text-xs font-medium text-[#64748b] dark:border-white/10 dark:bg-slate-800 dark:text-slate-400"
+    <button
+      type="button"
+      class="inline-flex items-center gap-1.5 rounded-full border border-black/5 bg-white px-3 py-1 text-xs font-medium text-[#64748b] transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+      @click="$emit('clickLanguage')"
     >
       <UIcon name="i-lucide-globe" class="h-3.5 w-3.5" />
       {{ language }}
-    </span>
-    <span
-      class="inline-flex items-center gap-1.5 rounded-full border border-black/5 bg-white px-3 py-1 text-xs font-medium text-[#64748b] dark:border-white/10 dark:bg-slate-800 dark:text-slate-400"
+    </button>
+    <button
+      type="button"
+      class="inline-flex items-center gap-1.5 rounded-full border border-black/5 bg-white px-3 py-1 text-xs font-medium text-[#64748b] transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+      @click="$emit('clickBirthDate')"
     >
       <UIcon name="i-lucide-cake" class="h-3.5 w-3.5" />
       {{ birthDate }}
-    </span>
+    </button>
     <span
       class="inline-flex items-center gap-1.5 rounded-full border border-black/5 bg-white px-3 py-1 text-xs font-medium text-[#64748b] dark:border-white/10 dark:bg-slate-800 dark:text-slate-400"
     >
@@ -34,5 +38,10 @@ defineProps<{
   memberSinceLabel: string
   memberSince: string
   birthDate: string
+}>()
+
+defineEmits<{
+  clickLanguage: []
+  clickBirthDate: []
 }>()
 </script>

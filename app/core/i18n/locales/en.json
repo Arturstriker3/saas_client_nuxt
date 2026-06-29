@@ -53,7 +53,15 @@
       "plan": "Plan",
       "planFree": "Free",
       "error": "Unable to load profile data.",
-      "notDefined": "Not defined"
+      "notDefined": "Not defined",
+      "languageUpdated": "Language updated successfully.",
+      "languageError": "Error updating language.",
+      "birthDateUpdated": "Birth date updated successfully.",
+      "birthDateError": "Error updating birth date.",
+      "changeLanguage": "Change language",
+      "changeBirthDate": "Change birth date",
+      "save": "Save",
+      "cancel": "Cancel"
     }
   },
   "landing": {
