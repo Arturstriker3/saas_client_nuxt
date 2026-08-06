@@ -15,11 +15,14 @@
     },
     "nav": {
       "dashboard": "Dashboard",
-      "schedule": "Agendamientos",
+      "schedule": "Agenda",
       "clients": "Clientes",
       "messages": "Mensajes",
       "reports": "Reportes",
       "settings": "Configuración"
+    },
+    "breadcrumb": {
+      "home": "Inicio"
     },
     "stats": {
       "agendamentos": "Reservas",

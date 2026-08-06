@@ -56,7 +56,7 @@ const localeFlagIcons: Record<SupportedLocale, string> = {
 const routeSegments = computed(() => route.path.split("/").filter(Boolean))
 
 const crumbMap = computed(() => ({
-  app: t("app.nav.dashboard"),
+  app: t("app.breadcrumb.home"),
   schedule: t("app.nav.schedule"),
   clients: t("app.nav.clients"),
   messages: t("app.nav.messages"),

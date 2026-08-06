@@ -21,6 +21,9 @@
       "reports": "Reports",
       "settings": "Settings"
     },
+    "breadcrumb": {
+      "home": "Home"
+    },
     "stats": {
       "agendamentos": "Bookings",
       "clientes": "Clients",
