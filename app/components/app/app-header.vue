@@ -26,7 +26,7 @@
       </nav>
     </div>
 
-    <div class="flex shrink-0 items-center gap-2">
+    <div class="hidden shrink-0 items-center gap-2 lg:flex">
       <UDropdownMenu :items="localeMenuItems" :content="{ align: 'end' }">
         <UButton color="neutral" variant="ghost" size="lg" square>
           <UIcon :name="selectedLocaleIcon" class="h-5 w-5" />
@@ -44,7 +44,7 @@ const { t, locale, locales, setLocale } = useI18n()
 const colorMode = useColorMode()
 const route = useRoute()
 
-const openMobileSidebar = inject<() => void>("app:openMobile", () => {})
+const { open: openMobileSidebar } = useMobileSidebar()
 
 type SupportedLocale = "pt" | "en" | "es"
 const localeFlagIcons: Record<SupportedLocale, string> = {

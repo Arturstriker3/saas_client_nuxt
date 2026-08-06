@@ -1,4 +1,5 @@
 <template>
+  <!-- Desktop Sidebar -->
   <aside
     class="hidden shrink-0 flex-col border-r border-black/5 bg-white transition-all duration-300 ease-in-out lg:flex dark:border-white/10 dark:bg-slate-950"
     :class="isCollapsed ? 'w-[72px]' : 'w-[260px]'"
@@ -61,42 +62,80 @@
     </div>
   </aside>
 
-  <USlideover :open="isMobileOpen" side="left" title="Menu" @update:open="isMobileOpen = $event">
-    <template #body="{ close }">
-      <div class="space-y-1">
-        <div class="mb-4 flex items-center gap-3 border-b border-black/10 pb-4 dark:border-white/10">
-          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">{{ initials }}</div>
-          <div class="min-w-0">
-            <p class="truncate text-base font-semibold">{{ me?.name ?? t("app.user") }}</p>
-            <p class="truncate text-sm text-[#64748b] dark:text-slate-400">{{ me?.email }}</p>
+  <!-- Mobile Drawer -->
+  <Teleport to="body">
+    <Transition name="drawer-slide">
+      <div v-if="isMobileOpen" class="fixed inset-0 z-50 lg:hidden">
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm dark:bg-black/60" @click="close()" />
+        <div class="absolute inset-y-0 left-0 flex w-full max-w-[300px] flex-col bg-white shadow-2xl dark:bg-slate-950">
+          <!-- Drawer header -->
+          <div class="flex h-16 items-center justify-between border-b border-black/5 px-4 dark:border-white/10">
+            <img src="/marcato.logo.png" alt="Marcato" class="h-8 w-auto object-contain">
+            <UButton color="neutral" variant="ghost" size="sm" square @click="close()">
+              <UIcon name="i-lucide-x" class="h-5 w-5" />
+            </UButton>
+          </div>
+
+          <!-- User -->
+          <div class="border-b border-black/5 px-4 py-4 dark:border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
+                {{ initials }}
+              </div>
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold">{{ me?.name ?? t("app.user") }}</p>
+                <p class="truncate text-xs text-[#64748b] dark:text-slate-400">{{ me?.email }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nav -->
+          <nav class="flex-1 overflow-y-auto px-3 py-4">
+            <ul class="space-y-1">
+              <li v-for="item in items" :key="item.to">
+                <NuxtLink
+                  :to="item.to"
+                  class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors"
+                  :class="$route.path === item.to ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300' : 'text-[#64748b] hover:bg-black/5 hover:text-[#0f172a] dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-200'"
+                  @click="close()"
+                >
+                  <UIcon :name="item.icon" class="h-5 w-5 shrink-0" />
+                  <span>{{ item.label }}</span>
+                </NuxtLink>
+              </li>
+            </ul>
+
+            <div class="mt-2 border-t border-black/5 pt-2 dark:border-white/10">
+              <button
+                type="button"
+                class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-rose-600 transition-colors hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-500/10"
+                @click="close(); handleSignOut()"
+              >
+                <UIcon name="i-lucide-log-out" class="h-5 w-5 shrink-0" />
+                <span>{{ t("app.signOut") }}</span>
+              </button>
+            </div>
+          </nav>
+
+          <!-- Bottom actions: locale, theme -->
+          <div class="border-t border-black/5 px-4 py-4 space-y-2 dark:border-white/10">
+            <div class="grid grid-cols-2 gap-2">
+              <UDropdownMenu :items="localeMenuItems" :content="{ align: 'start' }">
+                <UButton color="neutral" variant="outline" size="sm" class="w-full justify-start gap-2 rounded-xl">
+                  <UIcon :name="selectedLocaleIcon" class="h-4 w-4" />
+                  {{ localeLabel }}
+                </UButton>
+              </UDropdownMenu>
+              <UButton color="neutral" variant="outline" size="sm" class="justify-start gap-2 rounded-xl" @click="toggleTheme">
+                <UIcon :name="themeIcon" class="h-4 w-4" />
+                {{ t("app.userMenu.theme") }}
+              </UButton>
+            </div>
           </div>
         </div>
-        <NuxtLink
-          v-for="item in items"
-          :key="item.to"
-          :to="item.to"
-          class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors"
-          :class="$route.path === item.to ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300' : 'text-[#64748b] hover:bg-black/5 hover:text-[#0f172a] dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-slate-200'"
-          @click="close()"
-        >
-          <UIcon :name="item.icon" class="h-5 w-5 shrink-0" />
-          <span>{{ item.label }}</span>
-        </NuxtLink>
-        <div class="mt-4 border-t border-black/10 pt-4 dark:border-white/10">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            size="lg"
-            class="w-full justify-start gap-3 text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300"
-            @click="close(); handleSignOut()"
-          >
-            <UIcon name="i-lucide-log-out" class="h-5 w-5" />
-            <span>{{ t("app.signOut") }}</span>
-          </UButton>
-        </div>
       </div>
-    </template>
-  </USlideover>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -109,13 +148,19 @@ const logoutMutation = useLogoutMutation()
 const colorMode = useColorMode()
 
 const isCollapsed = ref(false)
-const isMobileOpen = ref(false)
+const { isOpen: isMobileOpen, close } = useMobileSidebar()
 
 type SupportedLocale = "pt" | "en" | "es"
 const localeFlagIcons: Record<SupportedLocale, string> = {
   pt: "i-circle-flags-br",
   en: "i-circle-flags-us",
   es: "i-circle-flags-es",
+}
+
+const localeLabels: Record<string, string> = {
+  pt: "Português",
+  en: "English",
+  es: "Español",
 }
 
 const items = computed(() => [
@@ -126,6 +171,8 @@ const items = computed(() => [
   { to: "/app/reports", label: t("app.nav.reports"), icon: "i-lucide-bar-chart-3" },
   { to: "/app/settings", label: t("app.nav.settings"), icon: "i-lucide-settings" },
 ])
+
+const localeLabel = computed(() => localeLabels[locale.value] ?? locale.value)
 
 const initials = computed(() => {
   const name = me.value?.name ?? ""
@@ -145,6 +192,10 @@ const localeMenuItems = computed(() =>
   }),
 )
 
+const selectedLocaleIcon = computed(() =>
+  localeFlagIcons[(locale.value as SupportedLocale)] ?? "i-lucide-globe",
+)
+
 const themeIcon = computed(() => colorMode.value === "dark" ? "i-lucide-sun" : "i-lucide-moon")
 const toggleTheme = () => { colorMode.preference = colorMode.value === "dark" ? "light" : "dark" }
 const handleSignOut = async () => { await logoutMutation.mutateAsync() }
@@ -155,7 +206,27 @@ const userMenuItems = computed(() => [
   { label: t("app.userMenu.theme"), icon: themeIcon.value, onSelect: toggleTheme },
   { label: t("app.userMenu.signOut"), icon: "i-lucide-log-out", onSelect: handleSignOut, color: "error" as const },
 ])
-
-const openMobile = () => { isMobileOpen.value = true }
-provide("app:openMobile", openMobile)
 </script>
+
+<style scoped>
+.drawer-slide-enter-active,
+.drawer-slide-leave-active {
+  transition: opacity 250ms ease;
+}
+.drawer-slide-enter-active > :last-child,
+.drawer-slide-leave-active > :last-child {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer-slide-enter-from {
+  opacity: 0;
+}
+.drawer-slide-enter-from > :last-child {
+  transform: translateX(-100%);
+}
+.drawer-slide-leave-to {
+  opacity: 0;
+}
+.drawer-slide-leave-to > :last-child {
+  transform: translateX(-100%);
+}
+</style>
