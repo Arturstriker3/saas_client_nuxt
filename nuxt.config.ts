@@ -105,6 +105,9 @@ export default defineNuxtConfig({
     defaultLocale: "pt",
     strategy: "no_prefix",
     vueI18n: "../i18n.config.ts",
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
     locales: [
       { code: "pt", name: "Português", language: "pt-BR" },
       { code: "en", name: "English", language: "en-US" },
