@@ -3,14 +3,14 @@ import { authRepository } from "../repository/auth.repository";
 import { authKeys } from "../queries/auth.keys";
 import { AUTH_ME_STALE_TIME } from "../queries/use-me.query";
 
-type AuthRouteName = "dashboard";
+type AuthRouteName = "app";
 
 const getSafeRedirectRouteName = (routeName: unknown): AuthRouteName => {
-  if (routeName === "dashboard") {
-    return routeName;
+  if (routeName === "app" || routeName === "dashboard") {
+    return "app";
   }
 
-  return "dashboard";
+  return "app";
 };
 
 export const useLoginMutation = () => {

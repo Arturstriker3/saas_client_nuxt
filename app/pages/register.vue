@@ -608,7 +608,7 @@ const handleGoogleOAuthStart = async () => {
   isGoogleOAuthLoading.value = true
 
   try {
-    await startGoogleOAuth("dashboard")
+    await startGoogleOAuth("app")
   }
   catch {
     return

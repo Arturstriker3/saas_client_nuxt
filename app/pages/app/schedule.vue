@@ -10,6 +10,6 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ layout: "dashboard", name: "dashboard-schedule" })
+definePageMeta({ layout: "app", name: "app-schedule" })
 const { t } = useI18n()
 </script>

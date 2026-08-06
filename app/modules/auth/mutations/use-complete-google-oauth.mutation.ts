@@ -4,16 +4,16 @@ import { authKeys } from "../queries/auth.keys";
 import { AUTH_ME_STALE_TIME } from "../queries/use-me.query";
 
 const OAUTH_REDIRECT_STORAGE_KEY = "oauth_redirect_after_login";
-type AuthRedirectRouteName = "dashboard";
+type AuthRedirectRouteName = "app";
 
 const getSafeRedirectRouteName = (
   routeName: unknown,
 ): AuthRedirectRouteName => {
-  if (routeName === "dashboard") {
-    return routeName;
+  if (routeName === "app" || routeName === "dashboard") {
+    return "app";
   }
 
-  return "dashboard";
+  return "app";
 };
 
 export const useCompleteGoogleOAuthMutation = () => {

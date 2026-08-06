@@ -92,8 +92,8 @@ import { useUpdateLanguageMutation } from "~/modules/auth/mutations/use-update-l
 import { useUpdateBirthDateMutation } from "~/modules/auth/mutations/use-update-birth-date.mutation"
 
 definePageMeta({
-  layout: "dashboard",
-  name: "dashboard-profile",
+  layout: "app",
+  name: "app-profile",
 })
 
 const { t } = useI18n()

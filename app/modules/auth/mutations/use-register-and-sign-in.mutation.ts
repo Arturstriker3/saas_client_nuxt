@@ -36,7 +36,7 @@ export const useRegisterAndSignInMutation = () => {
       appToast.success({
         title: t("auth.toasts.success.register"),
       });
-      await navigateTo({ name: "dashboard" });
+      await navigateTo({ name: "app" });
     },
     onError: (error) => {
       appToast.apiError(error, {

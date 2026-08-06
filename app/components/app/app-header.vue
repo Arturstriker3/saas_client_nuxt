@@ -44,7 +44,7 @@ const { t, locale, locales, setLocale } = useI18n()
 const colorMode = useColorMode()
 const route = useRoute()
 
-const openMobileSidebar = inject<() => void>("dashboard:openMobile", () => {})
+const openMobileSidebar = inject<() => void>("app:openMobile", () => {})
 
 type SupportedLocale = "pt" | "en" | "es"
 const localeFlagIcons: Record<SupportedLocale, string> = {
@@ -56,7 +56,7 @@ const localeFlagIcons: Record<SupportedLocale, string> = {
 const routeSegments = computed(() => route.path.split("/").filter(Boolean))
 
 const crumbMap = computed(() => ({
-  dashboard: t("app.nav.dashboard"),
+  app: t("app.nav.dashboard"),
   schedule: t("app.nav.schedule"),
   clients: t("app.nav.clients"),
   messages: t("app.nav.messages"),
@@ -81,7 +81,7 @@ const crumbs = computed(() => {
 const current = computed(() => {
   const segments = routeSegments.value
   const map = crumbMap.value
-  const last = segments[segments.length - 1] ?? "dashboard"
+  const last = segments[segments.length - 1] ?? "app"
   return map[last] ?? last
 })
 

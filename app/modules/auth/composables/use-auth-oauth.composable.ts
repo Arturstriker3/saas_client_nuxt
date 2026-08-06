@@ -2,16 +2,16 @@ import { authRepository } from "../repository/auth.repository";
 import { useCompleteGoogleOAuthMutation } from "../mutations/use-complete-google-oauth.mutation";
 
 const OAUTH_REDIRECT_STORAGE_KEY = "oauth_redirect_after_login";
-type AuthRedirectRouteName = "dashboard";
+type AuthRedirectRouteName = "app";
 
 const getSafeRedirectRouteName = (
   routeName: unknown,
 ): AuthRedirectRouteName => {
-  if (routeName === "dashboard") {
-    return routeName;
+  if (routeName === "app" || routeName === "dashboard") {
+    return "app";
   }
 
-  return "dashboard";
+  return "app";
 };
 
 export const useAuthOAuth = () => {

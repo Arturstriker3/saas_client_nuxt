@@ -55,8 +55,8 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "dashboard",
-  name: "dashboard",
+  layout: "app",
+  name: "app",
 })
 
 const { t } = useI18n()

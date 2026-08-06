@@ -119,12 +119,12 @@ const localeFlagIcons: Record<SupportedLocale, string> = {
 }
 
 const items = computed(() => [
-  { to: "/dashboard", label: t("app.nav.dashboard"), icon: "i-lucide-layout-dashboard" },
-  { to: "/dashboard/schedule", label: t("app.nav.schedule"), icon: "i-lucide-calendar-days" },
-  { to: "/dashboard/clients", label: t("app.nav.clients"), icon: "i-lucide-users" },
-  { to: "/dashboard/messages", label: t("app.nav.messages"), icon: "i-lucide-message-square" },
-  { to: "/dashboard/reports", label: t("app.nav.reports"), icon: "i-lucide-bar-chart-3" },
-  { to: "/dashboard/settings", label: t("app.nav.settings"), icon: "i-lucide-settings" },
+  { to: "/app", label: t("app.nav.dashboard"), icon: "i-lucide-layout-dashboard" },
+  { to: "/app/schedule", label: t("app.nav.schedule"), icon: "i-lucide-calendar-days" },
+  { to: "/app/clients", label: t("app.nav.clients"), icon: "i-lucide-users" },
+  { to: "/app/messages", label: t("app.nav.messages"), icon: "i-lucide-message-square" },
+  { to: "/app/reports", label: t("app.nav.reports"), icon: "i-lucide-bar-chart-3" },
+  { to: "/app/settings", label: t("app.nav.settings"), icon: "i-lucide-settings" },
 ])
 
 const initials = computed(() => {
@@ -150,12 +150,12 @@ const toggleTheme = () => { colorMode.preference = colorMode.value === "dark" ? 
 const handleSignOut = async () => { await logoutMutation.mutateAsync() }
 
 const userMenuItems = computed(() => [
-  { label: t("app.userMenu.profile"), icon: "i-lucide-user", to: "/dashboard/profile" },
+  { label: t("app.userMenu.profile"), icon: "i-lucide-user", to: "/app/profile" },
   { label: t("app.userMenu.language"), icon: "i-lucide-globe", children: localeMenuItems.value },
   { label: t("app.userMenu.theme"), icon: themeIcon.value, onSelect: toggleTheme },
   { label: t("app.userMenu.signOut"), icon: "i-lucide-log-out", onSelect: handleSignOut, color: "error" as const },
 ])
 
 const openMobile = () => { isMobileOpen.value = true }
-provide("dashboard:openMobile", openMobile)
+provide("app:openMobile", openMobile)
 </script>

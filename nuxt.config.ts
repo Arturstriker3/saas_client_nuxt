@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     preset: "static",
   },
   routeRules: {
-    "/dashboard/**": { ssr: false },
+    "/app/**": { ssr: false },
     "/auth/**": { ssr: false },
   },
   experimental: {

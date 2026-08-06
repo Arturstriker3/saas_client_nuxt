@@ -172,7 +172,7 @@ type HeroHighlight = {
   description: string
   delay: number
 }
-type AuthRedirectRouteName = "dashboard"
+type AuthRedirectRouteName = "app"
 
 const showLoginPassword = ref(false)
 const email = ref("")
@@ -199,11 +199,11 @@ const heroHighlights = computed<HeroHighlight[]>(() => [
 ])
 
 const getSafeRedirectRouteName = (redirectValue: unknown): AuthRedirectRouteName => {
-  if (redirectValue === "dashboard") {
-    return redirectValue
+  if (redirectValue === "app" || redirectValue === "dashboard") {
+    return "app"
   }
 
-  return "dashboard"
+  return "app"
 }
 
 const handleLoginSubmit = async () => {
