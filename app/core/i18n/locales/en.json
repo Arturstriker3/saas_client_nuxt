@@ -58,7 +58,8 @@
       "languageError": "Error updating language.",
       "birthDateUpdated": "Birth date updated successfully.",
       "birthDateError": "Error updating birth date.",
-      "changeLanguage": "Change language",
+      "changeLanguage": "Change communication language",
+      "changeLanguageHint": "Sets the language for emails, notifications, and messages sent by the system.",
       "changeBirthDate": "Change birth date",
       "save": "Save",
       "cancel": "Cancel"

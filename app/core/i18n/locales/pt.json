@@ -58,7 +58,8 @@
       "languageError": "Erro ao atualizar idioma.",
       "birthDateUpdated": "Data de nascimento atualizada com sucesso.",
       "birthDateError": "Erro ao atualizar data de nascimento.",
-      "changeLanguage": "Alterar idioma",
+      "changeLanguage": "Alterar linguagem da comunicação",
+      "changeLanguageHint": "Define o idioma dos e-mails, notificações e mensagens enviadas pelo sistema.",
       "changeBirthDate": "Alterar data de nascimento",
       "save": "Salvar",
       "cancel": "Cancelar"

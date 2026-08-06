@@ -37,21 +37,27 @@
     <!-- Language Modal -->
     <AppModal :open="isLanguageModalOpen" @close="isLanguageModalOpen = false">
       <template #title>{{ t("app.profile.changeLanguage") }}</template>
-      <div class="space-y-2">
-        <button
-          v-for="lang in languageOptions"
-          :key="lang.value"
-          type="button"
-          class="flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition-colors"
-          :class="me?.language === lang.value
-            ? 'border-emerald-500/50 bg-emerald-50 text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300'
-            : 'border-black/10 hover:bg-slate-50 dark:border-white/10 dark:hover:bg-slate-800'"
-          @click="handleLanguageChange(lang.value)"
-        >
-          <UIcon :name="lang.icon" class="h-5 w-5" />
-          {{ lang.label }}
-          <UIcon v-if="me?.language === lang.value" name="i-lucide-check" class="ml-auto h-4 w-4 text-emerald-500" />
-        </button>
+      <div class="space-y-4">
+        <p class="flex items-start gap-2 rounded-lg bg-slate-50 px-3 py-2 text-xs text-[#94a3b8] dark:bg-slate-800/50 dark:text-slate-500">
+          <UIcon name="i-lucide-info" class="mt-px h-3.5 w-3.5 shrink-0" />
+          <span>{{ t("app.profile.changeLanguageHint") }}</span>
+        </p>
+        <div class="space-y-2">
+          <button
+            v-for="lang in languageOptions"
+            :key="lang.value"
+            type="button"
+            class="flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition-colors"
+            :class="me?.language === lang.value
+              ? 'border-emerald-500/50 bg-emerald-50 text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300'
+              : 'border-black/10 hover:bg-slate-50 dark:border-white/10 dark:hover:bg-slate-800'"
+            @click="handleLanguageChange(lang.value)"
+          >
+            <UIcon :name="lang.icon" class="h-5 w-5" />
+            {{ lang.label }}
+            <UIcon v-if="me?.language === lang.value" name="i-lucide-check" class="ml-auto h-4 w-4 text-emerald-500" />
+          </button>
+        </div>
       </div>
       <template #footer>
         <UButton color="neutral" variant="ghost" @click="isLanguageModalOpen = false">{{ t("app.profile.cancel") }}</UButton>
