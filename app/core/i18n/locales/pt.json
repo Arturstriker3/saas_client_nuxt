@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Marcato",
-    "subtitle": "Plataforma inteligente de agendamentos para profissionais e equipes.",
+    "subtitle": "Inteligência de localização para decidir onde investir, abrir e expandir.",
     "users": "Usuários",
     "loadedAt": "Atualizado em {date}",
     "localeLabel": "Idioma",
@@ -14,33 +14,37 @@
       "signOut": "Sair"
     },
     "nav": {
-      "dashboard": "Dashboard",
-      "schedule": "Agendamentos",
-      "clients": "Clientes",
-      "messages": "Mensagens",
+      "dashboard": "Visão geral",
+      "schedule": "Análises",
+      "clients": "Locais",
+      "messages": "Insights",
       "reports": "Relatórios",
-      "settings": "Configurações"
+      "settings": "Configurações",
+      "sections": {
+        "main": "Principal",
+        "workspace": "Área de trabalho"
+      }
     },
     "breadcrumb": {
       "home": "Home"
     },
     "stats": {
-      "agendamentos": "Agendamentos",
-      "clientes": "Clientes",
-      "confirmacoes": "Confirmações",
-      "faturamento": "Faturamento"
+      "analyses": "Análises feitas",
+      "locations": "Locais avaliados",
+      "dataCoverage": "Cobertura de dados",
+      "marketPotential": "Potencial de mercado"
     },
     "activity": {
-      "title": "Atividade recente",
-      "subtitle": "Acompanhe seus últimos agendamentos e notificações.",
-      "empty": "Nenhuma atividade ainda. Comece criando seu primeiro agendamento.",
-      "cta": "Criar agendamento"
+      "title": "Análises recentes",
+      "subtitle": "Acompanhe as últimas análises de localização e os insights gerados para você.",
+      "empty": "Nenhuma análise ainda. Comece analisando um endereço ou uma região.",
+      "cta": "Nova análise"
     },
     "quickActions": {
       "title": "Ações rápidas",
-      "newSchedule": "Novo agendamento",
-      "addClient": "Adicionar cliente",
-      "shareLink": "Compartilhar link"
+      "newAnalysis": "Nova análise de local",
+      "addLocation": "Adicionar local",
+      "shareReport": "Compartilhar relatório"
     },
     "profile": {
       "title": "Perfil",
@@ -70,14 +74,14 @@
   },
   "landing": {
     "seo": {
-      "title": "Plataforma de Agendamento Inteligente",
-      "description": "Crie agendas pessoais ou de equipe, compartilhe sua página e permita agendamentos em segundos por link ou QR Code."
+      "title": "Inteligência de localização para investir e expandir",
+      "description": "Cruze dados de renda, consumo, demografia e concorrência por endereço e descubra onde investir, abrir seu comércio ou construir seu estabelecimento."
     },
     "nav": {
       "product": "Produto",
       "home": "Início",
-      "shop": "Loja",
-      "pages": "Páginas",
+      "solutions": "Soluções",
+      "pricing": "Planos",
       "integrations": "Integrações",
       "developers": "Desenvolvedores"
     },
@@ -86,98 +90,103 @@
       "startForFree": "Começar grátis"
     },
     "hero": {
-      "tagline": "Agendamento inteligente para profissionais e equipes",
-      "title": "Organize sua agenda e receba agendamentos em segundos.",
-      "subtitle": "Defina disponibilidade, compartilhe sua página de reservas e automatize confirmações, lembretes e atualizações pelo WhatsApp.",
+      "tagline": "Inteligência de localização para decisões de investimento",
+      "title": "Descubra onde investir, onde abrir e onde construir.",
+      "subtitle": "Informe um endereço ou uma região e receba renda, demografia, fluxo, concorrência e potencial de consumo antes de tomar a decisão.",
       "startForFree": "Começar grátis",
-      "demoCta": "Quer conversar ou ver uma demo ao vivo?",
-      "viewDemo": "Ver demo",
+      "demoCta": "Quer ver uma análise com os seus dados?",
+      "viewDemo": "Agendar demo",
       "trust": {
-        "item1": "mais confirmações com lembretes automáticos",
-        "item2": "menos faltas com confirmações pelo WhatsApp",
-        "item3": "em poucos minutos, você configura os horários e abre sua agenda",
-        "trigger1": "Mais conversão",
-        "trigger2": "Menos faltas",
-        "trigger3": "Setup rápido"
+        "item1": "mais conversão em pontos escolhidos com dados de demanda",
+        "item2": "mais acerto ao prever faturamento com dados de renda e fluxo",
+        "item3": "para analisar um endereço e ver o potencial da região",
+        "trigger1": "Ponto validado",
+        "trigger2": "Previsão confiável",
+        "trigger3": "Análise rápida"
       }
     },
     "features": {
-      "workflowsLabel": "Agendamentos",
-      "shareTitle": "Compartilhe sua página de reservas em segundos.",
-      "shareSubtitle": "Defina horários de atendimento e disponibilidade da equipe para seus clientes escolherem um horário livre sem troca de mensagens.",
+      "workflowsLabel": "Análise de ponto",
+      "shareTitle": "Entenda a demanda do entorno antes de assinar o ponto.",
+      "shareSubtitle": "Uma busca mostra renda média, perfil do consumidor, fluxo de pessoas, concorrência e potencial de consumo no raio que você escolher.",
       "seeAllFeatures": "Ver todos os recursos",
-      "commentsLabel": "WhatsApp",
-      "feedbackTitle": "Confirmações e lembretes automáticos.",
-      "feedbackSubtitle": "Mantenha profissionais e clientes atualizados a cada mudança e reduza faltas."
+      "commentsLabel": "Comparação de regiões",
+      "feedbackTitle": "Compare regiões lado a lado antes de decidir.",
+      "feedbackSubtitle": "Ranqueie locais por potencial de mercado, saturação e risco para investir, abrir ou expandir com previsibilidade."
     },
     "feedbackPreview": {
-      "item1": { "title": "Mudanças vetoriais", "subtitle": "12 comentários" },
-      "item2": { "title": "Qualidade do design", "subtitle": "9 revisões" },
-      "item3": { "title": "Notas de release", "subtitle": "4 aprovações" }
-    },
-    "notifications": {
-      "title": "Passo a passo de como funciona.",
-      "stepLabel": "Passo",
       "item1": {
-        "title": "Cadastre sua conta",
-        "description": "Crie sua conta e prepare sua página de agendamento em poucos minutos."
+        "title": "Potencial de consumo",
+        "subtitle": "12 regiões ranqueadas"
       },
       "item2": {
-        "title": "Crie seus horários",
-        "description": "Defina dias, horários e duração de cada atendimento."
+        "title": "Concorrência mapeada",
+        "subtitle": "raios de 500 m a 5 km"
       },
       "item3": {
-        "title": "Compartilhe com QR Code ou link",
-        "description": "Envie seu link de reservas ou mostre o QR Code para o cliente agendar."
+        "title": "Renda e demografia",
+        "subtitle": "8 indicadores do entorno"
+      }
+    },
+    "notifications": {
+      "title": "Como funciona, do endereço à decisão.",
+      "stepLabel": "Passo",
+      "item1": {
+        "title": "Crie sua conta",
+        "description": "Crie sua conta e informe o tipo de negócio ou investimento que você está avaliando."
+      },
+      "item2": {
+        "title": "Informe um endereço ou região",
+        "description": "Digite o endereço, o CEP ou selecione a área direto no mapa."
+      },
+      "item3": {
+        "title": "Receba os dados do entorno",
+        "description": "Renda, demografia, fluxo de pessoas e concorrência dentro do raio que você definir."
       },
       "item4": {
-        "title": "Cliente confirma o horário",
-        "description": "O cliente escolhe um horário disponível e confirma o agendamento."
+        "title": "Compare locais",
+        "description": "Ranqueie regiões por potencial de mercado, saturação e risco."
       },
       "item5": {
-        "title": "WhatsApp confirma automaticamente",
-        "description": "A confirmação chega no WhatsApp para cliente e profissional logo após o agendamento."
+        "title": "Simule o potencial de consumo",
+        "description": "Estime demanda e faturamento possível para o seu tipo de operação."
       },
       "item6": {
-        "title": "Lembrete 1 hora antes + remarcar/cancelar",
-        "description": "Uma hora antes, enviamos lembrete com opções para cancelar ou remarcar."
+        "title": "Exporte o relatório de decisão",
+        "description": "Leve a análise para sócios, banco ou investidor em um clique."
       }
     },
     "metrics": {
-      "title": "Impacto operacional que você acompanha",
-      "item1": { "label": "Redução de faltas" },
-      "item2": { "label": "Agendamentos confirmados" }
+      "title": "Impacto que você acompanha",
+      "item1": { "label": "Aumento médio de conversão no ponto escolhido" },
+      "item2": { "label": "Locais analisados por mês" }
     },
     "quotes": {
       "item1": {
-        "message": "O Marcato eliminou o caos de agenda e trouxe uma experiência de reserva muito mais rápida para os clientes.",
+        "message": "O Marcato nos deu dados que não tínhamos: entendemos a demanda do entorno e escolhemos o ponto com muito mais segurança.",
         "author": "Amanda Souza"
       },
       "item2": {
-        "message": "Com lembretes no WhatsApp, reduzimos faltas e melhoramos a comunicação da equipe inteira.",
+        "message": "Usamos as análises para decidir onde abrir a nova unidade e evitamos uma área já saturada.",
         "author": "Carlos Mendes"
       }
     },
     "brands": {
-      "title": "Usado por profissionais e equipes de serviço",
+      "title": "Usado por quem decide onde investir e expandir",
       "poweredBy": "Tecnologias que movem o Marcato"
-    },
-    "loop": {
-      "title": "Mantenha sua agenda sempre organizada",
-      "subtitle": "Trabalhando sozinho ou em equipe, o Marcato simplifica agendamentos e melhora a experiência do cliente."
     },
     "pricing": {
       "title": "Planos e preços",
-      "subtitle": "Escolha o ciclo que faz mais sentido para sua operação e escale seus agendamentos com previsibilidade.",
+      "subtitle": "Escolha o plano pelo volume de análises e pelo tamanho da sua operação, sem taxa de implantação.",
       "cycles": {
         "monthly": "Mensal",
         "quarterly": "Trimestral",
         "semiannual": "Semestral"
       },
       "framing": {
-        "monthly": "Flexível para começar agora e ajustar depois.",
+        "monthly": "Flexível para avaliar um ponto agora e ajustar depois.",
         "quarterly": "Equilíbrio entre custo mensal e previsibilidade.",
-        "semiannual": "Maior economia mensal para operação estável."
+        "semiannual": "Maior economia para quem analisa expansão o ano inteiro."
       },
       "perMonth": "/mês",
       "saveShort": "-{value}%",
@@ -186,7 +195,7 @@
       "popularBadge": "Mais escolhido",
       "trust": {
         "item1": "Sem taxas ocultas",
-        "item2": "Cobrança sempre transparente",
+        "item2": "Fontes de dados declaradas",
         "item3": "Cancelamento simples"
       },
       "commitment": {
@@ -196,54 +205,48 @@
       },
       "plans": {
         "basic": {
-          "name": "Básico",
-          "description": "Ideal para profissionais autônomos iniciando os atendimentos online.",
-          "priceMonthly": "R$ 49",
-          "priceQuarterly": "R$ 44",
-          "priceSemiannual": "R$ 39",
+          "name": "Essencial",
+          "description": "Para quem está avaliando o primeiro ponto comercial ou o primeiro investimento.",
+          "priceMonthly": "R$ 97",
+          "priceQuarterly": "R$ 87",
+          "priceSemiannual": "R$ 77",
           "cta": "Começar grátis",
           "features": {
-            "item1": "Página de agendamento personalizada",
-            "item2": "Confirmação automática por WhatsApp",
-            "item3": "Lembrete 1 hora antes"
+            "item1": "Análises de ponto e entorno",
+            "item2": "Renda, demografia e fluxo de pessoas",
+            "item3": "Relatório pronto para exportar"
           }
         },
         "pro": {
           "name": "Profissional",
-          "description": "Para quem precisa de mais automação e controle da rotina de atendimentos.",
-          "priceMonthly": "R$ 89",
-          "priceQuarterly": "R$ 79",
-          "priceSemiannual": "R$ 69",
-          "cta": "Assinar plano Pro",
+          "description": "Para quem compara vários locais e precisa de dados completos de mercado.",
+          "priceMonthly": "R$ 197",
+          "priceQuarterly": "R$ 177",
+          "priceSemiannual": "R$ 157",
+          "cta": "Assinar o Profissional",
           "features": {
-            "item1": "Tudo do Básico",
-            "item2": "Fluxos de confirmação e remarcação",
-            "item3": "Relatórios de faltas e conversão"
+            "item1": "Tudo do Essencial",
+            "item2": "Comparação entre regiões e raios",
+            "item3": "Simulação de potencial de consumo"
           }
         },
         "team": {
-          "name": "Equipe",
-          "description": "Para clínicas e equipes que precisam de agenda compartilhada e escala.",
-          "priceMonthly": "R$ 159",
-          "priceQuarterly": "R$ 139",
-          "priceSemiannual": "R$ 119",
+          "name": "Redes e Franquias",
+          "description": "Para redes, franqueadoras e consultorias que avaliam expansão em escala.",
+          "priceMonthly": "R$ 397",
+          "priceQuarterly": "R$ 357",
+          "priceSemiannual": "R$ 317",
           "cta": "Falar com vendas",
           "features": {
             "item1": "Tudo do Profissional",
-            "item2": "Múltiplos profissionais e serviços",
-            "item3": "Permissões por função"
+            "item2": "Vários usuários e carteiras de locais",
+            "item3": "API e exportação em lote"
           }
         }
       }
     },
-    "dashboardCards": {
-      "projects": "Projetos",
-      "design": "Design",
-      "development": "Desenvolvimento",
-      "testing": "Testes"
-    },
     "footer": {
-      "description": "Agendamento inteligente com páginas de reserva compartilháveis e comunicação automática no WhatsApp.",
+      "description": "Inteligência de localização com dados de renda, consumo, demografia e concorrência para decidir onde investir, abrir e expandir.",
       "copyright": "© {year} {appName}. Todos os direitos reservados.",
       "links": {
         "product": {
@@ -282,7 +285,7 @@
     "backHome": "Voltar para a home",
     "tagline": "Stack de alta performance",
     "title": "Tecnologias que usamos e por que nosso sistema é mais rápido, estável e seguro.",
-    "subtitle": "Nosso foco é engenharia de produto: baixa latência, menos bugs em produção e uma operação robusta para agendamentos.",
+    "subtitle": "Nosso foco é engenharia de produto: baixa latência, menos bugs em produção e uma operação robusta para processar dados de localização.",
     "tech": {
       "title": "Tech stack",
       "subtitle": "Cada tecnologia foi escolhida para resolver velocidade, confiabilidade, entrega contínua e experiência do usuário.",
@@ -296,7 +299,7 @@
           "reason": "Nuxt permite páginas rápidas com estrutura limpa e escalável."
         },
         "item3": {
-          "impact": "Dados flexíveis para agendamentos",
+          "impact": "Dados flexíveis para camadas geoespaciais",
           "reason": "MongoDB facilita evolução de esquema conforme o produto cresce."
         },
         "item4": {
@@ -305,11 +308,11 @@
         },
         "item5": {
           "impact": "Mensageria confiável para eventos",
-          "reason": "RabbitMQ orquestra confirmações, lembretes e integrações assíncronas."
+          "reason": "RabbitMQ orquestra processamento de dados, geração de relatórios e integrações assíncronas."
         },
         "item6": {
-          "impact": "Confirmação com alto índice de leitura",
-          "reason": "WhatsApp Business reduz faltas e aumenta resposta rápida do cliente."
+          "impact": "Contexto geográfico confiável",
+          "reason": "Google Maps Platform fornece geocodificação e dados de localização para cada análise."
         },
         "item7": {
           "impact": "Backend modular e testável",
@@ -349,8 +352,8 @@
         },
         "item3": {
           "name": "Confiabilidade em fluxos assíncronos",
-          "trigger": "Fila de eventos para confirmação, lembrete e notificações sem bloquear a aplicação.",
-          "outcome": "Sistema continua estável mesmo em picos de uso e alto volume de mensagens."
+          "trigger": "Fila de eventos para processar dados, gerar relatórios e notificar sem bloquear a aplicação.",
+          "outcome": "Sistema continua estável mesmo em picos de uso e alto volume de análises."
         },
         "item4": {
           "name": "Qualidade contínua e manutenção real",
@@ -361,7 +364,7 @@
     },
     "ethics": {
       "title": "Engenharia séria para negócio real",
-      "description": "Construímos uma plataforma para operação profissional, não um protótipo frágil. Priorizamos performance, segurança e consistência para que o agendamento funcione de verdade no dia a dia.",
+      "description": "Construímos uma plataforma para operação profissional, não um protótipo frágil. Priorizamos performance, segurança e consistência para que a análise de localização funcione de verdade no dia a dia.",
       "cta": "Voltar para a home"
     }
   },
@@ -390,15 +393,15 @@
       "forgotPassword": "Esqueci minha senha",
       "submit": "Entrar",
       "hero": {
-        "title": "Menos lacunas, mais agenda preenchida.",
-        "subtitle": "O painel reduz incerteza, reforça previsibilidade e acelera sua tomada de decisão com visão diária clara.",
+        "title": "Menos achismo, mais decisão com dados.",
+        "subtitle": "O painel reduz incerteza, reforça previsibilidade e acelera sua tomada de decisão com visão clara do mercado.",
         "item1": {
-          "title": "Operação previsível",
-          "description": "Negócios com rotina cheia priorizam confirmação automática para reduzir ausência."
+          "title": "Decisão previsível",
+          "description": "Quem escolhe ponto ou investimento compara demanda, concorrência e renda antes de assinar."
         },
         "item2": {
-          "title": "Mais presença no dia",
-          "description": "Cada horário perdido custa receita e recorrência de cliente no mês."
+          "title": "Expansão sem erro caro",
+          "description": "Um ponto no lugar errado consome capital e adia o retorno do investimento."
         }
       }
     },
@@ -440,15 +443,15 @@
         "mismatch": "As senhas não coincidem."
       },
       "hero": {
-        "title": "Comece com agenda pronta para converter.",
-        "subtitle": "Cadastro objetivo, ativação guiada e primeira rotina configurada com menos fricção.",
+        "title": "Comece com dados prontos para decidir.",
+        "subtitle": "Cadastro objetivo, ativação guiada e sua primeira análise de local configurada com menos fricção.",
         "item1": {
           "title": "Entrada simplificada",
           "description": "Você cria conta agora e completa os detalhes no momento certo."
         },
         "item2": {
-          "title": "Primeira ativação rápida",
-          "description": "Fluxo claro para sair do zero com página de agendamento ativa."
+          "title": "Primeira análise rápida",
+          "description": "Fluxo claro para sair do zero com uma análise de local ativa."
         }
       }
     },

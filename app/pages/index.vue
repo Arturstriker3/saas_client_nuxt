@@ -150,20 +150,20 @@ const isHeaderElevated = computed(() => y.value > 12)
 const navItems = computed<string[]>(() => [
   t("landing.nav.product"),
   t("landing.nav.home"),
-  t("landing.nav.shop"),
-  t("landing.nav.pages"),
+  t("landing.nav.solutions"),
+  t("landing.nav.pricing"),
 ])
 
 const mobileNavItems = computed<MobileNavItem[]>(() => [
   { label: t("landing.nav.product"), icon: "i-lucide-package" },
   { label: t("landing.nav.home"), icon: "i-lucide-house" },
-  { label: t("landing.nav.shop"), icon: "i-lucide-shopping-bag" },
-  { label: t("landing.nav.pages"), icon: "i-lucide-files" },
+  { label: t("landing.nav.solutions"), icon: "i-lucide-lightbulb" },
+  { label: t("landing.nav.pricing"), icon: "i-lucide-tags" },
 ])
 
 const heroTrustItems = computed<HeroTrustItem[]>(() => [
   {
-    value: 37,
+    value: 18,
     decimals: 0,
     prefix: "+",
     suffix: "%",
@@ -172,13 +172,13 @@ const heroTrustItems = computed<HeroTrustItem[]>(() => [
     icon: "i-lucide-trending-up",
   },
   {
-    value: 52,
+    value: 24,
     decimals: 0,
-    prefix: "-",
+    prefix: "+",
     suffix: "%",
     label: t("landing.hero.trust.item2"),
     trigger: t("landing.hero.trust.trigger2"),
-    icon: "i-lucide-bell-ring",
+    icon: "i-lucide-target",
   },
   {
     value: 4,
@@ -199,7 +199,7 @@ const topLogos: TopLogoItem[] = [
   { name: "Resend", icon: "i-simple-icons-resend", color: "#111111" },
   { name: "Docker", icon: "i-simple-icons-docker", color: "#2496ED" },
   { name: "Cloudflare", icon: "i-simple-icons-cloudflare", color: "#F38020" },
-  { name: "WhatsApp Business", icon: "i-simple-icons-whatsapp", color: "#25D366" },
+  { name: "Google Maps Platform", icon: "i-simple-icons-googlemaps", color: "#4285F4" },
   { name: "NestJS", icon: "i-simple-icons-nestjs", color: "#E0234E" },
   { name: "Vue", icon: "i-simple-icons-vuedotjs", color: "#4FC08D" },
 ]
@@ -220,8 +220,8 @@ const notifications = computed<NotificationItem[]>(() => [
 ])
 
 const metrics = computed<MetricItem[]>(() => [
-  { label: t("landing.metrics.item1.label"), value: "$240" },
-  { label: t("landing.metrics.item2.label"), value: "1739" },
+  { label: t("landing.metrics.item1.label"), value: "+24%" },
+  { label: t("landing.metrics.item2.label"), value: "1.739" },
 ])
 
 const quotes = computed<QuoteItem[]>(() => [

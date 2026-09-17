@@ -23,7 +23,7 @@
         <p class="mt-1 text-sm text-[#64748b] dark:text-slate-400">{{ t("app.activity.subtitle") }}</p>
         <div class="mt-6 flex flex-col items-center justify-center py-10 text-center">
           <div class="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-500/10">
-            <UIcon name="i-lucide-calendar-check" class="h-8 w-8 text-emerald-500" />
+            <UIcon name="i-lucide-radar" class="h-8 w-8 text-emerald-500" />
           </div>
           <p class="mt-4 text-sm font-medium text-[#64748b] dark:text-slate-400">{{ t("app.activity.empty") }}</p>
           <UButton color="primary" size="sm" class="mt-3 rounded-xl">{{ t("app.activity.cta") }}</UButton>
@@ -73,30 +73,30 @@ type StatItem = {
 
 const stats = computed<StatItem[]>(() => [
   {
-    label: t("app.stats.agendamentos"),
+    label: t("app.stats.analyses"),
     value: "0",
-    icon: "i-lucide-calendar-check",
+    icon: "i-lucide-radar",
     iconBg: "bg-emerald-50 dark:bg-emerald-500/10",
     iconColor: "text-emerald-500",
   },
   {
-    label: t("app.stats.clientes"),
+    label: t("app.stats.locations"),
     value: "0",
     change: "+0%",
     changeColor: "text-emerald-600 dark:text-emerald-400",
-    icon: "i-lucide-users",
+    icon: "i-lucide-map",
     iconBg: "bg-blue-50 dark:bg-blue-500/10",
     iconColor: "text-blue-500",
   },
   {
-    label: t("app.stats.confirmacoes"),
+    label: t("app.stats.dataCoverage"),
     value: "0%",
-    icon: "i-lucide-check-check",
+    icon: "i-lucide-database",
     iconBg: "bg-amber-50 dark:bg-amber-500/10",
     iconColor: "text-amber-500",
   },
   {
-    label: t("app.stats.faturamento"),
+    label: t("app.stats.marketPotential"),
     value: "R$ 0",
     change: "+0%",
     changeColor: "text-emerald-600 dark:text-emerald-400",
@@ -107,8 +107,8 @@ const stats = computed<StatItem[]>(() => [
 ])
 
 const quickActions = computed(() => [
-  { key: "schedule", label: t("app.quickActions.newSchedule"), icon: "i-lucide-plus-circle" },
-  { key: "client", label: t("app.quickActions.addClient"), icon: "i-lucide-user-plus" },
-  { key: "share", label: t("app.quickActions.shareLink"), icon: "i-lucide-share-2" },
+  { key: "analysis", label: t("app.quickActions.newAnalysis"), icon: "i-lucide-search" },
+  { key: "location", label: t("app.quickActions.addLocation"), icon: "i-lucide-map-pin" },
+  { key: "share", label: t("app.quickActions.shareReport"), icon: "i-lucide-share-2" },
 ])
 </script>

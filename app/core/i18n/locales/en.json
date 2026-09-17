@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Marcato",
-    "subtitle": "Smart scheduling platform for professionals and teams.",
+    "subtitle": "Location intelligence to decide where to invest, open, and expand.",
     "users": "Users",
     "loadedAt": "Updated at {date}",
     "localeLabel": "Language",
@@ -14,33 +14,37 @@
       "signOut": "Sign out"
     },
     "nav": {
-      "dashboard": "Dashboard",
-      "schedule": "Schedule",
-      "clients": "Clients",
-      "messages": "Messages",
+      "dashboard": "Overview",
+      "schedule": "Analyses",
+      "clients": "Locations",
+      "messages": "Insights",
       "reports": "Reports",
-      "settings": "Settings"
+      "settings": "Settings",
+      "sections": {
+        "main": "Main",
+        "workspace": "Workspace"
+      }
     },
     "breadcrumb": {
       "home": "Home"
     },
     "stats": {
-      "agendamentos": "Bookings",
-      "clientes": "Clients",
-      "confirmacoes": "Confirmations",
-      "faturamento": "Revenue"
+      "analyses": "Analyses run",
+      "locations": "Locations reviewed",
+      "dataCoverage": "Data coverage",
+      "marketPotential": "Market potential"
     },
     "activity": {
-      "title": "Recent activity",
-      "subtitle": "Track your latest bookings and notifications.",
-      "empty": "No activity yet. Start by creating your first booking.",
-      "cta": "New booking"
+      "title": "Recent analyses",
+      "subtitle": "Track your latest location analyses and the insights generated for you.",
+      "empty": "No analyses yet. Start by reviewing an address or a region.",
+      "cta": "New analysis"
     },
     "quickActions": {
       "title": "Quick actions",
-      "newSchedule": "New booking",
-      "addClient": "Add client",
-      "shareLink": "Share link"
+      "newAnalysis": "New location analysis",
+      "addLocation": "Add location",
+      "shareReport": "Share report"
     },
     "profile": {
       "title": "Profile",
@@ -70,14 +74,14 @@
   },
   "landing": {
     "seo": {
-      "title": "Smart Scheduling Platform",
-      "description": "Create personal or team schedules, share your booking page and let clients book in seconds via link or QR code."
+      "title": "Location intelligence to invest and expand",
+      "description": "Cross income, consumption, demographics, and competition data by address to discover where to invest, open your business, or build your establishment."
     },
     "nav": {
       "product": "Product",
       "home": "Home",
-      "shop": "Shop",
-      "pages": "Pages",
+      "solutions": "Solutions",
+      "pricing": "Pricing",
       "integrations": "Integrations",
       "developers": "Developers"
     },
@@ -86,98 +90,103 @@
       "startForFree": "Start for free"
     },
     "hero": {
-      "tagline": "Smart scheduling for professionals and teams",
-      "title": "Organize appointments and accept bookings in seconds.",
-      "subtitle": "Set availability, share your booking page and automate confirmations, reminders and updates via WhatsApp.",
+      "tagline": "Location intelligence for investment decisions",
+      "title": "Discover where to invest, open, and build.",
+      "subtitle": "Enter an address or region and get income, demographics, foot traffic, competition, and consumption potential before you decide.",
       "startForFree": "Start for free",
-      "demoCta": "Want to talk or get a live demo?",
-      "viewDemo": "View demo",
+      "demoCta": "Want to see an analysis with your own data?",
+      "viewDemo": "Book a demo",
       "trust": {
-        "item1": "more confirmed bookings with automated reminders",
-        "item2": "fewer no-shows with WhatsApp confirmations",
-        "item3": "set your availability and open your booking calendar in minutes",
-        "trigger1": "Higher conversion",
-        "trigger2": "Fewer no-shows",
-        "trigger3": "Fast setup"
+        "item1": "more conversion on sites chosen with demand data",
+        "item2": "better revenue forecasts using income and foot traffic data",
+        "item3": "to review an address and see the region's potential",
+        "trigger1": "Validated site",
+        "trigger2": "Reliable forecast",
+        "trigger3": "Fast analysis"
       }
     },
     "features": {
-      "workflowsLabel": "Scheduling",
-      "shareTitle": "Share your booking page instantly.",
-      "shareSubtitle": "Define service hours and team availability so customers can pick an open slot without message back-and-forth.",
+      "workflowsLabel": "Site analysis",
+      "shareTitle": "Understand the surrounding demand before signing the lease.",
+      "shareSubtitle": "One search shows average income, consumer profile, foot traffic, competition, and consumption potential within the radius you choose.",
       "seeAllFeatures": "See all features",
-      "commentsLabel": "WhatsApp",
-      "feedbackTitle": "Automatic confirmations and reminders.",
-      "feedbackSubtitle": "Keep professionals and clients updated with every booking change and reduce no-shows."
+      "commentsLabel": "Region comparison",
+      "feedbackTitle": "Compare regions side by side before deciding.",
+      "feedbackSubtitle": "Rank locations by market potential, saturation, and risk to invest, open, or expand with predictability."
     },
     "feedbackPreview": {
-      "item1": { "title": "Vector shifts", "subtitle": "12 comments" },
-      "item2": { "title": "Design quality", "subtitle": "9 reviews" },
-      "item3": { "title": "Release notes", "subtitle": "4 approvals" }
+      "item1": {
+        "title": "Consumption potential",
+        "subtitle": "12 regions ranked"
+      },
+      "item2": {
+        "title": "Competition mapped",
+        "subtitle": "radii from 500 m to 5 km"
+      },
+      "item3": {
+        "title": "Income and demographics",
+        "subtitle": "8 indicators of the area"
+      }
     },
     "notifications": {
-      "title": "Step by step: how it works.",
+      "title": "How it works, from address to decision.",
       "stepLabel": "Step",
       "item1": {
         "title": "Create your account",
-        "description": "Set up your account and booking page in just a few minutes."
+        "description": "Set up your account and tell us the type of business or investment you are evaluating."
       },
       "item2": {
-        "title": "Set your availability",
-        "description": "Define working days, time slots and appointment duration."
+        "title": "Enter an address or region",
+        "description": "Type the address, zip code, or select the area directly on the map."
       },
       "item3": {
-        "title": "Share via QR code or link",
-        "description": "Send your booking link or show the QR code so clients can book."
+        "title": "Get the surrounding data",
+        "description": "Income, demographics, foot traffic, and competition within the radius you define."
       },
       "item4": {
-        "title": "Client confirms the appointment",
-        "description": "The client picks an available slot and confirms the booking."
+        "title": "Compare locations",
+        "description": "Rank regions by market potential, saturation, and risk."
       },
       "item5": {
-        "title": "WhatsApp confirmation is sent",
-        "description": "A confirmation message is automatically sent to both client and professional."
+        "title": "Simulate consumption potential",
+        "description": "Estimate demand and achievable revenue for your type of operation."
       },
       "item6": {
-        "title": "1-hour reminder + reschedule/cancel",
-        "description": "One hour before the appointment, a reminder is sent with options to cancel or reschedule."
+        "title": "Export the decision report",
+        "description": "Take the analysis to partners, your bank, or investors in one click."
       }
     },
     "metrics": {
-      "title": "Operational impact you can track",
-      "item1": { "label": "Lower no-show rate" },
-      "item2": { "label": "Confirmed appointments" }
+      "title": "Impact you can track",
+      "item1": { "label": "Average conversion lift on the chosen site" },
+      "item2": { "label": "Locations analyzed per month" }
     },
     "quotes": {
       "item1": {
-        "message": "Marcato removed the scheduling chaos and gave our clients a faster booking experience.",
+        "message": "Marcato gave us data we simply did not have: we understood the surrounding demand and chose our site with far more confidence.",
         "author": "Amanda Lewis"
       },
       "item2": {
-        "message": "WhatsApp reminders reduced missed appointments and improved communication with our whole team.",
+        "message": "We used the analyses to decide where to open the new unit and avoided an already saturated area.",
         "author": "Carlos Mendes"
       }
     },
     "brands": {
-      "title": "Used by professionals and service teams",
+      "title": "Used by those who decide where to invest and expand",
       "poweredBy": "Technology that powers Marcato"
-    },
-    "loop": {
-      "title": "Keep your calendar fully organized",
-      "subtitle": "Whether you work solo or manage a team, Marcato streamlines scheduling and improves customer experience."
     },
     "pricing": {
       "title": "Plans and pricing",
-      "subtitle": "Pick the billing cycle that fits your operation and scale appointments with predictable costs.",
+      "subtitle": "Choose a plan based on your analysis volume and operation size, with no setup fee.",
       "cycles": {
         "monthly": "Monthly",
         "quarterly": "Quarterly",
         "semiannual": "Semiannual"
       },
       "framing": {
-        "monthly": "Flexible to start now and adjust later.",
+        "monthly": "Flexible to review a site now and adjust later.",
         "quarterly": "Best balance between monthly cost and predictability.",
-        "semiannual": "Highest monthly savings for a stable operation."
+        "semiannual": "Highest savings if you analyze expansion all year round."
       },
       "perMonth": "/month",
       "saveShort": "-{value}%",
@@ -186,7 +195,7 @@
       "popularBadge": "Most popular",
       "trust": {
         "item1": "No hidden fees",
-        "item2": "Always transparent billing",
+        "item2": "Declared data sources",
         "item3": "Simple cancellation"
       },
       "commitment": {
@@ -196,54 +205,48 @@
       },
       "plans": {
         "basic": {
-          "name": "Basic",
-          "description": "Perfect for solo professionals starting online bookings.",
+          "name": "Essential",
+          "description": "For those evaluating a first commercial site or a first investment.",
           "priceMonthly": "$19",
           "priceQuarterly": "$16",
           "priceSemiannual": "$14",
           "cta": "Start for free",
           "features": {
-            "item1": "Custom booking page",
-            "item2": "Automatic WhatsApp confirmation",
-            "item3": "1-hour reminder"
+            "item1": "Site and area analyses",
+            "item2": "Income, demographics, and foot traffic",
+            "item3": "Report ready to export"
           }
         },
         "pro": {
-          "name": "Pro",
-          "description": "For professionals who need more automation and scheduling control.",
+          "name": "Professional",
+          "description": "For those comparing multiple locations and needing complete market data.",
           "priceMonthly": "$39",
           "priceQuarterly": "$34",
           "priceSemiannual": "$29",
-          "cta": "Subscribe to Pro",
+          "cta": "Subscribe to Professional",
           "features": {
-            "item1": "Everything in Basic",
-            "item2": "Reschedule and cancellation flows",
-            "item3": "No-show and conversion reports"
+            "item1": "Everything in Essential",
+            "item2": "Region and radius comparison",
+            "item3": "Consumption potential simulation"
           }
         },
         "team": {
-          "name": "Team",
-          "description": "For clinics and teams that need shared scheduling at scale.",
+          "name": "Networks & Franchises",
+          "description": "For networks, franchisors, and consultancies evaluating expansion at scale.",
           "priceMonthly": "$79",
           "priceQuarterly": "$69",
           "priceSemiannual": "$59",
           "cta": "Talk to sales",
           "features": {
-            "item1": "Everything in Pro",
-            "item2": "Multiple staff and services",
-            "item3": "Role-based permissions"
+            "item1": "Everything in Professional",
+            "item2": "Multiple users and location portfolios",
+            "item3": "API and bulk export"
           }
         }
       }
     },
-    "dashboardCards": {
-      "projects": "Projects",
-      "design": "Design",
-      "development": "Development",
-      "testing": "Testing"
-    },
     "footer": {
-      "description": "Smart scheduling with shared booking pages and automatic WhatsApp communication.",
+      "description": "Location intelligence with income, consumption, demographics, and competition data to decide where to invest, open, and expand.",
       "copyright": "© {year} {appName}. All rights reserved.",
       "links": {
         "product": {
@@ -282,7 +285,7 @@
     "backHome": "Back to home",
     "tagline": "High-performance stack",
     "title": "Technologies we use and why our system is faster, safer, and more stable.",
-    "subtitle": "Our focus is product engineering: low latency, fewer production bugs, and robust operations for scheduling workflows.",
+    "subtitle": "Our focus is product engineering: low latency, fewer production bugs, and robust operations to process location data.",
     "tech": {
       "title": "Tech stack",
       "subtitle": "Every technology was selected to solve speed, reliability, continuous delivery, and user experience.",
@@ -296,7 +299,7 @@
           "reason": "Nuxt enables fast pages with a clean, scalable structure."
         },
         "item3": {
-          "impact": "Flexible data model for scheduling",
+          "impact": "Flexible data model for geospatial layers",
           "reason": "MongoDB makes schema evolution easier as the product grows."
         },
         "item4": {
@@ -305,11 +308,11 @@
         },
         "item5": {
           "impact": "Reliable event messaging",
-          "reason": "RabbitMQ orchestrates confirmations, reminders and async integrations."
+          "reason": "RabbitMQ orchestrates data processing, report generation, and async integrations."
         },
         "item6": {
-          "impact": "High-read confirmations",
-          "reason": "WhatsApp Business reduces no-shows and improves response time."
+          "impact": "Reliable geographic context",
+          "reason": "Google Maps Platform provides geocoding and location data for every analysis."
         },
         "item7": {
           "impact": "Modular and testable backend",
@@ -349,8 +352,8 @@
         },
         "item3": {
           "name": "Reliable async workflows",
-          "trigger": "Event queues handle confirmations, reminders, and notifications without blocking the app.",
-          "outcome": "The platform stays stable during usage spikes and high message volumes."
+          "trigger": "Event queues process data, generate reports, and send notifications without blocking the app.",
+          "outcome": "The platform stays stable during usage spikes and high analysis volumes."
         },
         "item4": {
           "name": "Continuous quality and real maintainability",
@@ -361,7 +364,7 @@
     },
     "ethics": {
       "title": "Serious engineering for real business",
-      "description": "We build a platform for professional operations, not a fragile prototype. Performance, security, and consistency come first so scheduling works reliably every day.",
+      "description": "We build a platform for professional operations, not a fragile prototype. Performance, security, and consistency come first so location analysis works reliably every day.",
       "cta": "Back to home"
     }
   },
@@ -390,15 +393,15 @@
       "forgotPassword": "Forgot my password",
       "submit": "Sign in",
       "hero": {
-        "title": "Fewer gaps, more booked schedules.",
-        "subtitle": "The dashboard reduces uncertainty, improves predictability, and speeds up daily decision-making with a clear view.",
+        "title": "Less guesswork, more decisions backed by data.",
+        "subtitle": "The dashboard reduces uncertainty, improves predictability, and speeds up your decisions with a clear view of the market.",
         "item1": {
-          "title": "Predictable operations",
-          "description": "Busy teams prioritize automatic confirmation to reduce no-shows."
+          "title": "Predictable decisions",
+          "description": "Anyone choosing a site or an investment compares demand, competition, and income before signing."
         },
         "item2": {
-          "title": "More daily attendance",
-          "description": "Every lost slot impacts monthly revenue and customer recurrence."
+          "title": "Expansion without costly mistakes",
+          "description": "A site in the wrong place consumes capital and delays the return on investment."
         }
       }
     },
@@ -440,15 +443,15 @@
         "mismatch": "Passwords do not match."
       },
       "hero": {
-        "title": "Start with a schedule ready to convert.",
-        "subtitle": "Objective signup, guided activation, and your first workflow configured with less friction.",
+        "title": "Start with data ready to decide.",
+        "subtitle": "Objective signup, guided activation, and your first location analysis configured with less friction.",
         "item1": {
           "title": "Simplified onboarding",
           "description": "Create your account now and complete details at the right moment."
         },
         "item2": {
-          "title": "Fast first activation",
-          "description": "A clear flow to go from zero to an active booking page."
+          "title": "Fast first analysis",
+          "description": "A clear flow to go from zero to an active location analysis."
         }
       }
     },

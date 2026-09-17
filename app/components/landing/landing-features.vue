@@ -19,9 +19,9 @@
         <div class="rounded-2xl border border-white/10 bg-[#121826] p-5 text-left text-xs text-white/70">
           <p class="text-white/40">index.ts</p>
           <div class="mt-4 space-y-2 font-mono">
-            <p><span class="text-[#f97316]">const</span> cloudhub = <span class="text-[#22d3ee]">create</span>()</p>
-            <p><span class="text-[#22c55e]">monitor</span>(users, workflows)</p>
-            <p><span class="text-[#a78bfa]">share</span>(reports)</p>
+            <p><span class="text-[#f97316]">const</span> marcato = <span class="text-[#22d3ee]">create</span>()</p>
+            <p><span class="text-[#22c55e]">analyze</span>(location, radius)</p>
+            <p><span class="text-[#a78bfa]">compare</span>(regions)</p>
           </div>
         </div>
       </div>

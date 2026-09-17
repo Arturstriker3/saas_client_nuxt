@@ -152,7 +152,7 @@ const technologies = computed<TechnologyItem[]>(() => [
   { name: "MongoDB", icon: "i-simple-icons-mongodb", color: "#47A248", impact: t("technologiesPage.tech.items.item3.impact"), reason: t("technologiesPage.tech.items.item3.reason") },
   { name: "TypeScript", icon: "i-simple-icons-typescript", color: "#3178C6", impact: t("technologiesPage.tech.items.item4.impact"), reason: t("technologiesPage.tech.items.item4.reason") },
   { name: "RabbitMQ", icon: "i-simple-icons-rabbitmq", color: "#FF6600", impact: t("technologiesPage.tech.items.item5.impact"), reason: t("technologiesPage.tech.items.item5.reason") },
-  { name: "WhatsApp Business", icon: "i-simple-icons-whatsapp", color: "#25D366", impact: t("technologiesPage.tech.items.item6.impact"), reason: t("technologiesPage.tech.items.item6.reason") },
+  { name: "Google Maps Platform", icon: "i-simple-icons-googlemaps", color: "#4285F4", impact: t("technologiesPage.tech.items.item6.impact"), reason: t("technologiesPage.tech.items.item6.reason") },
   { name: "NestJS", icon: "i-simple-icons-nestjs", color: "#E0234E", impact: t("technologiesPage.tech.items.item7.impact"), reason: t("technologiesPage.tech.items.item7.reason") },
   { name: "Resend", icon: "i-simple-icons-resend", color: "#000000", impact: t("technologiesPage.tech.items.item8.impact"), reason: t("technologiesPage.tech.items.item8.reason") },
   { name: "Docker", icon: "i-simple-icons-docker", color: "#2496ED", impact: t("technologiesPage.tech.items.item9.impact"), reason: t("technologiesPage.tech.items.item9.reason") },

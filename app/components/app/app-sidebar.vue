@@ -32,7 +32,7 @@
 
       <!-- Main Section -->
       <div v-if="!isCollapsed" class="mb-1 px-2 py-1">
-        <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94a3b8] dark:text-slate-400">Principal</p>
+        <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94a3b8] dark:text-slate-400">{{ t("app.nav.sections.main") }}</p>
       </div>
       <ul class="space-y-0.5">
         <li v-for="item in mainItems" :key="item.to">
@@ -58,7 +58,7 @@
 
       <!-- Workspace Section -->
       <div v-if="!isCollapsed" class="mb-1 mt-4 px-2 py-1">
-        <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94a3b8] dark:text-slate-400">Área de trabalho</p>
+        <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94a3b8] dark:text-slate-400">{{ t("app.nav.sections.workspace") }}</p>
       </div>
       <div v-if="isCollapsed" class="my-2 border-t border-black/[0.06] dark:border-white/[0.08]" />
       <ul class="space-y-0.5">
@@ -147,7 +147,7 @@
               </li>
             </ul>
 
-            <p class="mb-1 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94a3b8] dark:text-slate-400">Área de trabalho</p>
+            <p class="mb-1 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#94a3b8] dark:text-slate-400">{{ t("app.nav.sections.workspace") }}</p>
             <ul class="mb-4 space-y-0.5">
               <li v-for="item in workspaceItems" :key="item.to">
                 <NuxtLink
@@ -161,17 +161,6 @@
                 </NuxtLink>
               </li>
             </ul>
-
-            <div class="border-t border-black/[0.06] pt-2 dark:border-white/[0.08]">
-              <button
-                type="button"
-                class="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-medium text-rose-600 transition-colors hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-500/[0.10]"
-                @click="close(); handleSignOut()"
-              >
-                <UIcon name="i-lucide-log-out" class="h-[18px] w-[18px] shrink-0" />
-                <span>{{ t("app.signOut") }}</span>
-              </button>
-            </div>
           </nav>
 
           <!-- Bottom: locale + theme + user -->
@@ -180,7 +169,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-white/[0.08] dark:hover:text-slate-100"
+                  class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-white/[0.08] dark:hover:text-slate-100"
                   @click="isLocalePickerOpen = !isLocalePickerOpen"
                 >
                   <UIcon :name="selectedLocaleIcon" class="h-3.5 w-3.5 shrink-0" />
@@ -208,7 +197,7 @@
               </div>
               <button
                 type="button"
-                class="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-white/[0.08] dark:hover:text-slate-100"
+                class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-white/[0.08] dark:hover:text-slate-100"
                 @click="toggleTheme"
               >
                 <UIcon :name="themeIcon" class="h-3.5 w-3.5" />
@@ -216,17 +205,27 @@
               </button>
             </div>
 
-            <div class="mt-3 flex items-center gap-3 pt-3 border-t border-black/[0.04] dark:border-white/[0.06]">
-              <div class="relative shrink-0">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 ring-1 ring-black/[0.06] dark:bg-emerald-500/[0.15] dark:text-emerald-300 dark:ring-white/[0.08]">
-                  {{ initials }}
+            <div class="mt-4 flex items-center justify-between pt-4 border-t border-black/[0.04] dark:border-white/[0.06]">
+              <NuxtLink to="/app/profile" class="flex min-w-0 items-center gap-2.5 rounded-lg py-1 pr-2 transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.04]" @click="close()">
+                <div class="relative shrink-0">
+                  <div class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700 ring-1 ring-black/[0.06] dark:bg-emerald-500/[0.15] dark:text-emerald-300 dark:ring-white/[0.08]">
+                    {{ initials }}
+                  </div>
+                  <span class="absolute -bottom-0.5 -right-0.5 flex h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-400 dark:border-slate-950" />
                 </div>
-                <span class="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 rounded-full border-2 border-white bg-emerald-400 dark:border-slate-950" />
-              </div>
-              <div class="min-w-0">
-                <p class="truncate text-sm font-semibold">{{ me?.name ?? t("app.user") }}</p>
-                <p class="truncate text-[11px] text-slate-400 dark:text-slate-400">{{ me?.email }}</p>
-              </div>
+                <div class="min-w-0 text-left">
+                  <p class="truncate text-[13px] font-semibold leading-tight">{{ me?.name ?? t("app.user") }}</p>
+                  <p class="truncate text-[11px] leading-tight text-slate-400 dark:text-slate-400">{{ me?.email }}</p>
+                </div>
+              </NuxtLink>
+              <button
+                type="button"
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:text-slate-400 dark:hover:bg-white/[0.06] dark:hover:text-slate-300"
+                :title="t('app.signOut')"
+                @click="close(); handleSignOut()"
+              >
+                <UIcon name="i-lucide-log-out" class="h-[18px] w-[18px]" />
+              </button>
             </div>
           </div>
         </div>
@@ -263,12 +262,12 @@ const localeLabels: Record<string, string> = {
 
 const mainItems = computed(() => [
   { to: "/app", label: t("app.nav.dashboard"), icon: "i-lucide-layout-dashboard" },
-  { to: "/app/schedule", label: t("app.nav.schedule"), icon: "i-lucide-calendar-days" },
+  { to: "/app/schedule", label: t("app.nav.schedule"), icon: "i-lucide-radar" },
 ])
 
 const workspaceItems = computed(() => [
-  { to: "/app/clients", label: t("app.nav.clients"), icon: "i-lucide-users" },
-  { to: "/app/messages", label: t("app.nav.messages"), icon: "i-lucide-message-square" },
+  { to: "/app/clients", label: t("app.nav.clients"), icon: "i-lucide-map" },
+  { to: "/app/messages", label: t("app.nav.messages"), icon: "i-lucide-lightbulb" },
   { to: "/app/reports", label: t("app.nav.reports"), icon: "i-lucide-bar-chart-3" },
   { to: "/app/settings", label: t("app.nav.settings"), icon: "i-lucide-settings" },
 ])
@@ -312,11 +311,11 @@ const userMenuItems = computed(() => [
 <style scoped>
 .drawer-slide-enter-active,
 .drawer-slide-leave-active {
-  transition: opacity 250ms ease;
+  transition: opacity 150ms ease;
 }
 .drawer-slide-enter-active > :last-child,
 .drawer-slide-leave-active > :last-child {
-  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .drawer-slide-enter-from {
   opacity: 0;

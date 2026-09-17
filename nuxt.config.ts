@@ -1,6 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
 
-const appName = process.env.NUXT_PUBLIC_APP_NAME || "SaaS Client";
+const appName = process.env.NUXT_PUBLIC_APP_NAME || "Marcato";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
