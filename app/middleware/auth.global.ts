@@ -26,11 +26,6 @@ export default defineNuxtRouteMiddleware((to) => {
   }
 
   if (!isAuthenticated.value) {
-    return navigateTo({
-      name: "auth-login",
-      query: {
-        redirect: routeName,
-      },
-    });
+    return navigateTo({ name: "auth-login" });
   }
 });

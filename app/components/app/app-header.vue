@@ -57,9 +57,9 @@ const routeSegments = computed(() => route.path.split("/").filter(Boolean))
 
 const crumbMap = computed(() => ({
   app: t("app.breadcrumb.home"),
-  schedule: t("app.nav.schedule"),
-  clients: t("app.nav.clients"),
-  messages: t("app.nav.messages"),
+  analyses: t("app.nav.analyses"),
+  locations: t("app.nav.locations"),
+  insights: t("app.nav.insights"),
   reports: t("app.nav.reports"),
   settings: t("app.nav.settings"),
   profile: t("app.profile.title"),

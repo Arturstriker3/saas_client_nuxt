@@ -14,10 +14,10 @@
       "signOut": "Sair"
     },
     "nav": {
-      "dashboard": "Visão geral",
-      "schedule": "Análises",
-      "clients": "Locais",
-      "messages": "Insights",
+      "overview": "Visão geral",
+      "analyses": "Análises",
+      "locations": "Locais",
+      "insights": "Insights",
       "reports": "Relatórios",
       "settings": "Configurações",
       "sections": {

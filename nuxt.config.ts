@@ -12,6 +12,9 @@ export default defineNuxtConfig({
   routeRules: {
     "/app/**": { ssr: false },
     "/auth/**": { ssr: false },
+    "/app/schedule": { redirect: { to: "/app/analyses", statusCode: 301 } },
+    "/app/clients": { redirect: { to: "/app/locations", statusCode: 301 } },
+    "/app/messages": { redirect: { to: "/app/insights", statusCode: 301 } },
   },
   experimental: {
     asyncEntry: true,

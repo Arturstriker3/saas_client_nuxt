@@ -4,12 +4,12 @@
       <div class="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-500/10">
         <UIcon name="i-lucide-radar" class="h-8 w-8 text-emerald-500" />
       </div>
-      <p class="mt-4 text-sm font-medium text-[#64748b] dark:text-slate-400">{{ t("app.nav.schedule") }}</p>
+      <p class="mt-4 text-sm font-medium text-[#64748b] dark:text-slate-400">{{ t("app.nav.analyses") }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-definePageMeta({ layout: "app", name: "app-schedule" })
+definePageMeta({ layout: "app", name: "app-analyses" })
 const { t } = useI18n()
 </script>

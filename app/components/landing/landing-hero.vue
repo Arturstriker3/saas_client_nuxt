@@ -31,13 +31,14 @@
         >
           <div class="flex items-start justify-between gap-3 text-[#334155] dark:text-slate-300">
             <div class="flex items-center gap-2">
-              <div class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300">
+              <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-300">
                 <UIcon :name="item.icon" class="h-4 w-4" />
               </div>
               <p class="text-xs font-semibold uppercase tracking-[0.14em]">{{ item.trigger }}</p>
             </div>
-            <p class="text-[1.7rem] font-extrabold leading-none text-[#0f172a] dark:text-slate-100">
-              {{ formatMetricValue(item, index) }}
+            <p class="relative text-right text-[1.7rem] font-extrabold leading-none text-[#0f172a] tabular-nums dark:text-slate-100">
+              <span class="invisible" aria-hidden="true">{{ formatMetricValue(item) }}</span>
+              <span class="absolute inset-y-0 right-0">{{ formatAnimatedValue(item, index) }}</span>
             </p>
           </div>
           <p class="mt-2 min-h-10 text-sm leading-5 text-[#475569] dark:text-slate-300">
@@ -74,9 +75,8 @@ const heroSection = ref<HTMLElement | null>(null)
 const trustCardsSection = ref<HTMLElement | null>(null)
 const sectionVisible = ref(false)
 const trustCardsVisible = ref(false)
-const hasAnimated = ref(false)
-const animatedSources = props.trustItems.map(() => ref(0))
-const animatedValues = animatedSources.map((source) => useTransition(source, { duration: 1200 }))
+const metricSources = props.trustItems.map(() => ref(0))
+const animatedMetrics = metricSources.map((source) => useTransition(source, { duration: 1200 }))
 
 useIntersectionObserver(heroSection, ([entry]) => {
   if (!entry?.isIntersecting) {
@@ -92,19 +92,11 @@ useIntersectionObserver(trustCardsSection, ([entry]) => {
   }
 
   trustCardsVisible.value = true
-  hasAnimated.value = true
-}, { threshold: 0.42, rootMargin: "0px 0px -12% 0px" })
-
-watch(hasAnimated, (isActive) => {
-  if (!isActive) {
-    return
-  }
-
   props.trustItems.forEach((item, index) => {
-    const source = animatedSources[index]
+    const source = metricSources[index]
     if (source) source.value = item.value
   })
-})
+}, { threshold: 0.42, rootMargin: "0px 0px -12% 0px" })
 
 const heroBackgroundStyle = computed(() => ({
   ...props.heroLinesStyle,
@@ -126,8 +118,11 @@ const getTrustCardStyle = (index: number) => {
   }
 }
 
-const formatMetricValue = (item: HeroTrustItem, index: number) => {
-  const metricValue = animatedValues[index]?.value ?? 0
-  return `${item.prefix ?? ""}${metricValue.toFixed(item.decimals)}${item.suffix ?? ""}`
+const formatMetricValue = (item: HeroTrustItem) =>
+  `${item.prefix ?? ""}${item.value.toFixed(item.decimals)}${item.suffix ?? ""}`
+
+const formatAnimatedValue = (item: HeroTrustItem, index: number) => {
+  const current = animatedMetrics[index]?.value ?? item.value
+  return `${item.prefix ?? ""}${current.toFixed(item.decimals)}${item.suffix ?? ""}`
 }
 </script>

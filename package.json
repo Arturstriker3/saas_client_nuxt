@@ -9,6 +9,7 @@
     "generate": "nuxt generate",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "typecheck": "vue-tsc --noEmit -p .nuxt/tsconfig.app.json",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

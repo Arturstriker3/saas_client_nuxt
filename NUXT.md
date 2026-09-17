@@ -251,7 +251,7 @@ Política de cache:
 
 - `srcDir` aponta para `app/`
 - `nitro.preset: "static"` gera saída estática para deploy sem processo Node do Nuxt
-- `routeRules` define que `/dashboard` e `/auth/**` são SPA; as demais páginas são prerenderizadas (HTML completo com Schema.org incluso)
+- `routeRules` define que `/app/**` e `/auth/**` são SPA; as demais páginas são prerenderizadas (HTML completo com Schema.org incluso). Também concentra os redirects 301 das rotas antigas (`/app/schedule`, `/app/clients`, `/app/messages`)
 - `runtimeConfig.public.apiBase` centraliza URL base da API
 - `plugins` registra Vue Query globalmente
 - `imports.dirs` inclui composables/stores de módulos

@@ -104,7 +104,7 @@
                   size="sm"
                   square
                   :disabled="isAuthActionLoading"
-                  @click="showLoginPassword = !showLoginPassword"
+                  @click="togglePasswordVisibility"
                 >
                   <UIcon :name="showLoginPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'" class="h-5 w-5" />
                 </UButton>
@@ -161,7 +161,6 @@ const { t } = useI18n()
 const {
   public: { appName },
 } = useRuntimeConfig()
-const route = useRoute()
 const { startGoogleOAuth } = useAuthOAuth()
 const { signInWithPassword } = useAuthSession()
 const isContentVisible = ref(false)
@@ -172,14 +171,17 @@ type HeroHighlight = {
   description: string
   delay: number
 }
-type AuthRedirectRouteName = "app"
-
 const showLoginPassword = ref(false)
 const email = ref("")
 const password = ref("")
 const loginEmailError = ref("")
 const isLoginLoading = ref(false)
 const isGoogleOAuthLoading = ref(false)
+
+const togglePasswordVisibility = () => {
+  showLoginPassword.value = !showLoginPassword.value
+}
+
 const isAuthActionLoading = computed(() =>
   isLoginLoading.value || isGoogleOAuthLoading.value,
 )
@@ -197,14 +199,6 @@ const heroHighlights = computed<HeroHighlight[]>(() => [
     delay: 420,
   },
 ])
-
-const getSafeRedirectRouteName = (redirectValue: unknown): AuthRedirectRouteName => {
-  if (redirectValue === "app" || redirectValue === "dashboard") {
-    return "app"
-  }
-
-  return "app"
-}
 
 const handleLoginSubmit = async () => {
   const normalizedEmail = email.value.trim().toLowerCase()
@@ -226,7 +220,6 @@ const handleLoginSubmit = async () => {
     await signInWithPassword({
       email: normalizedEmail,
       password: password.value,
-      redirectRouteName: route.query.redirect,
     })
   }
   catch {
@@ -245,7 +238,7 @@ const handleGoogleOAuthStart = async () => {
   isGoogleOAuthLoading.value = true
 
   try {
-    await startGoogleOAuth(getSafeRedirectRouteName(route.query.redirect))
+    await startGoogleOAuth()
   }
   catch {
     return

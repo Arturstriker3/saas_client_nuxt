@@ -37,7 +37,6 @@ export const useAuthSession = () => {
   const signInWithPassword = async (payload: {
     email: string
     password: string
-    redirectRouteName?: unknown
   }) => {
     await loginMutation.mutateAsync(payload)
   }

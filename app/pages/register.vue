@@ -196,7 +196,7 @@
                   variant="ghost"
                   size="sm"
                   square
-                  @click="showRegisterPassword = !showRegisterPassword"
+                  @click="toggleRegisterPasswordVisibility"
                 >
                   <UIcon :name="showRegisterPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'" class="h-5 w-5" />
                 </UButton>
@@ -234,7 +234,7 @@
                     variant="ghost"
                     size="sm"
                     square
-                    @click="showRegisterConfirmPassword = !showRegisterConfirmPassword"
+                    @click="toggleRegisterConfirmPasswordVisibility"
                   >
                     <UIcon :name="showRegisterConfirmPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'" class="h-5 w-5" />
                   </UButton>
@@ -333,6 +333,14 @@ const currentYear = new Date().getFullYear()
 const { locale, changeLocale } = useLocaleSwitcher()
 const showRegisterPassword = ref(false)
 const showRegisterConfirmPassword = ref(false)
+
+const toggleRegisterPasswordVisibility = () => {
+  showRegisterPassword.value = !showRegisterPassword.value
+}
+
+const toggleRegisterConfirmPasswordVisibility = () => {
+  showRegisterConfirmPassword.value = !showRegisterConfirmPassword.value
+}
 const registerName = ref("")
 const registerEmail = ref("")
 const registerPassword = ref("")
@@ -608,7 +616,7 @@ const handleGoogleOAuthStart = async () => {
   isGoogleOAuthLoading.value = true
 
   try {
-    await startGoogleOAuth("app")
+    await startGoogleOAuth()
   }
   catch {
     return

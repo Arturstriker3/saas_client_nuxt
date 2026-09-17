@@ -35,7 +35,7 @@
     </template>
 
     <!-- Language Modal -->
-    <AppModal :open="isLanguageModalOpen" @close="isLanguageModalOpen = false">
+    <AppModal :open="isLanguageModalOpen" @close="closeLanguageModal">
       <template #title>{{ t("app.profile.changeLanguage") }}</template>
       <div class="space-y-4">
         <p class="flex items-start gap-2 rounded-lg bg-slate-50 px-3 py-2 text-xs text-[#94a3b8] dark:bg-slate-800/50 dark:text-slate-500">
@@ -60,12 +60,12 @@
         </div>
       </div>
       <template #footer>
-        <UButton color="neutral" variant="ghost" @click="isLanguageModalOpen = false">{{ t("app.profile.cancel") }}</UButton>
+        <UButton color="neutral" variant="ghost" @click="closeLanguageModal">{{ t("app.profile.cancel") }}</UButton>
       </template>
     </AppModal>
 
     <!-- Birth Date Modal -->
-    <AppModal :open="isBirthDateModalOpen" @close="isBirthDateModalOpen = false">
+    <AppModal :open="isBirthDateModalOpen" @close="closeBirthDateModal">
       <template #title>{{ t("app.profile.changeBirthDate") }}</template>
       <div class="space-y-3">
         <UInput
@@ -78,7 +78,7 @@
         />
       </div>
       <template #footer>
-        <UButton color="neutral" variant="ghost" @click="isBirthDateModalOpen = false">{{ t("app.profile.cancel") }}</UButton>
+        <UButton color="neutral" variant="ghost" @click="closeBirthDateModal">{{ t("app.profile.cancel") }}</UButton>
         <UButton color="primary" :loading="isBirthDateSaving" @click="handleBirthDateSave">{{ t("app.profile.save") }}</UButton>
       </template>
     </AppModal>
@@ -122,6 +122,9 @@ const openBirthDateModal = () => {
   }
   isBirthDateModalOpen.value = true
 }
+
+const closeLanguageModal = () => { isLanguageModalOpen.value = false }
+const closeBirthDateModal = () => { isBirthDateModalOpen.value = false }
 
 const handleLanguageChange = async (language: string) => {
   await updateLanguageMutation.mutateAsync(language)

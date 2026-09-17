@@ -3,16 +3,6 @@ import { authRepository } from "../repository/auth.repository";
 import { authKeys } from "../queries/auth.keys";
 import { AUTH_ME_STALE_TIME } from "../queries/use-me.query";
 
-type AuthRouteName = "app";
-
-const getSafeRedirectRouteName = (routeName: unknown): AuthRouteName => {
-  if (routeName === "app" || routeName === "dashboard") {
-    return "app";
-  }
-
-  return "app";
-};
-
 export const useLoginMutation = () => {
   const authStore = useAuthStore();
   const queryClient = useQueryClient();
@@ -20,11 +10,7 @@ export const useLoginMutation = () => {
   const { t } = useI18n();
 
   return useMutation({
-    mutationFn: async (payload: {
-      email: string;
-      password: string;
-      redirectRouteName?: unknown;
-    }) => {
+    mutationFn: async (payload: { email: string; password: string }) => {
       const tokens = await authRepository.login({
         email: payload.email,
         password: payload.password,
@@ -42,16 +28,12 @@ export const useLoginMutation = () => {
         authStore.signOut();
         throw error;
       }
-
-      return {
-        redirectRouteName: getSafeRedirectRouteName(payload.redirectRouteName),
-      };
     },
-    onSuccess: async (result) => {
+    onSuccess: async () => {
       appToast.success({
         title: t("auth.toasts.success.login"),
       });
-      await navigateTo({ name: result.redirectRouteName });
+      await navigateTo({ name: "app" });
     },
     onError: (error) => {
       appToast.apiError(error, {

@@ -12,7 +12,7 @@
       <button
         type="button"
         class="group flex shrink-0 items-center overflow-hidden rounded-lg p-1 -ml-1 transition-colors hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
-        @click="isCollapsed = !isCollapsed"
+        @click="toggleCollapsed"
       >
         <img
           v-if="isCollapsed"
@@ -170,7 +170,7 @@
                 <button
                   type="button"
                   class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-white/[0.08] dark:hover:text-slate-100"
-                  @click="isLocalePickerOpen = !isLocalePickerOpen"
+                  @click="toggleLocalePicker"
                 >
                   <UIcon :name="selectedLocaleIcon" class="h-3.5 w-3.5 shrink-0" />
                   {{ localeLabel }}
@@ -187,7 +187,7 @@
                       type="button"
                       class="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-[12px] font-medium transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.06]"
                       :class="String(locale) === l.label?.toLowerCase() ? 'text-emerald-700 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-300'"
-                      @click="l.onSelect(); isLocalePickerOpen = false"
+                      @click="l.onSelect(); closeLocalePicker()"
                     >
                       <UIcon :name="l.icon!" class="h-4 w-4 shrink-0" />
                       {{ l.label }}
@@ -247,6 +247,10 @@ const isCollapsed = ref(false)
 const isLocalePickerOpen = ref(false)
 const { isOpen: isMobileOpen, close } = useMobileSidebar()
 
+const toggleCollapsed = () => { isCollapsed.value = !isCollapsed.value }
+const toggleLocalePicker = () => { isLocalePickerOpen.value = !isLocalePickerOpen.value }
+const closeLocalePicker = () => { isLocalePickerOpen.value = false }
+
 type SupportedLocale = "pt" | "en" | "es"
 const localeFlagIcons: Record<SupportedLocale, string> = {
   pt: "i-circle-flags-br",
@@ -261,13 +265,13 @@ const localeLabels: Record<string, string> = {
 }
 
 const mainItems = computed(() => [
-  { to: "/app", label: t("app.nav.dashboard"), icon: "i-lucide-layout-dashboard" },
-  { to: "/app/schedule", label: t("app.nav.schedule"), icon: "i-lucide-radar" },
+  { to: "/app", label: t("app.nav.overview"), icon: "i-lucide-layout-dashboard" },
+  { to: "/app/analyses", label: t("app.nav.analyses"), icon: "i-lucide-radar" },
 ])
 
 const workspaceItems = computed(() => [
-  { to: "/app/clients", label: t("app.nav.clients"), icon: "i-lucide-map" },
-  { to: "/app/messages", label: t("app.nav.messages"), icon: "i-lucide-lightbulb" },
+  { to: "/app/locations", label: t("app.nav.locations"), icon: "i-lucide-map" },
+  { to: "/app/insights", label: t("app.nav.insights"), icon: "i-lucide-lightbulb" },
   { to: "/app/reports", label: t("app.nav.reports"), icon: "i-lucide-bar-chart-3" },
   { to: "/app/settings", label: t("app.nav.settings"), icon: "i-lucide-settings" },
 ])

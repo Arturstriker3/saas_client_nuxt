@@ -1,32 +1,10 @@
 import { authRepository } from "../repository/auth.repository";
 import { useCompleteGoogleOAuthMutation } from "../mutations/use-complete-google-oauth.mutation";
 
-const OAUTH_REDIRECT_STORAGE_KEY = "oauth_redirect_after_login";
-type AuthRedirectRouteName = "app";
-
-const getSafeRedirectRouteName = (
-  routeName: unknown,
-): AuthRedirectRouteName => {
-  if (routeName === "app" || routeName === "dashboard") {
-    return "app";
-  }
-
-  return "app";
-};
-
 export const useAuthOAuth = () => {
   const completeGoogleOAuthMutation = useCompleteGoogleOAuthMutation();
 
-  const startGoogleOAuth = async (
-    redirectRouteName?: AuthRedirectRouteName,
-  ) => {
-    if (redirectRouteName) {
-      sessionStorage.setItem(
-        OAUTH_REDIRECT_STORAGE_KEY,
-        getSafeRedirectRouteName(redirectRouteName),
-      );
-    }
-
+  const startGoogleOAuth = async () => {
     const authorizationUrl = await authRepository.startGoogleOAuth();
     window.location.href = authorizationUrl;
   };
@@ -35,7 +13,6 @@ export const useAuthOAuth = () => {
     code: string;
     state: string;
     language?: "portuguese" | "english" | "spanish";
-    redirect?: unknown;
   }) => {
     await completeGoogleOAuthMutation.mutateAsync(input);
   };

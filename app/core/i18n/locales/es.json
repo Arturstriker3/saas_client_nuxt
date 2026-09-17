@@ -14,10 +14,10 @@
       "signOut": "Salir"
     },
     "nav": {
-      "dashboard": "Resumen",
-      "schedule": "Análisis",
-      "clients": "Ubicaciones",
-      "messages": "Insights",
+      "overview": "Resumen",
+      "analyses": "Análisis",
+      "locations": "Ubicaciones",
+      "insights": "Insights",
       "reports": "Reportes",
       "settings": "Configuración",
       "sections": {

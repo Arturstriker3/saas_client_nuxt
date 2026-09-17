@@ -3,19 +3,6 @@ import { authRepository } from "../repository/auth.repository";
 import { authKeys } from "../queries/auth.keys";
 import { AUTH_ME_STALE_TIME } from "../queries/use-me.query";
 
-const OAUTH_REDIRECT_STORAGE_KEY = "oauth_redirect_after_login";
-type AuthRedirectRouteName = "app";
-
-const getSafeRedirectRouteName = (
-  routeName: unknown,
-): AuthRedirectRouteName => {
-  if (routeName === "app" || routeName === "dashboard") {
-    return "app";
-  }
-
-  return "app";
-};
-
 export const useCompleteGoogleOAuthMutation = () => {
   const authStore = useAuthStore();
   const queryClient = useQueryClient();
@@ -27,7 +14,6 @@ export const useCompleteGoogleOAuthMutation = () => {
       code: string;
       state: string;
       language?: "portuguese" | "english" | "spanish";
-      redirect?: unknown;
     }) => {
       const tokens = await authRepository.completeGoogleOAuth({
         code: input.code,
@@ -47,23 +33,12 @@ export const useCompleteGoogleOAuthMutation = () => {
         authStore.signOut();
         throw error;
       }
-
-      const persistedRedirectRouteName = sessionStorage.getItem(
-        OAUTH_REDIRECT_STORAGE_KEY,
-      );
-      sessionStorage.removeItem(OAUTH_REDIRECT_STORAGE_KEY);
-
-      return {
-        redirectRouteName: getSafeRedirectRouteName(
-          input.redirect ?? persistedRedirectRouteName,
-        ),
-      };
     },
-    onSuccess: async (result) => {
+    onSuccess: async () => {
       appToast.success({
         title: t("auth.toasts.success.googleLogin"),
       });
-      await navigateTo({ name: result.redirectRouteName });
+      await navigateTo({ name: "app" });
     },
     onError: (error) => {
       appToast.apiError(error, {

@@ -51,7 +51,6 @@ onMounted(async () => {
       code,
       state,
       language: mapLocaleToBackendLanguage(locale.value),
-      redirect: route.query.redirect,
     })
   }
   catch {
