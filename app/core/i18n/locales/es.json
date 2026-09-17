@@ -65,6 +65,7 @@
       "languageError": "Error al actualizar idioma.",
       "birthDateUpdated": "Fecha de nacimiento actualizada exitosamente.",
       "birthDateError": "Error al actualizar fecha de nacimiento.",
+      "birthDateMinAge": "Ingresa una fecha que corresponda a al menos 16 años.",
       "changeLanguage": "Cambiar idioma de comunicación",
       "changeLanguageHint": "Define el idioma de los correos, notificaciones y mensajes enviados por el sistema.",
       "changeBirthDate": "Cambiar fecha de nacimiento",
@@ -426,6 +427,14 @@
       "confirmPasswordLabel": "Confirmar contraseña",
       "confirmPasswordPlaceholder": "Repite tu contraseña",
       "submit": "Crear cuenta",
+      "next": "Continuar",
+      "back": "Volver",
+      "stepCounter": "Paso {current} de {total}",
+      "steps": {
+        "identity": "Tus datos",
+        "contact": "Contacto",
+        "security": "Seguridad"
+      },
       "phoneErrors": {
         "required": "Ingresa el teléfono.",
         "selectCountry": "Selecciona el país.",
@@ -438,7 +447,8 @@
         "birthDateRequired": "Ingresa tu fecha de nacimiento.",
         "birthDateMinAge": "Debes tener al menos 16 años.",
         "passwordRequired": "Ingresa tu contraseña.",
-        "passwordMinLength": "La contraseña debe tener al menos 8 caracteres."
+        "passwordMinLength": "La contraseña debe tener al menos 8 caracteres.",
+        "confirmPasswordRequired": "Confirma tu contraseña."
       },
       "passwordMatch": {
         "match": "Las contraseñas coinciden.",
@@ -487,6 +497,7 @@
     },
     "errors": {
       "invalidCredentials": "Credenciales inválidas.",
+      "disposableEmail": "No puedes crear una cuenta con un correo temporal. Usa un correo permanente.",
       "validation": "Revisa los campos informados.",
       "sessionExpired": "Sesión expirada. Inicia sesión de nuevo.",
       "forbidden": "No tienes permiso para ejecutar esta acción.",

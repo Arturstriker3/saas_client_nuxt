@@ -57,13 +57,28 @@
           <h2 class="text-3xl font-extrabold tracking-tight">{{ t("auth.register.title") }}</h2>
           <p class="mt-2 text-sm text-[#64748b] dark:text-slate-300">{{ t("auth.register.subtitle") }}</p>
         </div>
-        <form class="mt-8" @submit.prevent="handleRegisterSubmit">
+        <div class="mt-6">
+          <div class="flex items-center gap-2">
+            <div
+              v-for="step in registerSteps"
+              :key="step.value"
+              class="h-1.5 flex-1 rounded-full transition-colors duration-300"
+              :class="step.value <= currentStep ? 'bg-emerald-500' : 'bg-black/10 dark:bg-white/10'"
+            />
+          </div>
+          <div class="mt-2 flex items-center justify-between gap-3">
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">{{ currentStepLabel }}</p>
+            <p class="text-xs font-semibold text-[#64748b] dark:text-slate-400">{{ t("auth.register.stepCounter", { current: currentStep, total: registerSteps.length }) }}</p>
+          </div>
+        </div>
+
+        <form class="mt-6" novalidate @submit.prevent="handleRegisterSubmit">
           <fieldset
             class="space-y-4 transition-all duration-200"
             :disabled="isAuthActionLoading"
             :class="isAuthActionLoading ? 'pointer-events-none opacity-80 blur-[1px]' : ''"
           >
-          <div class="space-y-2">
+          <div v-show="currentStep === 1" class="space-y-2">
             <label for="name" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.nameLabel") }}</label>
             <UInput
               id="name"
@@ -81,7 +96,7 @@
               {{ registerNameError }}
             </p>
           </div>
-          <div class="space-y-2">
+          <div v-show="currentStep === 2" class="space-y-2">
             <label for="email" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.emailLabel") }}</label>
             <UInput
               id="email"
@@ -99,7 +114,7 @@
               {{ registerEmailError }}
             </p>
           </div>
-          <div class="space-y-2">
+          <div v-show="currentStep === 2" class="space-y-2">
             <label class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.phoneLabel") }}</label>
             <div class="grid gap-2 sm:grid-cols-5">
               <USelect
@@ -139,7 +154,7 @@
               {{ registerPhoneError }}
             </p>
           </div>
-          <div class="space-y-2">
+          <div v-show="currentStep === 1" class="space-y-2">
             <label for="birthDate" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.birthDateLabel") }}</label>
             <UInput
               id="birthDate"
@@ -155,7 +170,7 @@
               {{ registerBirthDateError }}
             </p>
           </div>
-          <div class="space-y-2">
+          <div v-show="currentStep === 1" class="space-y-2">
             <label for="language" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.languageLabel") }}</label>
             <USelect
               id="language"
@@ -175,7 +190,7 @@
               </template>
             </USelect>
           </div>
-          <div class="space-y-2">
+          <div v-show="currentStep === 3" class="space-y-2">
             <label for="password" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.passwordLabel") }}</label>
             <UInput
               id="password"
@@ -206,7 +221,7 @@
               {{ registerPasswordError }}
             </p>
           </div>
-          <div class="space-y-2">
+          <div v-show="currentStep === 3" class="space-y-2">
             <label for="confirmPassword" class="text-sm font-semibold text-[#334155] dark:text-slate-200">{{ t("auth.register.confirmPasswordLabel") }}</label>
             <UInput
               id="confirmPassword"
@@ -242,23 +257,44 @@
               </template>
             </UInput>
             <p
-              v-if="isConfirmPasswordDirty"
+              v-if="registerConfirmPasswordError"
+              class="text-xs font-semibold text-rose-600 dark:text-rose-400"
+            >
+              {{ registerConfirmPasswordError }}
+            </p>
+            <p
+              v-else-if="isConfirmPasswordDirty"
               class="text-xs font-semibold"
               :class="areRegisterPasswordsMatching ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'"
             >
               {{ areRegisterPasswordsMatching ? t("auth.register.passwordMatch.match") : t("auth.register.passwordMatch.mismatch") }}
             </p>
           </div>
-          <UButton
-            type="submit"
-            color="primary"
-            size="xl"
-            class="mt-1 w-full justify-center rounded-xl"
-            :loading="isRegisterLoading"
-            :disabled="isAuthActionLoading"
-          >
-            <span v-if="!isRegisterLoading">{{ t("auth.register.submit") }}</span>
-          </UButton>
+          <div class="flex items-center gap-2 pt-1">
+            <UButton
+              v-if="currentStep > 1"
+              type="button"
+              color="neutral"
+              variant="ghost"
+              size="xl"
+              class="rounded-xl"
+              :disabled="isAuthActionLoading"
+              @click="goToPreviousStep"
+            >
+              <UIcon name="i-lucide-arrow-left" class="h-4 w-4" />
+              {{ t("auth.register.back") }}
+            </UButton>
+            <UButton
+              type="submit"
+              color="primary"
+              size="xl"
+              class="flex-1 justify-center rounded-xl"
+              :loading="isRegisterLoading"
+              :disabled="isAuthActionLoading"
+            >
+              <span v-if="!isRegisterLoading">{{ isLastStep ? t("auth.register.submit") : t("auth.register.next") }}</span>
+            </UButton>
+          </div>
           <div class="relative py-1">
             <div class="h-px bg-black/10 dark:bg-white/10" />
             <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-xs font-semibold text-[#64748b] dark:bg-slate-900 dark:text-slate-300">{{ t("auth.common.or") }}</span>
@@ -295,6 +331,7 @@ import {
 } from "libphonenumber-js"
 import { z } from "zod"
 import { parseApiError } from "~/core/utils/parse-api-error.util"
+import { isAtLeastMinimumAge } from "~/core/utils/date.util"
 import { useAuthOAuth } from "~/modules/auth/composables/use-auth-oauth.composable"
 import { useAuthSession } from "~/modules/auth/composables/use-auth-session.composable"
 import type { SupportedLocale } from "~/composables/use-locale-switcher.composable"
@@ -350,6 +387,7 @@ const registerNameError = ref("")
 const registerEmailError = ref("")
 const registerBirthDateError = ref("")
 const registerPasswordError = ref("")
+const registerConfirmPasswordError = ref("")
 const heroHighlights = computed<HeroHighlight[]>(() => [
   {
     icon: "i-lucide-zap",
@@ -431,11 +469,21 @@ const handleRegisterPhoneInput = (nextValue: string | number) => {
   registerPhoneError.value = ""
 }
 
-const clearRegisterFieldErrors = () => {
-  registerNameError.value = ""
-  registerEmailError.value = ""
-  registerBirthDateError.value = ""
+const clearStepErrors = (step: number) => {
+  if (step === 1) {
+    registerNameError.value = ""
+    registerBirthDateError.value = ""
+    return
+  }
+
+  if (step === 2) {
+    registerEmailError.value = ""
+    registerPhoneError.value = ""
+    return
+  }
+
   registerPasswordError.value = ""
+  registerConfirmPasswordError.value = ""
 }
 
 const mapRegisterValidationDetail = (detail: string) => {
@@ -517,6 +565,10 @@ watch(registerPassword, () => {
   registerPasswordError.value = ""
 })
 
+watch(registerConfirmPassword, () => {
+  registerConfirmPasswordError.value = ""
+})
+
 const validateRegisterPhone = () => {
   if (!registerPhoneUnmasked.value) {
     registerPhoneError.value = t("auth.register.phoneErrors.required")
@@ -549,43 +601,132 @@ const mapLocaleCodeToBackendLanguage = (localeCode: SupportedLocale) => {
   return languageMap[localeCode]
 }
 
-const handleRegisterSubmit = async () => {
-  clearRegisterFieldErrors()
+const REGISTER_STEPS = [
+  { value: 1, labelKey: "auth.register.steps.identity" },
+  { value: 2, labelKey: "auth.register.steps.contact" },
+  { value: 3, labelKey: "auth.register.steps.security" },
+] as const
 
-  const isPhoneValid = validateRegisterPhone()
-  if (!isPhoneValid || !areRegisterPasswordsMatching.value) {
-    return
-  }
+const MINIMUM_PASSWORD_LENGTH = 8
 
-  const normalizedEmail = registerEmail.value.trim().toLowerCase()
+const currentStep = ref(1)
+const isLastStep = computed(() => currentStep.value === REGISTER_STEPS.length)
+const registerSteps = computed(() =>
+  REGISTER_STEPS.map(step => ({ value: step.value, label: t(step.labelKey) })),
+)
+const currentStepLabel = computed(() =>
+  registerSteps.value.find(step => step.value === currentStep.value)?.label ?? "",
+)
+
+const validateIdentityStep = () => {
   if (!registerName.value.trim()) {
     registerNameError.value = t("auth.register.errors.nameRequired")
-    return
-  }
-
-  if (!normalizedEmail) {
-    registerEmailError.value = t("auth.register.errors.emailRequired")
-    return
-  }
-
-  const isEmailValid = z.string().email().safeParse(normalizedEmail).success
-  if (!isEmailValid) {
-    registerEmailError.value = t("auth.register.errors.invalidEmail")
-    return
+    return false
   }
 
   if (!birthDate.value) {
     registerBirthDateError.value = t("auth.register.errors.birthDateRequired")
-    return
+    return false
   }
 
+  if (!isAtLeastMinimumAge(birthDate.value)) {
+    registerBirthDateError.value = t("auth.register.errors.birthDateMinAge")
+    return false
+  }
+
+  return true
+}
+
+const validateContactStep = () => {
+  const normalizedEmail = registerEmail.value.trim().toLowerCase()
+  if (!normalizedEmail) {
+    registerEmailError.value = t("auth.register.errors.emailRequired")
+    return false
+  }
+
+  if (!z.string().email().safeParse(normalizedEmail).success) {
+    registerEmailError.value = t("auth.register.errors.invalidEmail")
+    return false
+  }
+
+  return validateRegisterPhone()
+}
+
+const validateSecurityStep = () => {
   if (!registerPassword.value) {
     registerPasswordError.value = t("auth.register.errors.passwordRequired")
+    return false
+  }
+
+  if (registerPassword.value.length < MINIMUM_PASSWORD_LENGTH) {
+    registerPasswordError.value = t("auth.register.errors.passwordMinLength")
+    return false
+  }
+
+  if (!registerConfirmPassword.value) {
+    registerConfirmPasswordError.value = t("auth.register.errors.confirmPasswordRequired")
+    return false
+  }
+
+  if (!areRegisterPasswordsMatching.value) {
+    registerConfirmPasswordError.value = t("auth.register.passwordMatch.mismatch")
+    return false
+  }
+
+  return true
+}
+
+const validateCurrentStep = () => {
+  clearStepErrors(currentStep.value)
+
+  if (currentStep.value === 1) {
+    return validateIdentityStep()
+  }
+
+  if (currentStep.value === 2) {
+    return validateContactStep()
+  }
+
+  return validateSecurityStep()
+}
+
+const findInvalidPreviousStep = (): number | null => {
+  clearStepErrors(1)
+  if (!validateIdentityStep()) {
+    return REGISTER_STEPS[0].value
+  }
+
+  clearStepErrors(2)
+  if (!validateContactStep()) {
+    return REGISTER_STEPS[1].value
+  }
+
+  return null
+}
+
+const goToPreviousStep = () => {
+  if (currentStep.value <= 1) {
     return
   }
 
-  if (registerPassword.value.length < 8) {
-    registerPasswordError.value = t("auth.register.errors.passwordMinLength")
+  currentStep.value -= 1
+  clearStepErrors(currentStep.value)
+}
+
+const handleRegisterSubmit = async () => {
+  if (!validateCurrentStep()) {
+    return
+  }
+
+  if (!isLastStep.value) {
+    currentStep.value += 1
+    clearStepErrors(currentStep.value)
+    return
+  }
+
+  const invalidPreviousStep = findInvalidPreviousStep()
+  if (invalidPreviousStep !== null) {
+    currentStep.value = invalidPreviousStep
     return
   }
 
@@ -594,7 +735,7 @@ const handleRegisterSubmit = async () => {
   try {
     await registerAndSignIn({
       name: registerName.value.trim(),
-      email: normalizedEmail,
+      email: registerEmail.value.trim().toLowerCase(),
       password: registerPassword.value,
       birthDate: birthDate.value,
       language: mapLocaleCodeToBackendLanguage(selectedLanguage.value),

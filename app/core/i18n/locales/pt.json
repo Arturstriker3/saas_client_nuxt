@@ -65,6 +65,7 @@
       "languageError": "Erro ao atualizar idioma.",
       "birthDateUpdated": "Data de nascimento atualizada com sucesso.",
       "birthDateError": "Erro ao atualizar data de nascimento.",
+      "birthDateMinAge": "Informe uma data que corresponda a pelo menos 16 anos.",
       "changeLanguage": "Alterar linguagem da comunicação",
       "changeLanguageHint": "Define o idioma dos e-mails, notificações e mensagens enviadas pelo sistema.",
       "changeBirthDate": "Alterar data de nascimento",
@@ -424,6 +425,14 @@
       "confirmPasswordLabel": "Confirmar senha",
       "confirmPasswordPlaceholder": "Repita sua senha",
       "submit": "Criar conta",
+      "next": "Continuar",
+      "back": "Voltar",
+      "stepCounter": "Passo {current} de {total}",
+      "steps": {
+        "identity": "Seus dados",
+        "contact": "Contato",
+        "security": "Segurança"
+      },
       "phoneErrors": {
         "required": "Informe o telefone.",
         "selectCountry": "Selecione o país.",
@@ -436,7 +445,8 @@
         "birthDateRequired": "Informe sua data de nascimento.",
         "birthDateMinAge": "Você precisa ter pelo menos 16 anos.",
         "passwordRequired": "Informe sua senha.",
-        "passwordMinLength": "A senha deve ter no mínimo 8 caracteres."
+        "passwordMinLength": "A senha deve ter no mínimo 8 caracteres.",
+        "confirmPasswordRequired": "Confirme sua senha."
       },
       "passwordMatch": {
         "match": "As senhas coincidem.",
@@ -485,6 +495,7 @@
     },
     "errors": {
       "invalidCredentials": "Credenciais inválidas.",
+      "disposableEmail": "Não é possível criar conta com e-mail temporário. Use um e-mail permanente.",
       "validation": "Revise os campos informados.",
       "sessionExpired": "Sessão expirada. Faça login novamente.",
       "forbidden": "Você não tem permissão para executar esta ação.",

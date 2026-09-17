@@ -65,6 +65,7 @@
       "languageError": "Error updating language.",
       "birthDateUpdated": "Birth date updated successfully.",
       "birthDateError": "Error updating birth date.",
+      "birthDateMinAge": "Enter a date that is at least 16 years ago.",
       "changeLanguage": "Change communication language",
       "changeLanguageHint": "Sets the language for emails, notifications, and messages sent by the system.",
       "changeBirthDate": "Change birth date",
@@ -424,6 +425,14 @@
       "confirmPasswordLabel": "Confirm password",
       "confirmPasswordPlaceholder": "Repeat your password",
       "submit": "Create account",
+      "next": "Continue",
+      "back": "Back",
+      "stepCounter": "Step {current} of {total}",
+      "steps": {
+        "identity": "Your details",
+        "contact": "Contact",
+        "security": "Security"
+      },
       "phoneErrors": {
         "required": "Enter your phone number.",
         "selectCountry": "Select a country.",
@@ -436,7 +445,8 @@
         "birthDateRequired": "Enter your birth date.",
         "birthDateMinAge": "You must be at least 16 years old.",
         "passwordRequired": "Enter your password.",
-        "passwordMinLength": "Password must be at least 8 characters long."
+        "passwordMinLength": "Password must be at least 8 characters long.",
+        "confirmPasswordRequired": "Confirm your password."
       },
       "passwordMatch": {
         "match": "Passwords match.",
@@ -485,6 +495,7 @@
     },
     "errors": {
       "invalidCredentials": "Invalid credentials.",
+      "disposableEmail": "You cannot create an account with a temporary email. Please use a permanent email address.",
       "validation": "Review the provided fields.",
       "sessionExpired": "Session expired. Please sign in again.",
       "forbidden": "You do not have permission to perform this action.",

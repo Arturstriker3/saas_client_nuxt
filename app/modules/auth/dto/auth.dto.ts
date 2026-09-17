@@ -58,7 +58,7 @@ export const authMeResponseDtoSchema = z.object({
   createdAt: z.union([z.string(), z.date()]).optional(),
   role: z.string().optional(),
   language: z.string().optional(),
-  birthDate: z.union([z.string(), z.date(), z.null()]).optional(),
+  birthDate: z.union([z.string(), z.null()]).optional(),
 });
 
 export type AuthMeResponseDto = z.infer<typeof authMeResponseDtoSchema>;

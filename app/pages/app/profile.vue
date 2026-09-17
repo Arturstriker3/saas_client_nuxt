@@ -26,7 +26,7 @@
             :language="languageLabel"
             :member-since-label="t('app.profile.memberSince')"
             :member-since="me.createdAt ? formatDate(me.createdAt) : '—'"
-            :birth-date="me.birthDate ? formatDate(me.birthDate) : t('app.profile.notDefined')"
+            :birth-date="formatCalendarDate(me.birthDate, locale, t('app.profile.notDefined'))"
             @click-language="openLanguageModal"
             @click-birth-date="openBirthDateModal"
           />
@@ -76,6 +76,9 @@
           variant="outline"
           class="w-full"
         />
+        <p v-if="birthDateInputError" class="text-xs font-semibold text-rose-600 dark:text-rose-400">
+          {{ birthDateInputError }}
+        </p>
       </div>
       <template #footer>
         <UButton color="neutral" variant="ghost" @click="closeBirthDateModal">{{ t("app.profile.cancel") }}</UButton>
@@ -86,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { formatDate } from "~/core/utils/date.util"
+import { formatCalendarDate, formatDate, isAtLeastMinimumAge } from "~/core/utils/date.util"
 import { useMeQuery } from "~/modules/auth/queries/use-me.query"
 import { useUpdateLanguageMutation } from "~/modules/auth/mutations/use-update-language.mutation"
 import { useUpdateBirthDateMutation } from "~/modules/auth/mutations/use-update-birth-date.mutation"
@@ -96,7 +99,7 @@ definePageMeta({
   name: "app-profile",
 })
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const { data: me, isLoading } = useMeQuery()
 const { initials, languageLabel, roleBadgeLabel, roleIcon } = useProfileDisplay()
 const updateLanguageMutation = useUpdateLanguageMutation()
@@ -105,6 +108,7 @@ const updateBirthDateMutation = useUpdateBirthDateMutation()
 const isLanguageModalOpen = ref(false)
 const isBirthDateModalOpen = ref(false)
 const birthDateInput = ref("")
+const birthDateInputError = ref("")
 
 const languageOptions = [
   { value: "portuguese", label: "Português", icon: "i-circle-flags-br" },
@@ -114,12 +118,8 @@ const languageOptions = [
 
 const openLanguageModal = () => { isLanguageModalOpen.value = true }
 const openBirthDateModal = () => {
-  if (me.value?.birthDate) {
-    const d = new Date(me.value.birthDate)
-    birthDateInput.value = d.toISOString().slice(0, 10)
-  } else {
-    birthDateInput.value = ""
-  }
+  birthDateInput.value = me.value?.birthDate ?? ""
+  birthDateInputError.value = ""
   isBirthDateModalOpen.value = true
 }
 
@@ -133,7 +133,17 @@ const handleLanguageChange = async (language: string) => {
 
 const isBirthDateSaving = computed(() => updateBirthDateMutation.isPending.value)
 const handleBirthDateSave = async () => {
-  if (!birthDateInput.value) return
+  birthDateInputError.value = ""
+
+  if (!birthDateInput.value) {
+    return
+  }
+
+  if (!isAtLeastMinimumAge(birthDateInput.value)) {
+    birthDateInputError.value = t("app.profile.birthDateMinAge")
+    return
+  }
+
   await updateBirthDateMutation.mutateAsync(birthDateInput.value)
   isBirthDateModalOpen.value = false
 }

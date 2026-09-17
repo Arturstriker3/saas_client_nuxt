@@ -228,6 +228,10 @@ const resolveMessageKey = (input: {
     return "auth.errors.invalidCredentials";
   }
 
+  if (normalizedMessage === "email domain is not allowed") {
+    return "auth.errors.disposableEmail";
+  }
+
   if (input.statusCode === 400 && input.hasDetails) {
     return "auth.errors.validation";
   }
