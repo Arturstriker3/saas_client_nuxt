@@ -42,13 +42,14 @@
         :style="{ transitionDelay: isContentVisible ? '120ms' : '0ms' }"
       >
         <div class="mb-6 flex items-center justify-between">
-          <NuxtLink
-            to="/"
-            :aria-label="t('auth.common.backToHome')"
+          <button
+            type="button"
+            :aria-label="backLabel"
             class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 text-[#334155] transition hover:border-primary/40 hover:text-primary dark:border-white/10 dark:text-slate-300"
+            @click="handleBackToPrevious"
           >
             <UIcon name="i-lucide-arrow-left" class="h-4 w-4" />
-          </NuxtLink>
+          </button>
           <NuxtLink :to="{ name: 'auth-login' }" class="text-sm font-semibold text-primary hover:underline">
             {{ t("auth.register.switchToLogin") }}
           </NuxtLink>
@@ -270,31 +271,16 @@
               {{ areRegisterPasswordsMatching ? t("auth.register.passwordMatch.match") : t("auth.register.passwordMatch.mismatch") }}
             </p>
           </div>
-          <div class="flex items-center gap-2 pt-1">
-            <UButton
-              v-if="currentStep > 1"
-              type="button"
-              color="neutral"
-              variant="ghost"
-              size="xl"
-              class="rounded-xl"
-              :disabled="isAuthActionLoading"
-              @click="goToPreviousStep"
-            >
-              <UIcon name="i-lucide-arrow-left" class="h-4 w-4" />
-              {{ t("auth.register.back") }}
-            </UButton>
-            <UButton
-              type="submit"
-              color="primary"
-              size="xl"
-              class="flex-1 justify-center rounded-xl"
-              :loading="isRegisterLoading"
-              :disabled="isAuthActionLoading"
-            >
-              <span v-if="!isRegisterLoading">{{ isLastStep ? t("auth.register.submit") : t("auth.register.next") }}</span>
-            </UButton>
-          </div>
+          <UButton
+            type="submit"
+            color="primary"
+            size="xl"
+            class="mt-1 w-full justify-center rounded-xl"
+            :loading="isRegisterLoading"
+            :disabled="isAuthActionLoading"
+          >
+            <span v-if="!isRegisterLoading">{{ isLastStep ? t("auth.register.submit") : t("auth.register.next") }}</span>
+          </UButton>
           <div class="relative py-1">
             <div class="h-px bg-black/10 dark:bg-white/10" />
             <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-xs font-semibold text-[#64748b] dark:bg-slate-900 dark:text-slate-300">{{ t("auth.common.or") }}</span>
@@ -610,7 +596,11 @@ const REGISTER_STEPS = [
 const MINIMUM_PASSWORD_LENGTH = 8
 
 const currentStep = ref(1)
+const isFirstStep = computed(() => currentStep.value === 1)
 const isLastStep = computed(() => currentStep.value === REGISTER_STEPS.length)
+const backLabel = computed(() =>
+  isFirstStep.value ? t("auth.common.backToHome") : t("auth.common.back"),
+)
 const registerSteps = computed(() =>
   REGISTER_STEPS.map(step => ({ value: step.value, label: t(step.labelKey) })),
 )
@@ -704,8 +694,9 @@ const findInvalidPreviousStep = (): number | null => {
   return null
 }
 
-const goToPreviousStep = () => {
-  if (currentStep.value <= 1) {
+const handleBackToPrevious = () => {
+  if (isFirstStep.value) {
+    navigateTo("/")
     return
   }
 

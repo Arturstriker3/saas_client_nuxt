@@ -371,6 +371,7 @@
   },
   "auth": {
     "common": {
+      "back": "Back",
       "backToHome": "Back to home",
       "or": "or",
       "continueWithGoogle": "Continue with Google",
@@ -426,7 +427,6 @@
       "confirmPasswordPlaceholder": "Repeat your password",
       "submit": "Create account",
       "next": "Continue",
-      "back": "Back",
       "stepCounter": "Step {current} of {total}",
       "steps": {
         "identity": "Your details",

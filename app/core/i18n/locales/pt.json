@@ -371,6 +371,7 @@
   },
   "auth": {
     "common": {
+      "back": "Voltar",
       "backToHome": "Voltar para home",
       "or": "ou",
       "continueWithGoogle": "Continuar com Google",
@@ -426,7 +427,6 @@
       "confirmPasswordPlaceholder": "Repita sua senha",
       "submit": "Criar conta",
       "next": "Continuar",
-      "back": "Voltar",
       "stepCounter": "Passo {current} de {total}",
       "steps": {
         "identity": "Seus dados",

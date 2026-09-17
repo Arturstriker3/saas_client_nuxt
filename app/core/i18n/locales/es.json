@@ -373,6 +373,7 @@
   },
   "auth": {
     "common": {
+      "back": "Volver",
       "backToHome": "Volver al inicio",
       "or": "o",
       "continueWithGoogle": "Continuar con Google",
@@ -428,7 +429,6 @@
       "confirmPasswordPlaceholder": "Repite tu contraseña",
       "submit": "Crear cuenta",
       "next": "Continuar",
-      "back": "Volver",
       "stepCounter": "Paso {current} de {total}",
       "steps": {
         "identity": "Tus datos",
